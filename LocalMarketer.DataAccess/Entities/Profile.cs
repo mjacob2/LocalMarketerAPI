@@ -13,12 +13,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Name { get; set; }
 
-                [Required]
                 public int UserId { get; set; }
 
                 public User User { get; set; }
 
-                [Required]
                 public int ClientId { get; set; }
 
                 public Client Client { get; set; }

@@ -16,15 +16,9 @@ namespace LocalMarketer.DataAccess.Entities
                         Resignation
                 }
 
-                [Required]
                 public int ProfileId { get; set; }
 
                 public Profile Profile { get; set; }
-
-                [Required]
-                public int ClientId { get; set; }
-
-                public Client Client { get; set; }
 
                 [Required]
                 public DateTime EndDate { get; set; }

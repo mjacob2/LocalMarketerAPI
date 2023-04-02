@@ -20,7 +20,6 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Title { get; set; }
 
-                [Required]
                 public int ProfileId { get; set; }
 
                 public Profile Profile { get; set; }
