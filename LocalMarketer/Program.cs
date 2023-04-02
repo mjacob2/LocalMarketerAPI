@@ -1,3 +1,18 @@
+using LocalMarketer.ApplicationServices.API.Domain.Responses;
+using Microsoft.Extensions.DependencyInjection;
+using MediatR;
+using System.Reflection;
+using LocalMarketer.DataAccess.CQRS;
+using LocalMarketer.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace LocalMarketer
 {
@@ -7,13 +22,15 @@ namespace LocalMarketer
                 {
                         var builder = WebApplication.CreateBuilder(args);
 
-                        // Add services to the container.
 
                         builder.Services.AddControllers();
                         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                         builder.Services.AddEndpointsApiExplorer();
                         builder.Services.AddSwaggerGen();
-
+                        builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+                        builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+                        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ResponseBase<>).Assembly));
+                        builder.Services.AddDbContext<LocalMarketerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocalMarketerConnection")));
                         var app = builder.Build();
 
                         // Configure the HTTP request pipeline.
@@ -26,7 +43,6 @@ namespace LocalMarketer
                         app.UseHttpsRedirection();
 
                         app.UseAuthorization();
-
 
                         app.MapControllers();
 
