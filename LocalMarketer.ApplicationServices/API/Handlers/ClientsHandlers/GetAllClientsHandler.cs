@@ -1,21 +1,19 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Requests;
-using LocalMarketer.ApplicationServices.API.Domain.Responses;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
+using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
 using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries;
 using MediatR;
-using System.Globalization;
-
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 {
-        public class GetAllClientsHandler : IRequestHandler<GetAllClientsRequest, GetAllClientsResponse>
+    public class GetAllClientsHandler : IRequestHandler<GetAllClientsRequest, GetAllClientsResponse>
         {
-                private readonly IQueryExecutor queryExecutor;
+                private readonly IQueryExecutor executor;
 
-                public GetAllClientsHandler(IQueryExecutor queryExecutor)
+                public GetAllClientsHandler(IQueryExecutor executor)
                 {
-                        this.queryExecutor = queryExecutor;
+                        this.executor = executor;
                 }
                 public async Task<GetAllClientsResponse> Handle(GetAllClientsRequest request, CancellationToken cancellationToken)
                 {
@@ -24,10 +22,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 //LoggedUserRole = request.LoggedUserRole,
                                 //LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
-                        var DataFromDb = await this.queryExecutor.Execute(query);
-                        var DataFromDbMappedtoModel = ClientsMapping.GetAllClients(DataFromDb);
+                        var dataFromDb = await this.executor.Execute(query);
+                        var DataFromDbMappedtoModel = ClientsMapping.GetAllClients(dataFromDb);
                         var response = new GetAllClientsResponse(DataFromDbMappedtoModel);
-
                         return response;
                 }
         }

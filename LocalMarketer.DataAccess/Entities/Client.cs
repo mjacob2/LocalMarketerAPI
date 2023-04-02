@@ -26,30 +26,30 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Email { get; set; }
 
                 [MaxLength(50)]
-                public string Voivodeship { get; set; }
+                public string Voivodeship { get; set; } = string.Empty;
 
                 [MaxLength(50)]
-                public string City { get; set; }
+                public string City { get; set; } = string.Empty;
 
                 [MaxLength(50)]
-                public string Street { get; set; }
+                public string Street { get; set; } = string.Empty;
 
                 [MaxLength(10)]
-                public string PostCode { get; set; }
+                public string PostCode { get; set; } = string.Empty;
 
                 [MaxLength(50)]
-                public string Source { get; set; }
+                public string Source { get; set; } = string.Empty;
 
                 [MaxLength(500)]
-                public string Description { get; set; }
+                public string Description { get; set; } = string.Empty;
 
                 [Required]
                 [MaxLength(50)]
                 public string SellerEmail { get; set; }
 
-                public List<Profile> Profiles { get; set; }
+                public List<Profile> Profiles { get; set; } = new List<Profile>{};
 
-                public List<Deal> Deals { get; set; }
+                public List<Deal> Deals { get; set; } = new List<Deal>{};
 
-        }
+}
 }
