@@ -40,6 +40,9 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool AccesDenied { get; set; }
 
+                public List<Profile> Profiles { get; set; }
+
+
 
         }
 }

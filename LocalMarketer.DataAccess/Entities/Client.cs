@@ -46,5 +46,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 [MaxLength(50)]
                 public string SellerEmail { get; set; }
+
+                public List<Profile> Profiles { get; set; }
+
+                public List<Deal> Deals { get; set; }
+
         }
 }

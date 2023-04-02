@@ -23,6 +23,8 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public int ProfileId { get; set; }
 
+                public Profile Profile { get; set; }
+
                 [Required]
                 public DateTime StartDate { get; set; }
 

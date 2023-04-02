@@ -16,8 +16,12 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public int UserId { get; set; }
 
+                public User User { get; set; }
+
                 [Required]
                 public int ClientId { get; set; }
+
+                public Client Client { get; set; }
 
                 [MaxLength(50)]
                 public string Source { get; set; }
@@ -60,6 +64,8 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string CustomerService { get; set; }
 
+                public List<Activity> Activities { get; set; }
 
+                public List<Deal> Deals { get; set; }
         }
 }
