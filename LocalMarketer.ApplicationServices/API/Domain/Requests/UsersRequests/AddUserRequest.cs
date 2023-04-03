@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.UserResponses;
+using MediatR;
 using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests

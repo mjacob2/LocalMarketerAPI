@@ -29,7 +29,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Phone { get; set; }
 
                 [Required]
-                [MaxLength(10)]
+                [MaxLength(100)]
                 public string Password { get; set; }
 
                 [MaxLength(20)]
@@ -41,9 +41,6 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool AccesDenied { get; set; }
 
-                public List<Profile> Profiles { get; set; }
-
-
-
+                public List<Profile> Profiles { get; set; } = new List<Profile> { };
         }
 }

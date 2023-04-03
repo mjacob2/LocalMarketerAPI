@@ -16,17 +16,13 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         {
                                 Id = data.Id,
                                 CreationDate = data.CreationDate,
-                                City = data.City,
                                 Description = data.Description,
                                 Email = data.Email,
                                 FirstName = data.FirstName,
                                 LastName = data.LastName,
                                 Phone = data.Phone,
-                                PostCode = data.PostCode,
                                 SellerEmail = data.SellerEmail,
                                 Source = data.Source,
-                                Street = data.Street,
-                                Voivodeship = data.Voivodeship,
                                 Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
                                 {
                                         Id = x.Id,
