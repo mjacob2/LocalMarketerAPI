@@ -5,10 +5,5 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponse
 {
         public class AddClientResponse : ResponseBase<Client>
         {
-                public AddClientResponse(Client data)
-                        : base(data)
-                {
-
-                }
         }
 }

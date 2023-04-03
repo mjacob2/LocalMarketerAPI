@@ -40,7 +40,10 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 
                         var dataFromDb = await this.executor.Execute(command);
 
-                        var response = new AddClientResponse(dataFromDb);
+                        var response = new AddClientResponse()
+                        {
+                                ResponseData = dataFromDb,
+                        };
 
                         return response;
                 }

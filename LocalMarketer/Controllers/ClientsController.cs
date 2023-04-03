@@ -19,6 +19,17 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<GetAllClientsRequest, GetAllClientsResponse>(request);
                 }
 
+                [HttpGet]
+                [Route("{id}")]
+                public Task<IActionResult> GetClientById([FromRoute] int id)
+                {
+                        var request = new GetClientByIdRequest()
+                        {
+                                Id = id,
+                        };
+                        return this.HandleRequest<GetClientByIdRequest, GetClientByIdResponse>(request);
+                }
+
                 [HttpPost]
                 [Route("[controller]")]
                 public Task<IActionResult> AddClient([FromBody] AddClientRequest request)

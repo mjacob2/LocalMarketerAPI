@@ -6,11 +6,6 @@
         /// <typeparam name="T">Type of response.</typeparam>
         public class ResponseBase<T> : ErrorResponseBase
         {
-                public ResponseBase(T responseData)
-                {
-                        ResponseData = responseData;
-                }
-
                 /// <summary>
                 /// Gets or sets data that is transmitted as a response.
                 /// </summary>

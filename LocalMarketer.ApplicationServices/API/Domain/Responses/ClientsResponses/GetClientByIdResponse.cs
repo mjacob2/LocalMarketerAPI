@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses
 {
-    public class GetAllClientsResponse : ResponseBase<List<ClientListModel>>
-    {
-    }
+        public class GetClientByIdResponse : ResponseBase<ClientDetailsModel>
+        {
+        }
 }

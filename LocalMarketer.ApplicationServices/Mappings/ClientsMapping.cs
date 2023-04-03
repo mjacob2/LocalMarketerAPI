@@ -10,6 +10,36 @@ namespace LocalMarketer.ApplicationServices.Mappings
 {
         internal static class ClientsMapping
         {
+                internal static ClientDetailsModel ClientDetailsProfile(Client data)
+                {
+                        return new ClientDetailsModel()
+                        {
+                                Id = data.Id,
+                                CreationDate = data.CreationDate,
+                                City = data.City,
+                                Description = data.Description,
+                                Email = data.Email,
+                                FirstName = data.FirstName,
+                                LastName = data.LastName,
+                                Phone = data.Phone,
+                                PostCode = data.PostCode,
+                                SellerEmail = data.SellerEmail,
+                                Source = data.Source,
+                                Street = data.Street,
+                                Voivodeship = data.Voivodeship,
+                                Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
+                                {
+                                        Id = x.Id,
+                                        Name = x.Name,
+                                }).ToList(),
+                                Deals = data.Deals.Select(x => new DealGeneralModel()
+                                {
+                                        Id = x.Id,
+                                        Name = x.Name,
+                                        Stage= x.Stage,
+                                }).ToList(),
+                        };
+                }
 
                 internal static List<ClientListModel> GetAllClients(List<Client> data)
                 {
