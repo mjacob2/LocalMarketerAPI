@@ -26,18 +26,6 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Email { get; set; }
 
                 [MaxLength(50)]
-                public string Voivodeship { get; set; } = string.Empty;
-
-                [MaxLength(50)]
-                public string City { get; set; } = string.Empty;
-
-                [MaxLength(50)]
-                public string Street { get; set; } = string.Empty;
-
-                [MaxLength(10)]
-                public string PostCode { get; set; } = string.Empty;
-
-                [MaxLength(50)]
                 public string Source { get; set; } = string.Empty;
 
                 [MaxLength(500)]

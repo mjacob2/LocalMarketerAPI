@@ -6,6 +6,7 @@ namespace LocalMarketer.DataAccess.Entities
         {
                 public enum Roles
                 {
+                        Administrator,
                         Manager,
                         LocalMarketer,
                         Seller
