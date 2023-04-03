@@ -21,8 +21,6 @@ namespace LocalMarketer.Controllers
                     where TResponse : ErrorResponseBase
 
                 {
-
-
                         if (!this.ModelState.IsValid)
                         {
                                 return this.BadRequest(
