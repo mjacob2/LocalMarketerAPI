@@ -9,12 +9,8 @@ namespace LocalMarketer.DataAccess.Entities
 {
         public class Activity : EntityBase
         {
-                public enum Statuses
-                {
-                        NotStarted,
-                        InProgress,
-                        Done
-                }
+                [Required]
+                public int CreatorId { get; set; }
 
                 [Required]
                 [MaxLength(50)]
@@ -34,7 +30,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Description { get; set; } = string.Empty;
 
                 [Required]
-                public Statuses Status { get; set; }
+                public bool IsFinished { get; set; }
 
                 [MaxLength(100)]
                 public string Note1 { get; set; } = string.Empty;

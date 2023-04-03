@@ -1,5 +1,6 @@
 ﻿using LocalMarketer.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries
 {
@@ -7,7 +8,16 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries
         {
                 public override Task<List<Client>> Execute(LocalMarketerDbContext context)
                 {
-                        return context.Clients.ToListAsync();
+                        if (LoggedUserRole == Roles.Seller.ToString())
+                        {
+                                return context.Clients
+                                        .Where(x => x.CreatorId == LoggedUserId)
+                                        .ToListAsync();
+                        }
+                        else
+                        {
+                                return context.Clients.ToListAsync();
+                        }
                 }
         }
 }

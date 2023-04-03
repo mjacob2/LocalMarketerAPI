@@ -21,6 +21,8 @@ namespace LocalMarketer.Controllers
                     where TResponse : ErrorResponseBase
 
                 {
+
+
                         if (!this.ModelState.IsValid)
                         {
                                 return this.BadRequest(
@@ -29,11 +31,11 @@ namespace LocalMarketer.Controllers
                                         .Select(x => new { property = x.Key, errors = x.Value.Errors }));
                         }
 
-                        //var loggedUserRole = this.User.FindFirstValue(ClaimTypes.Role);
-                        //request.LoggedUserRole = loggedUserRole;
-                        //var loggedUSerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                        //request.LoggedUserId = loggedUSerId;
 
+                        var loggedUserRole = this.User.FindFirstValue(ClaimTypes.Role);
+                        request.LoggedUserRole = loggedUserRole;
+                        var loggedUSerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        request.LoggedUserId = loggedUSerId;
 
 
                         var response = await this.mediator.Send(request);

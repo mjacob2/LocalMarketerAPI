@@ -22,7 +22,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string PostCode { get; set; }
                 public string Source { get; set; }
                 public string Description { get; set; }
-                public string SellerEmail { get; set; }
+                public int SellerId { get; set; }
                 public List<ProfileGeneralModel> Profiles { get; set; }
                 public List<DealGeneralModel> Deals { get; set; }
         }

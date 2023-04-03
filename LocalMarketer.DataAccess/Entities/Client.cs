@@ -32,8 +32,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Description { get; set; } = string.Empty;
 
                 [Required]
-                [MaxLength(50)]
-                public string SellerEmail { get; set; }
+                public int CreatorId { get; set; }
 
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
 

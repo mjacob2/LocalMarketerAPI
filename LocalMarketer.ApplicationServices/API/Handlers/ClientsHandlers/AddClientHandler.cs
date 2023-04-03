@@ -29,7 +29,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 Email = request.Email,
                                 Source = request.Source,
                                 Description = request.Description,
-                                SellerEmail = request.SellerEmail,
+                                CreatorId = int.Parse(request.LoggedUserId),
                         };
 
                         var command = new AddClientCommand() { Parameter = itemtoAdd };

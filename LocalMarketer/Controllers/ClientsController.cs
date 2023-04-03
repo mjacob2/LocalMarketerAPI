@@ -1,11 +1,14 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocalMarketer.Controllers
 {
-    [ApiController]
+        [Authorize]
+        [ApiController]
+        [Route("[controller]")]
         public class ClientsController : ApiControllerBase
         {
                 public ClientsController(IMediator mediator) : base(mediator)
@@ -13,7 +16,7 @@ namespace LocalMarketer.Controllers
                 }
 
                 [HttpGet]
-                [Route("[controller]")]
+                [Route("")]
                 public Task<IActionResult> GetAllClients([FromQuery] GetAllClientsRequest request)
                 {
                         return this.HandleRequest<GetAllClientsRequest, GetAllClientsResponse>(request);
@@ -31,7 +34,7 @@ namespace LocalMarketer.Controllers
                 }
 
                 [HttpPost]
-                [Route("[controller]")]
+                [Route("")]
                 public Task<IActionResult> AddClient([FromBody] AddClientRequest request)
                 {
                         return this.HandleRequest<AddClientRequest, AddClientResponse>(request);

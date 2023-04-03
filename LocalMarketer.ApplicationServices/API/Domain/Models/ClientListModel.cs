@@ -17,6 +17,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string Phone { get; set; }
                 public string Email { get; set; }
                 public string Source { get; set; }
-                public string SellerEmail { get; set; }
+                public int CreatorId { get; set; }
         }
 }

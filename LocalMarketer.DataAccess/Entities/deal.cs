@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LocalMarketer.DataAccess.Entities
 {
@@ -15,6 +10,8 @@ namespace LocalMarketer.DataAccess.Entities
                         Finished,
                         Resignation
                 }
+                [Required]
+                public int CreatorId { get; set; }
 
                 public int ProfileId { get; set; }
 

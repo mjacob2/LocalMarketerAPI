@@ -9,9 +9,19 @@ namespace LocalMarketer.DataAccess.Entities
 {
         public class Profile : EntityBase
         {
+                public enum CustomerServices
+                {
+                        LocalOnly = 0,
+                        AwayOnly = 1,
+                        Combined = 3,
+                }
+
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }
+
+                [Required]
+                public int CreatorId { get; set; }
 
                 public int UserId { get; set; }
 
@@ -60,7 +70,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Email { get; set; }
 
                 [MaxLength(50)]
-                public string CustomerService { get; set; }
+                public CustomerServices CustomerService { get; set; }
 
                 public List<Activity> Activities { get; set; }
 

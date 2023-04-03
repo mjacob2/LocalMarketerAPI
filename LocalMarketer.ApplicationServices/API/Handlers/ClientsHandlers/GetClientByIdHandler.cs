@@ -6,6 +6,8 @@ using LocalMarketer.DataAccess.CQRS;
 using MediatR;
 using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using System.Globalization;
+using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 {
@@ -21,9 +23,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 {
                         var query = new GetClientByIdQuery()
                         {
-                                Id = request.Id,
-                                //LoggedUserRole = request.LoggedUserRole,
-                                //LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
+                                ClientId = request.Id,
+                                LoggedUserRole = request.LoggedUserRole,
+                                LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
 
@@ -32,6 +34,15 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 return new GetClientByIdResponse()
                                 {
                                         Error = new ErrorModel(ErrorType.NotFound),
+                                };
+                        }
+
+                        if (request.LoggedUserRole == Roles.Seller.ToString()
+                                && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
+                        {
+                                return new GetClientByIdResponse()
+                                {
+                                        Error = new ErrorModel(ErrorType.Unauthorized),
                                 };
                         }
 

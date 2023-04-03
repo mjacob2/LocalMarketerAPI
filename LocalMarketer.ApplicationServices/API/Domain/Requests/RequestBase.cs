@@ -14,7 +14,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests
                 /// <summary>
                 /// Gets or sets currently logged use id.
                 /// </summary>
-                //public string LoggedUserId { get; set; }
-                //public string LoggedUserRole { get; set; }
+                public string LoggedUserId { get; set; }
+                public string LoggedUserRole { get; set; }
         }
 }

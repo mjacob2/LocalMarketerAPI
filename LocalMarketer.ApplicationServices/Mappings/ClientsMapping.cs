@@ -21,7 +21,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 FirstName = data.FirstName,
                                 LastName = data.LastName,
                                 Phone = data.Phone,
-                                SellerEmail = data.SellerEmail,
+                                SellerId = data.CreatorId,
                                 Source = data.Source,
                                 Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
                                 {
@@ -48,7 +48,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Phone = x.Phone,
                                 Email = x.Email,
                                 Source = x.Source,
-                                SellerEmail = x.SellerEmail,
+                                CreatorId = x.CreatorId,
 
                         }).ToList();
                 }

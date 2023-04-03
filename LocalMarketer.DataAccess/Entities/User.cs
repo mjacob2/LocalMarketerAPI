@@ -6,10 +6,10 @@ namespace LocalMarketer.DataAccess.Entities
         {
                 public enum Roles
                 {
-                        Administrator,
-                        Manager,
-                        LocalMarketer,
-                        Seller
+                        Administrator = 0,
+                        Manager = 1,
+                        LocalMarketer = 2,
+                        Seller = 3,
                 }
 
                 [Required]
