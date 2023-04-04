@@ -15,6 +15,7 @@ namespace LocalMarketer.Controllers
                 {
                 }
 
+                [AllowAnonymous]
                 [HttpPost]
                 [Route("")]
                 public Task<IActionResult> AddUser([FromBody] AddUserRequest request)

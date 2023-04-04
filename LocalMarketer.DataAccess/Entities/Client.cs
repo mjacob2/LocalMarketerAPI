@@ -37,6 +37,5 @@ namespace LocalMarketer.DataAccess.Entities
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
 
                 public List<Deal> Deals { get; set; } = new List<Deal>{};
-
 }
 }

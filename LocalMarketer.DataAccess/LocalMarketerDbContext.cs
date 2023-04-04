@@ -8,15 +8,17 @@ namespace LocalMarketer.DataAccess
                 public LocalMarketerDbContext(DbContextOptions<LocalMarketerDbContext> options)
                         : base(options) { }
 
-                public DbSet<User> Users => this.Set<User>();
+                public DbSet<User> Users { get; set; }
 
-                public DbSet<Client> Clients => this.Set<Client>();
+                public DbSet<Client> Clients { get; set; }
 
-                public DbSet<Profile> Profiles => this.Set<Profile>();
+                public DbSet<Profile> Profiles { get; set; }
 
-                public DbSet<Activity> Activities => this.Set<Activity>();
+                public DbSet<ToDo> ToDos { get; set; }
 
-                public DbSet<Deal> Deals => this.Set<Deal>();
+                public DbSet<Deal> Deals { get; set; }
+
+                public DbSet<Note> Notes { get; set; }
 
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {

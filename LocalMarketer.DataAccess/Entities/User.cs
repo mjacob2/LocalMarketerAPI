@@ -42,5 +42,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public bool AccesDenied { get; set; }
 
                 public List<Profile> Profiles { get; set; } = new List<Profile> { };
+
+                public List<ToDo> ToDos { get; set; } = new List<ToDo> { };
         }
 }

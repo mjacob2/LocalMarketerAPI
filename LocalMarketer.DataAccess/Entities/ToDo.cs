@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Activity : EntityBase
+        public class ToDo : EntityBase
         {
-                [Required]
                 public int CreatorId { get; set; }
 
                 [Required]
@@ -18,6 +18,7 @@ namespace LocalMarketer.DataAccess.Entities
 
                 public int ProfileId { get; set; }
 
+                [JsonIgnore]
                 public Profile Profile { get; set; }
 
                 [Required]
@@ -32,24 +33,7 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool IsFinished { get; set; }
 
-                [MaxLength(100)]
-                public string Note1 { get; set; } = string.Empty;
-
-                [MaxLength(100)]
-                public string Note2 { get; set; } = string.Empty;
-
-                [MaxLength(100)]
-                public string Note3 { get; set; } = string.Empty;
-
-                [MaxLength(100)]
-                public string Note4 { get; set; } = string.Empty;
-
-                [MaxLength(100)]
-                public string Note5 { get; set; } = string.Empty;
-
-
-
-
+                public List<Note>? Notes { get; set; }
 
         }
 }

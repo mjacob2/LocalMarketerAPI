@@ -72,7 +72,7 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public CustomerServices? CustomerService { get; set; }
 
-                public List<Activity>? Activities { get; set; }
+                public List<ToDo>? Activities { get; set; }
 
                 public List<Deal>? Deals { get; set; }
         }

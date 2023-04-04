@@ -286,7 +286,7 @@ namespace Tests
                         }
 
                         context.AddRange(
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 1,
                                         CreationDate = date1,
@@ -298,7 +298,7 @@ namespace Tests
                                         Description = " description 1",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 2,
                                         CreationDate = date1,
@@ -310,7 +310,7 @@ namespace Tests
                                         Description = " description 2",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 3,
                                         CreationDate = date1,
@@ -322,7 +322,7 @@ namespace Tests
                                         Description = " description 3",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 4,
                                         CreationDate = date1,
@@ -334,7 +334,7 @@ namespace Tests
                                         Description = " description 4",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 5,
                                         CreationDate = date1,
@@ -346,7 +346,7 @@ namespace Tests
                                         Description = " description 5",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 6,
                                         CreationDate = date1,
@@ -358,7 +358,7 @@ namespace Tests
                                         Description = " description 6",
                                         IsFinished = false,
                                 },
-                                new Activity
+                                new ToDo
                                 {
                                         Id = 7,
                                         CreationDate = date1,
