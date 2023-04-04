@@ -20,6 +20,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 
                 public async Task<AddClientResponse> Handle(AddClientRequest request, CancellationToken cancellationToken)
                 {
+                        // TODO dont let create client with the same e-mail!
                         var itemtoAdd = new Client()
                         {
                                 CreationDate = DateTime.Today,
