@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests
 {
-        public class GetClientByIdRequest : RequestBase, IRequest<GetClientByIdResponse>
+        public class DeleteClientByIdRequest : RequestBase, IRequest<DeleteClientByIdResponse>
         {
                 public int ClientId { get; set; }
         }

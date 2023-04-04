@@ -23,7 +23,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 {
                         var query = new GetClientByIdQuery()
                         {
-                                ClientId = request.Id,
+                                ClientId = request.ClientId,
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };

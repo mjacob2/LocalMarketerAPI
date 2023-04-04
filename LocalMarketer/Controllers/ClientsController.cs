@@ -29,7 +29,7 @@ namespace LocalMarketer.Controllers
                 {
                         var request = new GetClientByIdRequest()
                         {
-                                Id = id,
+                                ClientId = id,
                         };
                         return this.HandleRequest<GetClientByIdRequest, GetClientByIdResponse>(request);
                 }
@@ -39,6 +39,18 @@ namespace LocalMarketer.Controllers
                 public Task<IActionResult> AddClient([FromBody] AddClientRequest request)
                 {
                         return this.HandleRequest<AddClientRequest, AddClientResponse>(request);
+                }
+
+                [HttpDelete]
+                [Route("{id}")]
+                public Task<IActionResult> DeteleClientById([FromRoute] int id)
+                {
+                        var request = new DeleteClientByIdRequest()
+                        {
+                                ClientId = id,
+                        };
+
+                        return this.HandleRequest<DeleteClientByIdRequest, DeleteClientByIdResponse>(request);
                 }
         }
 }
