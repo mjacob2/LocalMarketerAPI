@@ -1,14 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using LocalMarketer.ApplicationServices;
 using LocalMarketer.DataAccess.CQRS;
@@ -87,6 +83,7 @@ namespace LocalMarketer.Authentication
                         {
                                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(CultureInfo.InvariantCulture)),
                                 new Claim(ClaimTypes.Role, user.Role.ToString()),
+                                new Claim(ClaimTypes.AuthorizationDecision, user.AccesDenied.ToString(CultureInfo.InvariantCulture)),
                         };
 
                         var identity = new ClaimsIdentity(claims, this.Scheme.Name);

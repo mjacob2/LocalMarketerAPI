@@ -12,7 +12,7 @@
                 public const string RequestTooLarge = "REQUEST_TOO_LARGE";
                 public const string TooManyRequests = "TOO_MANY_REQUESTS";
                 public const string UsernameNotAvailable = "Username already taken";
-                public const string ProfileAlreadyExists = "Profile with this name already exists";
+                public const string ItemAlreadyExists = "Item with this data already exists in database";
                 public const string AdministratorRoleNoMore = "Can not create another Administrator Role";
         }
 }

@@ -29,6 +29,12 @@ namespace LocalMarketer.Controllers
                                         .Select(x => new { property = x.Key, errors = x.Value.Errors }));
                         }
 
+                        var IsAccesDenied = (this.User.FindFirstValue(ClaimTypes.AuthorizationDecision));
+
+                        if(IsAccesDenied == "True")
+                        {
+                                return this.ErrorResponse(new ErrorModel(ErrorType.Unauthorized));
+                        }
 
                         var loggedUserRole = this.User.FindFirstValue(ClaimTypes.Role);
                         request.LoggedUserRole = loggedUserRole;
