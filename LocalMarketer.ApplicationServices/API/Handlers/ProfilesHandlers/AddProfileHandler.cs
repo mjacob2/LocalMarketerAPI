@@ -26,10 +26,18 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                 CreationDate = DateTime.Today,
                                 Name = request.Name,
                                 CreatorId = int.Parse(request.LoggedUserId),
-                                UserId = 1, // Administrator
                                 ClientId = request.ClientId,
                                 Description = request.Description,
                         };
+
+                        if(request.LoggedUserRole == "Seller")
+                        {
+                                itemtoAdd.UserId = 0;
+                        }
+                        else
+                        {
+                                itemtoAdd.UserId = int.Parse(request.LoggedUserId);
+                        }
 
                         var command = new AddProfileCommand() { Parameter = itemtoAdd };
 
