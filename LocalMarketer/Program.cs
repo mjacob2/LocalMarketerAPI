@@ -14,6 +14,18 @@ namespace LocalMarketer
                 {
                         var builder = WebApplication.CreateBuilder(args);
 
+                        builder.Services.AddCors((options =>
+                        {
+                                options.AddDefaultPolicy(
+                                    builder =>
+                                    {
+                                            builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                                    });
+                        }));
+
                         builder.Services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
                         builder.Services.AddControllers();
@@ -21,7 +33,8 @@ namespace LocalMarketer
                         builder.Services.AddEndpointsApiExplorer();
                         builder.Services.AddSwaggerGen();
                         // Lets enter the controller on request validation
-                        builder.Services.Configure<ApiBehaviorOptions>(options => {
+                        builder.Services.Configure<ApiBehaviorOptions>(options =>
+                        {
                                 options.SuppressModelStateInvalidFilter = true;
                         });
                         builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();

@@ -1,11 +1,11 @@
 ﻿using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.UserResponses;
 using LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests;
 using LocalMarketer.DataAccess.CQRS.Commands.UsersCommands;
 using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
 {

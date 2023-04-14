@@ -15,7 +15,6 @@ namespace LocalMarketer.Controllers
                 {
                 }
 
-
                 [HttpGet]
                 [Route("")]
                 public Task<IActionResult> GetAllClients([FromQuery] GetAllClientsRequest request)

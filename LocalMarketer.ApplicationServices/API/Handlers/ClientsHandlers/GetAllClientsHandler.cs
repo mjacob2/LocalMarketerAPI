@@ -20,8 +20,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 {
                         var query = new GetAllClientsQuery()
                         {
-                                LoggedUserRole = request.LoggedUserRole,
-                                LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
+                               // LoggedUserRole = request.LoggedUserRole,
+                                //LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
                         var DataFromDbMappedToModel = ClientsMapping.GetAllClients(dataFromDb);
