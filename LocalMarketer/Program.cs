@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using LocalMarketer.Authentication;
 using Microsoft.AspNetCore.Authentication;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using LocalMarketer.ApplicationServices.API.Validators;
 
 namespace LocalMarketer
 {
@@ -25,9 +28,18 @@ namespace LocalMarketer
                             .AllowAnyMethod();
                                     });
                         }));
-
                         builder.Services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+                        builder.Services.AddFluentValidationAutoValidation();
+                        builder.Services.AddFluentValidationClientsideAdapters();
+                        builder.Services.AddValidatorsFromAssemblyContaining<AddClientRequestValidator>();
+                        ValidatorOptions.Global.LanguageManager.Enabled = false;
+
+                        // Lests enter the controller on request validation
+                        builder.Services.Configure<ApiBehaviorOptions>(options =>
+                        {
+                                options.SuppressModelStateInvalidFilter = true;
+                        });
                         builder.Services.AddControllers();
                         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                         builder.Services.AddEndpointsApiExplorer();

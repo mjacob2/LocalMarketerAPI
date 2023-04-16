@@ -26,7 +26,11 @@ namespace LocalMarketer.Controllers
                                 return this.BadRequest(
                                     this.ModelState
                                         .Where(x => x.Value.Errors.Any())
-                                        .Select(x => new { property = x.Key, errors = x.Value.Errors }));
+                                        .Select(x => new
+                                        {
+                                                error = x.Value.Errors
+                                        .Select(v => v.ErrorMessage).FirstOrDefault(),
+                                        }).FirstOrDefault());
                         }
 
                         var IsAccesDenied = (this.User.FindFirstValue(ClaimTypes.AuthorizationDecision));
