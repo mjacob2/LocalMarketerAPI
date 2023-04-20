@@ -33,6 +33,15 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<GetClientByIdRequest, GetClientByIdResponse>(request);
                 }
 
+                [HttpPut]
+                [Route("{id}")]
+                public Task<IActionResult> UpdateClientById([FromRoute] int id, [FromBody] UpdateClientByIdRequest request)
+                {
+                        request.ClientId = id;
+
+                        return this.HandleRequest<UpdateClientByIdRequest, UpdateClientByIdResponse>(request);
+                }
+
                 [HttpPost]
                 [Route("")]
                 public Task<IActionResult> AddClient([FromBody] AddClientRequest request)

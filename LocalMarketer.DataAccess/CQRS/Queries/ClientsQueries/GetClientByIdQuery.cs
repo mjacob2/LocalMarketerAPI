@@ -1,6 +1,5 @@
 ﻿using LocalMarketer.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
-using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries
 {
