@@ -199,7 +199,7 @@ namespace Tests
                                         REGON = "360170795",
                                         Phone = "555666777",
                                         Email = "kontakt@profile1.com",
-                                        CustomerService = Profile.CustomerServices.Combined,
+                                        CustomerService = "combined",
                                 },
                                 new Profile
                                 {
@@ -221,7 +221,7 @@ namespace Tests
                                         REGON = "360170795",
                                         Phone = "555666777",
                                         Email = "kontakt@profile2.com",
-                                        CustomerService = Profile.CustomerServices.LocalOnly,
+                                        CustomerService = "localonly",
                                 },
                                 new Profile
                                 {
@@ -243,7 +243,7 @@ namespace Tests
                                         REGON = "360170795",
                                         Phone = "555666777",
                                         Email = "kontakt@profile4.com",
-                                        CustomerService = Profile.CustomerServices.LocalOnly,
+                                        CustomerService = "localonly",
                                 },
                                 new Profile
                                 {
@@ -265,7 +265,7 @@ namespace Tests
                                         REGON = "360170795",
                                         Phone = "555666777",
                                         Email = "kontakt@profile4.com",
-                                        CustomerService = Profile.CustomerServices.LocalOnly,
+                                        CustomerService = "localonly",
                                 }
                                 );
 
@@ -292,7 +292,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 1",
-                                        ProfileId = 1,
+                                        DealId = 1,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 1",
@@ -304,7 +304,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 2",
-                                        ProfileId = 1,
+                                        DealId = 1,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 2",
@@ -316,7 +316,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 3",
-                                        ProfileId = 1,
+                                        DealId = 1,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 3",
@@ -328,7 +328,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 4",
-                                        ProfileId = 2,
+                                        DealId = 2,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 4",
@@ -340,7 +340,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 5",
-                                        ProfileId = 3,
+                                        DealId = 3,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 5",
@@ -352,7 +352,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 6",
-                                        ProfileId = 3,
+                                        DealId = 3,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 6",
@@ -364,7 +364,7 @@ namespace Tests
                                         CreationDate = date1,
                                         CreatorId = 1, // Administrator
                                         Title = "Task 7",
-                                        ProfileId = 3,
+                                        DealId = 3,
                                         StartDate = date1,
                                         DueDate = date2,
                                         Description = " description 7",

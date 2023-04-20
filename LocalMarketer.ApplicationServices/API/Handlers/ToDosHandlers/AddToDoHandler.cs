@@ -24,7 +24,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                                 CreationDate = DateTime.Today,
                                 CreatorId = int.Parse(request.LoggedUserId),
                                 Title = request.Title,
-                                ProfileId = request.ProfileId,
                                 StartDate = request.StartDate,
                                 DueDate = request.DueDate,
                                 Description = request.Description,

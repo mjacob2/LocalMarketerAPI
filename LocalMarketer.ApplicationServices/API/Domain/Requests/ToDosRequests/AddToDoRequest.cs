@@ -8,7 +8,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests
         {
                 public int CreatorId { get; set; }
                 public string Title { get; set; }
-                public int ProfileId { get; set; }
+                public int DealId { get; set; }
                 public DateTime StartDate { get; set; }
                 public DateTime DueDate { get; set; }
                 public string Description { get; set; }

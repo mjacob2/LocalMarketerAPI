@@ -1,6 +1,4 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ProfilesResponses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +38,15 @@ namespace LocalMarketer.Controllers
                                 ProfileId = id,
                         };
                         return this.HandleRequest<GetProfileByIdRequest, GetProfileByIdResponse>(request);
+                }
+
+                [HttpPut]
+                [Route("{id}")]
+                public Task<IActionResult> UpdateProfileById([FromRoute] int id, [FromBody] UpdateProfileByIdRequest request)
+                {
+                        request.ProfileId = id;
+
+                        return this.HandleRequest<UpdateProfileByIdRequest, UpdateProfileByIdResponse>(request);
                 }
 
         }

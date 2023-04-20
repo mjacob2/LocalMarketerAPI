@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230420182427_client_id_inDeal2")]
+    partial class client_id_inDeal2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,6 +84,9 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -251,9 +257,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DealId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -264,6 +267,9 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -278,7 +284,7 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DealId");
+                    b.HasIndex("ProfileId");
 
                     b.HasIndex("UserId");
 
@@ -383,9 +389,9 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
                 {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Deal", "Deal")
-                        .WithMany("ToDos")
-                        .HasForeignKey("DealId")
+                    b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
+                        .WithMany("Activities")
+                        .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -393,7 +399,7 @@ namespace LocalMarketer.DataAccess.Migrations
                         .WithMany("ToDos")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Deal");
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Client", b =>
@@ -401,13 +407,10 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Navigation("Profiles");
                 });
 
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
-                {
-                    b.Navigation("ToDos");
-                });
-
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
                 {
+                    b.Navigation("Activities");
+
                     b.Navigation("Deals");
                 });
 

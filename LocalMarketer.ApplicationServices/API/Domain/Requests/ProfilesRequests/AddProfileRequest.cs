@@ -7,7 +7,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
         {
                 public string Name { get; set; }
                 public int ClientId { get; set; }
-                public string Description { get; set; }
+                public string? Description { get; set; }
 
         }
 }

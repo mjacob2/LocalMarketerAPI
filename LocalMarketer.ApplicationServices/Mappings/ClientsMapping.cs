@@ -28,12 +28,6 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                         Id = x.Id,
                                         Name = x.Name,
                                 }).ToList(),
-                                Deals = data.Deals.Select(x => new DealGeneralModel()
-                                {
-                                        Id = x.Id,
-                                        Name = x.Name,
-                                        Stage= x.Stage,
-                                }).ToList(),
                         };
                 }
 

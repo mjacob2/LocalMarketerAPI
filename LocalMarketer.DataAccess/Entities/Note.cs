@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
@@ -16,8 +17,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(500)]
                 public string Name { get; set; }
 
-                public ToDo ToDo { get; set; }
-
                 public int ToDoId { get; set; }
+
+                [JsonIgnore]
+                public ToDo ToDo { get; set; }
+                
         }
 }

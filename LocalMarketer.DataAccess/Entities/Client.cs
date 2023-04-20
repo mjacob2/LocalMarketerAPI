@@ -35,7 +35,5 @@ namespace LocalMarketer.DataAccess.Entities
                 public int CreatorId { get; set; }
 
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
-
-                public List<Deal> Deals { get; set; } = new List<Deal>{};
 }
 }

@@ -35,7 +35,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 /// <returns>A Task.</returns>
                 public async Task<UpdateClientByIdResponse> Handle(UpdateClientByIdRequest request, CancellationToken cancellationToken)
                 {
-                        var ClientMappedToEntity = new Client()
+                        var clientMappedToEntity = new Client()
                         {
                                 Id = request.ClientId,
                                 FirstName = request.FirstName,
@@ -45,7 +45,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 Source = request.Source,
                                 Description = request.Description,
                         };
-                        var command = new UpdateClientCommand() { Parameter = ClientMappedToEntity };
+                        var command = new UpdateClientCommand() { Parameter = clientMappedToEntity };
 
                         try
                         {

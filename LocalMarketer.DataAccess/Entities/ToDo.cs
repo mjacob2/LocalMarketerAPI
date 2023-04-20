@@ -16,10 +16,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Title { get; set; }
 
-                public int ProfileId { get; set; }
+                public int DealId { get; set; }
 
                 [JsonIgnore]
-                public Profile Profile { get; set; }
+                public Deal Deal { get; set; }
 
                 [Required]
                 public DateTime StartDate { get; set; }
@@ -33,7 +33,7 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool IsFinished { get; set; }
 
-                public List<Note>? Notes { get; set; }
+                public List<Note>? Notes { get; set; }=  new List<Note> { };
 
         }
 }

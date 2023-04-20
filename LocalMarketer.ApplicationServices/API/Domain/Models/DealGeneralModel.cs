@@ -11,6 +11,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
         {
                 public int Id { get; set; }
                 public string Name { get; set; }
-                public Stages Stage { get; set; }
+                public string Stage { get; set; }
         }
 }

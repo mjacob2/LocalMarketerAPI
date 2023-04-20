@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,13 +12,6 @@ namespace LocalMarketer.DataAccess.Entities
 {
         public class Profile : EntityBase
         {
-                public enum CustomerServices
-                {
-                        LocalOnly = 0,
-                        AwayOnly = 1,
-                        Combined = 3,
-                }
-
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }
@@ -70,9 +65,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string? Email { get; set; }
 
                 [MaxLength(50)]
-                public CustomerServices? CustomerService { get; set; }
-
-                public List<ToDo>? Activities { get; set; }
+                public string CustomerService { get; set; }
 
                 public List<Deal>? Deals { get; set; }
         }

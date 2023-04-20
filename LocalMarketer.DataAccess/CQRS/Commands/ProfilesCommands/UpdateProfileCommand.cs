@@ -1,17 +1,17 @@
 ﻿using LocalMarketer.DataAccess.Entities;
 
-namespace LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands
+namespace LocalMarketer.DataAccess.CQRS.Commands.ProfilesCommands
 {
-        public class UpdateClientCommand : CommandBase<Client, Client>
+        public class UpdateProfileCommand : CommandBase<Profile, Profile>
         {
                 /// <summary>
                 /// Executes the.
                 /// </summary>
                 /// <param name="context">The context.</param>
                 /// <returns>A Task.</returns>
-                public override async Task<Client> Execute(LocalMarketerDbContext context)
+                public override async Task<Profile> Execute(LocalMarketerDbContext context)
                 {
-                        context.Clients.Update(this.Parameter);
+                        context.Profiles.Update(this.Parameter);
                         context.Entry(this.Parameter)
                                 .Property(x => x.CreationDate).IsModified = false;
                         context.Entry(this.Parameter)

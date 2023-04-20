@@ -1,20 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
         public class Deal : EntityBase
         {
-                public enum Stages
-                {
-                        InProgress,
-                        Finished,
-                        Resignation
-                }
                 [Required]
                 public int CreatorId { get; set; }
 
                 public int ProfileId { get; set; }
 
+                [JsonIgnore]
                 public Profile Profile { get; set; }
 
                 [Required]
@@ -30,8 +26,8 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Description { get; set; } = string.Empty;
 
                 [Required]
-                public Stages Stage { get; set; }
+                public string Stage { get; set; }
 
-
+                public List<ToDo> ToDos { get; set; } = new List<ToDo> { };
         }
 }
