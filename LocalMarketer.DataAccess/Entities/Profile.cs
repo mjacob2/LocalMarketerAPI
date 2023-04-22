@@ -65,7 +65,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string? Email { get; set; }
 
                 [MaxLength(50)]
-                public string CustomerService { get; set; }
+                public string? CustomerService { get; set; }
 
                 public List<Deal>? Deals { get; set; }
         }

@@ -2,16 +2,10 @@
 using LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ProfilesResponses;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
-using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries;
 using LocalMarketer.DataAccess.CQRS;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
