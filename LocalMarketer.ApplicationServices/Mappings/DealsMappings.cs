@@ -1,11 +1,6 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Microsoft.VisualBasic;
 namespace LocalMarketer.ApplicationServices.Mappings
 {
         public class DealsMappings
@@ -23,6 +18,28 @@ namespace LocalMarketer.ApplicationServices.Mappings
 
 
                         }).ToList();
+                }
+
+                internal static DealDetailsModel GetDealById(Deal data)
+                {
+                        return new DealDetailsModel()
+                        {
+                                ProfileUserId = data.Profile.UserId,
+                                Id = data.Id,
+                                CreatorId = data.CreatorId,
+                                ProfileId = data.ProfileId,
+                                Name = data.Name,
+                                PackageId = data.PackageId,
+                                Price = data.Price,
+                                Description = data.Description,
+                                Stage = data.Stage,
+                                ToDos = data.ToDos.Select(x => new ToDoModel()
+                                {
+                                        Id = x.Id,
+                                        Title = x.Title,
+                                        DueDate = x.DueDate,
+                                }).ToList(),
+                        };
                 }
         }
 }

@@ -20,7 +20,7 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Name { get; set; }
 
-                [Required]
+                [JsonIgnore]
                 public Package Package { get; set; }
                 public int PackageId { get; set; }
 

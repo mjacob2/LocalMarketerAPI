@@ -21,7 +21,15 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
 
                 public async Task<AddUserResponse> Handle(AddUserRequest request, CancellationToken cancellationToken)
                 {
-                        if (request.Role == User.Roles.Administrator)
+                        if (request.LoggedUserRole != User.Roles.Administrator.ToString())
+                        {
+                                return new AddUserResponse()
+                                {
+                                        Error = new ErrorModel(ErrorType.Unauthorized),
+                                };
+                        }
+
+                        if (request.Role == User.Roles.Administrator.ToString())
                         {
                                 return new AddUserResponse()
                                 {

@@ -11,6 +11,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests
                 public string Email { get; set; }
                 public string Phone { get; set; }
                 public string Password { get; set; }
-                public Roles Role { get; set; }
+                public string Role { get; set; }
         }
 }

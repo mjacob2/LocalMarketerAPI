@@ -24,6 +24,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                 {
                         var itemtoAdd = new ToDo()
                         {
+                                //UserId = request.LoggedUserId
                                 DealId = request.DealId,
                                 CreationDate = DateTime.Today,
                                 CreatorId = int.Parse(request.LoggedUserId),

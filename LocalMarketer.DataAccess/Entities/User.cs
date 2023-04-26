@@ -35,14 +35,11 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(20)]
                 public string Salt { get; set; }
 
-                [Required]
-                public Roles Role { get; set; }
+                public string Role { get; set; }
 
                 [Required]
                 public bool AccesDenied { get; set; }
 
                 public List<Profile> Profiles { get; set; } = new List<Profile> { };
-
-                public List<ToDo> ToDos { get; set; } = new List<ToDo> { };
         }
 }

@@ -14,6 +14,13 @@ namespace LocalMarketer.Controllers
                 {
                 }
 
+                [HttpGet]
+                [Route("users")]
+                public Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersRequest request)
+                {
+                        return this.HandleRequest<GetAllUsersRequest, GetAllUsersResponse>(request);
+                }
+
                 [HttpPost]
                 [Route("users/addUser")]
                 public Task<IActionResult> AddUser([FromBody] AddUserRequest request)

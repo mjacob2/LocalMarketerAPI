@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230426182536_DealPackageIdReuireDNot")]
+    partial class DealPackageIdReuireDNot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -312,9 +315,14 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DealId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ToDos");
                 });
@@ -432,6 +440,10 @@ namespace LocalMarketer.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LocalMarketer.DataAccess.Entities.User", null)
+                        .WithMany("ToDos")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Deal");
                 });
 
@@ -458,6 +470,8 @@ namespace LocalMarketer.DataAccess.Migrations
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.User", b =>
                 {
                     b.Navigation("Profiles");
+
+                    b.Navigation("ToDos");
                 });
 #pragma warning restore 612, 618
         }

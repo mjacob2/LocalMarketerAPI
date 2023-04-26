@@ -49,5 +49,17 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<UpdateToDoByIdRequest, UpdateToDoByIdResponse>(request);
                 }
 
+                [HttpDelete]
+                [Route("{id}")]
+                public Task<IActionResult> DeteleToDoById([FromRoute] int id)
+                {
+                        var request = new DeleteToDoByIdRequest()
+                        {
+                                ToDoId = id,
+                        };
+
+                        return this.HandleRequest<DeleteToDoByIdRequest, DeleteToDoByIdResponse>(request);
+                }
+
         }
 }

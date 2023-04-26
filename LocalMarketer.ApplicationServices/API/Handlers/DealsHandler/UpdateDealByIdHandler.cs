@@ -27,12 +27,13 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                 {
                         var DealMappedToEntity = new Deal()
                         {
-                                Id = request.DealId,
+                                Id = request.Id,
                                 Name = request.Name,
                                 Stage = request.Stage,
                                 Description = request.Description,
                                 Price = request.Price,
                                 EndDate = request.EndDate,
+                                PackageId = request.PackageId,
                         };
                         var command = new UpdateDealCommand() { Parameter = DealMappedToEntity };
 
