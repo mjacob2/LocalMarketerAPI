@@ -1,5 +1,4 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
-using LocalMarketer.DataAccess.Entities;
+﻿using LocalMarketer.DataAccess.Entities;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses
 {

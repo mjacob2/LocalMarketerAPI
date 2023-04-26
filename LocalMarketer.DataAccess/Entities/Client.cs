@@ -10,6 +10,13 @@ namespace LocalMarketer.DataAccess.Entities
         public class Client : EntityBase
         {
                 [Required]
+                [MaxLength(50)]
+                public string Name { get; set; }
+
+                [MaxLength(50)]
+                public string? GoogleGroupId { get; set; } = string.Empty;
+
+                [Required]
                 [MaxLength(20)]
                 public string FirstName { get; set; }
 

@@ -25,6 +25,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         {
                                 CreationDate = DateTime.Today,
                                 Name = request.Name,
+                                GoogleProfileId = request.GoogleProfileId,
                                 CreatorId = int.Parse(request.LoggedUserId),
                                 ClientId = request.ClientId,
                                 Description = request.Description,
@@ -49,7 +50,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         {
                                 return new AddProfileResponse()
                                 {
-                                        Error = new ErrorModel(ErrorType.ItemAlreadyExists),
+                                        Error = new ErrorModel(ErrorType.GoogleIdAlreadyExists),
                                 };
                         }
 

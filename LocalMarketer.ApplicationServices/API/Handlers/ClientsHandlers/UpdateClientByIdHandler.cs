@@ -6,11 +6,7 @@ using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 {
@@ -38,6 +34,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         var clientMappedToEntity = new Client()
                         {
                                 Id = request.ClientId,
+                                Name = request.Name,
+                                GoogleGroupId = request.GoogleGroupId,
                                 FirstName = request.FirstName,
                                 LastName = request.LastName,
                                 Email = request.Email,

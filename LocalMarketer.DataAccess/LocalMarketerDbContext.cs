@@ -19,6 +19,7 @@ namespace LocalMarketer.DataAccess
                 public DbSet<Deal> Deals { get; set; }
 
                 public DbSet<Note> Notes { get; set; }
+                public DbSet<Package> Packages { get; set; }
 
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
@@ -31,7 +32,7 @@ namespace LocalMarketer.DataAccess
                                 .IsUnique();
 
                         modelBuilder.Entity<Profile>()
-                                .HasIndex(u => u.Name)
+                                .HasIndex(u => u.GoogleProfileId)
                                 .IsUnique();
                 }
 

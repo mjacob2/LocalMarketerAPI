@@ -17,6 +17,10 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Name { get; set; }
 
                 [Required]
+                [MaxLength(100)]
+                public string GoogleProfileId { get; set; }
+
+                [Required]
                 public int CreatorId { get; set; }
 
                 public int UserId { get; set; }

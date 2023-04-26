@@ -35,6 +35,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         var profileMappedToEntity = new Profile()
                         {
                                 Id = request.ProfileId,
+                                GoogleProfileId = request.GoogleProfileId,
                                 Name = request.Name,
                                 UserId = request.UserId,
                                 ClientId = request.ClientId,
@@ -63,11 +64,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                         ResponseData = updatedProfileResponse,
                                 };
                         }
-                        catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)
+                        catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
                         {
                                 var responseWitherrorNotFound = new UpdateProfileByIdResponse()
                                 {
-                                        Error = new ErrorModel(ErrorType.NotFound),
+                                        Error = new ErrorModel(ErrorType.GoogleIdAlreadyExists),
                                 };
                                 return responseWitherrorNotFound;
                         }

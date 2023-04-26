@@ -24,6 +24,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         var itemtoAdd = new Client()
                         {
                                 CreationDate = DateTime.Today,
+                                Name = request.Name,
+                                GoogleGroupId = string.Empty,
                                 FirstName = request.FirstName,
                                 LastName = request.LastName,
                                 Phone = request.Phone,

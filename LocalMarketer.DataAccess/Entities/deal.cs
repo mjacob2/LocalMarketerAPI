@@ -20,6 +20,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Name { get; set; }
 
+                [Required]
+                public Package Package { get; set; }
+                public int PackageId { get; set; }
+
                 public double Price { get; set; }
 
                 [MaxLength(500)]

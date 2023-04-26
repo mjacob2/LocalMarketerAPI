@@ -15,6 +15,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         return data.Select(x => new ProfileListModel()
                         {
                                 Id = x.Id,
+                                GoogleProfileId = x.GoogleProfileId,
                                 CreationDate = x.CreationDate,
                                 Name = x.Name,
                                 CreatorId = x.CreatorId,

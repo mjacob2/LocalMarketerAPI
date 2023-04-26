@@ -4,6 +4,9 @@ using LocalMarketer.DataAccess.CQRS.Commands.ToDosCommands;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
+using LocalMarketer.ApplicationServices.API.Domain.Models;
+using LocalMarketer.ApplicationServices.API.Domain.Responses.DealsResponses;
+using LocalMarketer.ApplicationServices.API.ErrorHandling;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
 {
@@ -21,19 +24,30 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                 {
                         var itemtoAdd = new ToDo()
                         {
+                                DealId = request.DealId,
                                 CreationDate = DateTime.Today,
                                 CreatorId = int.Parse(request.LoggedUserId),
                                 Title = request.Title,
-                                StartDate = request.StartDate,
                                 DueDate = request.DueDate,
                                 Description = request.Description,
                                 IsFinished = request.IsFinished,
-                                Notes = request.Notes,
+                                Notes  = new List<Note>(),
                         };
 
                         var command = new AddToDoCommand() { Parameter = itemtoAdd };
 
-                        this.dataFromDb = await this.executor.Execute(command);
+                        try
+                        {
+                                this.dataFromDb = await this.executor.Execute(command);
+                        }
+                        catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+                        {
+                                return new AddToDoResponse()
+                                {
+                                        Error = new ErrorModel(ErrorType.NotFound),
+                                };
+                        }
+
 
                         var response = new AddToDoResponse()
                         {

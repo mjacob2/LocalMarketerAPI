@@ -17,7 +17,6 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Id = x.Id,
                                 CreationDate = x.CreationDate,
                                 Title = x.Title,
-                                StartDate = x.StartDate,
                                 DueDate = x.DueDate,
                                 IsFinished = x.IsFinished,
                         }).ToList();

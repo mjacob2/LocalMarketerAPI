@@ -16,6 +16,8 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         {
                                 Id = data.Id,
                                 CreationDate = data.CreationDate,
+                                Name = data.Name,
+                                GoogleGroupId = data.GoogleGroupId,
                                 Description = data.Description,
                                 Email = data.Email,
                                 FirstName = data.FirstName,
@@ -37,6 +39,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         {
                                 Id = x.Id,
                                 CreationDate = x.CreationDate,
+                                Name = x.Name,
                                 FirstName = x.FirstName,
                                 LastName = x.LastName,
                                 Phone = x.Phone,

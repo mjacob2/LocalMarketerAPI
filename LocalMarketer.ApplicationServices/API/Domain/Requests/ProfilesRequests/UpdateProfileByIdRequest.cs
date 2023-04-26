@@ -7,6 +7,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
         public class UpdateProfileByIdRequest : RequestBase, IRequest<UpdateProfileByIdResponse>
         {
                 public int ProfileId { get; set; }
+                public string GoogleProfileId { get; set; }
                 public string Name { get; set; }
                 public int UserId { get; set; }
                 public int ClientId { get; set; }

@@ -51,10 +51,19 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("GoogleGroupId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -101,6 +110,9 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -112,6 +124,8 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("ProfileId");
 
@@ -147,6 +161,30 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.ToTable("Notes");
                 });
 
+            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DurationInMonths")
+                        .HasColumnType("int");
+
+                    b.Property<double>("MinimumPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Packages");
+                });
+
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
                 {
                     b.Property<int>("Id")
@@ -179,6 +217,11 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<string>("Email")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("GoogleProfileId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NIP")
                         .HasMaxLength(10)
@@ -228,7 +271,7 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("GoogleProfileId")
                         .IsUnique();
 
                     b.HasIndex("UserId");
@@ -263,9 +306,6 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -341,11 +381,19 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
                 {
+                    b.HasOne("LocalMarketer.DataAccess.Entities.Package", "Package")
+                        .WithMany()
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
                         .WithMany("Deals")
                         .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Package");
 
                     b.Navigation("Profile");
                 });

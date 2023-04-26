@@ -49,5 +49,17 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<UpdateProfileByIdRequest, UpdateProfileByIdResponse>(request);
                 }
 
+                [HttpDelete]
+                [Route("{id}")]
+                public Task<IActionResult> DeteleProfileById([FromRoute] int id)
+                {
+                        var request = new DeleteProfileByIdRequest()
+                        {
+                                ProfileId = id,
+                        };
+
+                        return this.HandleRequest<DeleteProfileByIdRequest, DeleteProfileByIdResponse>(request);
+                }
+
         }
 }

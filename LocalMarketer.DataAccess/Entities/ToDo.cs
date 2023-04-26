@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
 {
@@ -22,9 +17,6 @@ namespace LocalMarketer.DataAccess.Entities
                 public Deal Deal { get; set; }
 
                 [Required]
-                public DateTime StartDate { get; set; }
-
-                [Required]
                 public DateTime DueDate { get; set; }
 
                 [MaxLength(500)]
@@ -33,7 +25,7 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool IsFinished { get; set; }
 
-                public List<Note>? Notes { get; set; }=  new List<Note> { };
+                public List<Note>? Notes { get; set; } =  new List<Note> { };
 
         }
 }

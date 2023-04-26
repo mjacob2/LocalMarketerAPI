@@ -6,6 +6,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
         public class AddProfileRequest : RequestBase, IRequest<AddProfileResponse>
         {
                 public string Name { get; set; }
+                public string GoogleProfileId { get; set; }
                 public int ClientId { get; set; }
                 public string? Description { get; set; }
 
