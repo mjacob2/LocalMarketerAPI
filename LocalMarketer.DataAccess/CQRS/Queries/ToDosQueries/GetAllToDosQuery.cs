@@ -16,7 +16,11 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                         }
                         else
                         {
-                                return context.ToDos.ToListAsync();
+                                var tt = context.ToDos
+                                        .Include(x => x.Deal)
+                                        .ThenInclude(x => x.Profile)
+                                        .ToListAsync();
+                                return tt;
                         }
                 }
         }

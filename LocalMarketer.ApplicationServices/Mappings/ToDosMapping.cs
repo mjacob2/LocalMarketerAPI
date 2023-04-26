@@ -17,8 +17,11 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Id = x.Id,
                                 CreationDate = x.CreationDate,
                                 Title = x.Title,
+                                ProfileName = x.Deal.Profile.Name,
+                                ProfileId = x.Deal.ProfileId,
                                 DueDate = x.DueDate,
                                 IsFinished = x.IsFinished,
+                                UserFullName = $"{x.Deal.Profile.User.Firstname} {x.Deal.Profile.User.Lastname}",
                         }).ToList();
                 }
         }
