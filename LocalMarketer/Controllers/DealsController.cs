@@ -1,8 +1,4 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.DealsResponses;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.DealsResponses;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.DealsResponses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

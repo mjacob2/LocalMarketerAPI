@@ -1,15 +1,20 @@
 ﻿using LocalMarketer.DataAccess.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LocalMarketer.DataAccess.CQRS.Commands.DealsCommands
+namespace LocalMarketer.DataAccess.CQRS.Commands.ToDosCommands
 {
-        public class UpdateDealCommand : CommandBase<Deal, Deal>
+        public class UpdateToDoCommand : CommandBase<ToDo, ToDo>
         {
-                public override async Task<Deal> Execute(LocalMarketerDbContext context)
+                public override async Task<ToDo> Execute(LocalMarketerDbContext context)
                 {
-                        context.Deals.Update(this.Parameter);
+                        context.ToDos.Update(this.Parameter);
 
                         context.Entry(this.Parameter)
-                                .Property(x => x.ProfileId).IsModified = false;
+                                .Property(x => x.DealId).IsModified = false;
                         context.Entry(this.Parameter)
                                 .Property(x => x.CreationDate).IsModified = false;
                         context.Entry(this.Parameter)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LocalMarketer.ApplicationServices.Mappings
 {
@@ -23,6 +24,23 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 IsFinished = x.IsFinished,
                                 UserFullName = $"{x.Deal.Profile.User.Firstname} {x.Deal.Profile.User.Lastname}",
                         }).ToList();
+                }
+
+                internal static ToDoModel GetToDoById(ToDo data)
+                {
+                        return  new ToDoModel()
+                        {
+                                Id = data.Id,
+                                CreationDate = data.CreationDate,
+                                Title = data.Title,
+                                ProfileName = data.Deal.Profile.Name,
+                                ProfileId = data.Deal.ProfileId,
+                                Description = data.Description,
+                                DueDate = data.DueDate,
+                                IsFinished = data.IsFinished,
+                                UserFullName = $"{data.Deal.Profile.User.Firstname} {data.Deal.Profile.User.Lastname}",
+                                DealEndDate = data.Deal.EndDate,
+                        };
                 }
         }
 }

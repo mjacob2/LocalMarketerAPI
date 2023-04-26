@@ -29,5 +29,25 @@ namespace LocalMarketer.Controllers
                 {
                         return this.HandleRequest<AddToDoRequest, AddToDoResponse>(request);
                 }
+
+                [HttpGet]
+                [Route("{id}")]
+                public Task<IActionResult> GetToDoById([FromRoute] int id)
+                {
+                        var request = new GetToDoByIdRequest()
+                        {
+                                ToDoId = id,
+                        };
+                        return this.HandleRequest<GetToDoByIdRequest, GetToDoByIdResponse>(request);
+                }
+                [HttpPut]
+                [Route("{id}")]
+                public Task<IActionResult> UpdateToDoById([FromRoute] int id, [FromBody] UpdateToDoByIdRequest request)
+                {
+                        request.ToDoId = id;
+
+                        return this.HandleRequest<UpdateToDoByIdRequest, UpdateToDoByIdResponse>(request);
+                }
+
         }
 }

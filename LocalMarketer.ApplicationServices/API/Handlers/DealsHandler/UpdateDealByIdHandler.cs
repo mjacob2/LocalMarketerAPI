@@ -18,21 +18,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
         {
                 private readonly ICommandExecutor commandExecutor;
 
-                /// <summary>
-                /// Initializes a new instance of the <see cref="UpdateDealByIdHandler"/> class.
-                /// </summary>
-                /// <param name="commandExecutor">The command executor.</param>
                 public UpdateDealByIdHandler(ICommandExecutor commandExecutor)
                 {
                         this.commandExecutor = commandExecutor;
                 }
 
-                /// <summary>
-                /// Handles the.
-                /// </summary>
-                /// <param name="request">The request.</param>
-                /// <param name="cancellationToken">The cancellation token.</param>
-                /// <returns>A Task.</returns>
                 public async Task<UpdateDealByIdResponse> Handle(UpdateDealByIdRequest request, CancellationToken cancellationToken)
                 {
                         var DealMappedToEntity = new Deal()

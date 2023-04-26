@@ -25,7 +25,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
+
                         var DataFromDbMappedToModel = ToDosMapping.GetAllToDos(dataFromDb);
+
                         var response = new GetAllToDosResponse()
                         {
                                 ResponseData = DataFromDbMappedToModel,

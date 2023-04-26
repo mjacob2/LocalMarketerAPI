@@ -1,29 +1,34 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
-using LocalMarketer.ApplicationServices.Mappings;
-using LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
+using LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests;
+using LocalMarketer.ApplicationServices.API.Domain.Responses.ToDosResponses;
+using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries;
 using LocalMarketer.DataAccess.CQRS;
 using MediatR;
-using LocalMarketer.ApplicationServices.API.Domain.Models;
-using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using static LocalMarketer.DataAccess.Entities.User;
+using LocalMarketer.ApplicationServices.Mappings;
 
-namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
+namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
 {
-        public class GetClientByIdHandler : IRequestHandler<GetClientByIdRequest, GetClientByIdResponse>
+        public class GetToDoByIdHandler : IRequestHandler<GetToDoByIdRequest, GetToDoByIdResponse>
         {
                 private readonly IQueryExecutor executor;
 
-                public GetClientByIdHandler(IQueryExecutor executor)
+                public GetToDoByIdHandler(IQueryExecutor executor)
                 {
                         this.executor = executor;
                 }
-                public async Task<GetClientByIdResponse> Handle(GetClientByIdRequest request, CancellationToken cancellationToken)
+                public async Task<GetToDoByIdResponse> Handle(GetToDoByIdRequest request, CancellationToken cancellationToken)
                 {
-                        var query = new GetClientByIdQuery()
+                        var query = new GetToDoByIdQuery()
                         {
-                                ClientId = request.ClientId,
+                                ToDoId = request.ToDoId,
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
@@ -31,7 +36,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 
                         if (dataFromDb == null)
                         {
-                                return new GetClientByIdResponse()
+                                return new GetToDoByIdResponse()
                                 {
                                         Error = new ErrorModel(ErrorType.NotFound),
                                 };
@@ -40,15 +45,15 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         if (request.LoggedUserRole == Roles.Seller.ToString()
                                 && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
                         {
-                                return new GetClientByIdResponse()
+                                return new GetToDoByIdResponse()
                                 {
                                         Error = new ErrorModel(ErrorType.Unauthorized),
                                 };
                         }
 
-                        var dataFromDbMappedToModel = ClientsMapping.ClientDetailsProfile(dataFromDb);
+                        var dataFromDbMappedToModel = ToDosMapping.GetToDoById(dataFromDb);
 
-                        var response = new GetClientByIdResponse()
+                        var response = new GetToDoByIdResponse()
                         {
                                 ResponseData = dataFromDbMappedToModel,
                         };

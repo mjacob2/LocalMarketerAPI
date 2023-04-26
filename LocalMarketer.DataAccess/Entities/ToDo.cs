@@ -20,12 +20,12 @@ namespace LocalMarketer.DataAccess.Entities
                 public DateTime DueDate { get; set; }
 
                 [MaxLength(500)]
-                public string Description { get; set; } = string.Empty;
+                public string Description { get; set; }
 
                 [Required]
                 public bool IsFinished { get; set; }
 
-                public List<Note>? Notes { get; set; } =  new List<Note> { };
+                public List<Note>? Notes { get; set; }
 
         }
 }
