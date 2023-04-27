@@ -18,10 +18,11 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Role = x.Role,
                                 AccesDenied = x.AccesDenied,
                                 ProfilesCount = x.Profiles.Count,
-                                ToDosCount = x.Profiles.SelectMany(u => u.Deals)
-    .SelectMany(d => d.ToDos)
-    .Distinct()
-    .Count(),
+                                ToDosCount = x.Profiles
+                                .SelectMany(u => u.Deals)
+                                .SelectMany(d => d.ToDos)
+                                .Distinct()
+                                .Count(),
 
                         }).ToList();
                 }

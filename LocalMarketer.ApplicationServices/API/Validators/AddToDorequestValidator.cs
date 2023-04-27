@@ -3,9 +3,9 @@ using LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests;
 
 namespace LocalMarketer.ApplicationServices.API.Validators
 {
-        public class AddToDorequestValidator : AbstractValidator<AddToDoRequest>
+        public class AddToDoRequestValidator : AbstractValidator<AddToDoRequest>
         {
-                public AddToDorequestValidator()
+                public AddToDoRequestValidator()
                 {
                         this.RuleFor(x => x.Title)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
@@ -15,8 +15,10 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                         this.RuleFor(x => x.Description)
                                 .MaximumLength(500)
                                 .WithMessage("Opis nie może być dłuższy niż 500 znaków");
-                        this.RuleFor(x => x.DealEndDate)
-                                .GreaterThan(x => x.DueDate)
+                        this.RuleFor(x => x.DueDate)
+                                .GreaterThanOrEqualTo(x => x.DealCreationDate)
+                                .WithMessage("Termin nie może być wczesniejszy niż data początku umowy")
+                                .LessThan(x => x.DealEndDate)
                                 .WithMessage("Termin nie może być póżniej niż data końca umowy");
 
                 }

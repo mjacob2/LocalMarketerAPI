@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Validators
 {
@@ -12,6 +7,16 @@ namespace LocalMarketer.ApplicationServices.API.Validators
         {
                 public UpdateClientRequestValidator()
                 {
+                        this.RuleFor(x => x.Name)
+                                .Must(u => !string.IsNullOrWhiteSpace(u))
+                                .WithMessage("Nazwa nie może być pusta")
+                                .Length(1, 50)
+                                .WithMessage("Nazwa nie może być dłuższa niż 50 znaków");
+
+                        this.RuleFor(x => x.GoogleGroupId)
+                                .MaximumLength(50)
+                                .WithMessage("Nr grupy firmowej Google być dłuższe niż 50 znaków");
+
                         this.RuleFor(x => x.FirstName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Imię nie może być puste")

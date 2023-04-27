@@ -6,7 +6,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests
         public class AddDealRequest : RequestBase, IRequest<AddDealResponse>
         {
                 public int ProfileId { get; set; }
-
+                public int selectedPackageMinPrice { get; set; }
                 public int PackageId { get; set; }
                 public string Name { get; set; }
                 public double Price { get; set; }

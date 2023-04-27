@@ -25,6 +25,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         return new DealDetailsModel()
                         {
                                 ProfileUserId = data.Profile.UserId,
+                                CreationDate = data.CreationDate,
                                 Id = data.Id,
                                 CreatorId = data.CreatorId,
                                 ProfileId = data.ProfileId,
@@ -33,6 +34,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Price = data.Price,
                                 Description = data.Description,
                                 Stage = data.Stage,
+                                EndDate = data.EndDate,
                                 ToDos = data.ToDos.Select(x => new ToDoModel()
                                 {
                                         Id = x.Id,
