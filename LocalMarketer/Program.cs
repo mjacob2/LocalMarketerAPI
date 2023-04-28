@@ -53,6 +53,9 @@ namespace LocalMarketer
                         builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
                         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(ResponseBase<>)));
                         builder.Services.AddDbContext<LocalMarketerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocalMarketerConnection")));
+
+
+
                         var app = builder.Build();
 
                         // Configure the HTTP request pipeline.

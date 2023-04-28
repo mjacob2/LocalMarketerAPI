@@ -21,6 +21,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                 {
                         var query = new GetAllToDosQuery()
                         {
+                                ShowOnlyUnfinished = request.ShowOnlyUnfinished,
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };

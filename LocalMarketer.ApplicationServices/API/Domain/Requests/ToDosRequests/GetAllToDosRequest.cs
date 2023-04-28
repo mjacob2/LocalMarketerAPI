@@ -4,5 +4,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests
 {
     public class GetAllToDosRequest : RequestBase, IRequest<GetAllToDosResponse>
     {
-    }
+                public bool? ShowOnlyUnfinished { get; set; }
+        }
 }

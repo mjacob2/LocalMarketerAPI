@@ -58,6 +58,7 @@ namespace LocalMarketer.Controllers
                 [Route("")]
                 public Task<IActionResult> AddDeal([FromBody] AddDealRequest request)
                 {
+
                         return this.HandleRequest<AddDealRequest, AddDealResponse>(request);
                 }
 

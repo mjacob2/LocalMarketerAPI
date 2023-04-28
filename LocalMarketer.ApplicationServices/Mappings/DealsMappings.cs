@@ -39,7 +39,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 {
                                         Id = x.Id,
                                         Title = x.Title,
-                                        DueDate = x.DueDate,
+                                        DueDate = x.DueDate,IsFinished = x.IsFinished,
                                 }).ToList(),
                         };
                 }

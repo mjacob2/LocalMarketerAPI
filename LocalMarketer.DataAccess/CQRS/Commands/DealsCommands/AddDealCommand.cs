@@ -8,6 +8,9 @@ namespace LocalMarketer.DataAccess.CQRS.Commands.DealsCommands
                 {
                         await context.Deals.AddAsync(this.Parameter);
                         await context.SaveChangesAsync();
+
+                        var newDealId = this.Parameter.Id;
+
                         return this.Parameter;
                 }
         }
