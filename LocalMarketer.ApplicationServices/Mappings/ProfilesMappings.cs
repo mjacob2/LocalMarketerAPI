@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static LocalMarketer.ApplicationServices.API.Domain.Models.GetProfileByIdResponceModel;
 
 namespace LocalMarketer.ApplicationServices.Mappings
 {
@@ -27,6 +28,51 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Email = x.Email,
 
                         }).ToList();
+                }
+
+
+                internal static GetProfileByIdResponceModel GetProfileById(Profile data)
+                {
+                        return new GetProfileByIdResponceModel()
+                        {
+                                City = data.City,
+                                ClientEmail = data.Client.Email,
+                                CustomerService = data.CustomerService,
+                                CreatorId = data.CreatorId,
+                                CreationDate = data.CreationDate,
+                                Name = data.Name,
+                                ClientId = data.ClientId,
+                                Description = data.Description,
+                                Email = data.Email,
+                                Id = data.Id,
+                                GoogleProfileId = data.GoogleProfileId,
+                                Nip = data.NIP,
+                                Phone = data.Phone,
+                                PostCode = data.PostCode,
+                                ProfileUrl = data.ProfileUrl,
+                                Street = data.Street,
+                                Regon = data.REGON,
+                                Source = data.Source,
+                                UserId = data.UserId,
+                                WebsiteUrl = data.WebsiteUrl,
+                                Voivodeship = data.Voivodeship,
+                                Deals = data.Deals.Select(x => new DealGeneral()
+                                {
+                                        Id = x.Id,
+                                        Name = x.Name,
+                                        Description = x.Description,
+                                        ToDos = x.ToDos.Select(y => new ToDoGeneral()
+                                        {
+                                                Id = y.Id,
+                                                isFinished = y.IsFinished,
+                                                Title = y.Title,
+
+                                        }).ToList(),
+                                }).ToList(),
+
+
+                        };
+
                 }
         }
 }

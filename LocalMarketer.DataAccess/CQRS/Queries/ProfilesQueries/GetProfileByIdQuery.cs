@@ -11,6 +11,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
                 {
                         return await context.Profiles
                         .Where(x => x.Id == this.ProfileId)
+                        .Include(x => x.Client)
                         .Include(c => c.Deals)
                         .ThenInclude(v => v.ToDos)
                         .FirstOrDefaultAsync();

@@ -14,5 +14,9 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests
                 public DateTime EndDate { get; set; }
                 public string Stage { get; set; }
 
+                public string ProfileName { get; set; }
+
+                public string ClientEmail { get; set; }
+
         }
 }

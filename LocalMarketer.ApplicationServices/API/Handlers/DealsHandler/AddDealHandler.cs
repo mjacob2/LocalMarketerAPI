@@ -7,14 +7,7 @@ using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
 using LocalMarketer.DataAccess.CQRS.Commands.ToDosCommands;
-using System.Net.Mail;
-using System.Net;
-using FluentEmail.Core;
-using MailKit.Security;
-using MimeKit;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
+
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 {
@@ -52,24 +45,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 await CreateAutomaticToDos(this.dataFromDb);
 
-                                // Build the email message
-                                var message = new MimeMessage();
-                                message.From.Add(new MailboxAddress("Sender Name", "sender@example.com"));
-                                message.To.Add(new MailboxAddress("Recipient Name", "jakubicki.m@gmail.com"));
-                                message.Subject = "New deal created";
-                                message.Body = new TextPart("plain")
-                                {
-                                        Text = "A new deal has been created."
-                                };
-
-                                // Configure the SMTP client
-                                var smtpClient = new MailKit.Net.Smtp.SmtpClient();
-                                smtpClient.Connect("smtp.mailgun.org", 465, SecureSocketOptions.SslOnConnect);
-                                smtpClient.Authenticate("postmaster@sandbox4352f0546e5940a2907705cb3e729e5f.mailgun.org", "d7cb774375a804aadd088dcf65ca4e49-49a2671e-e1170936");
-
-                                // Send the email message
-                                smtpClient.Send(message);
-                                smtpClient.Disconnect(true);
+                                await EmailService.SendClientOnboardingEmail();
 
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)
@@ -87,19 +63,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                 ResponseData = this.dataFromDb,
                         };
 
-                        //var smtpClient = new SmtpClient("s6.cyber-folks.pl")
-                        //{
-                        //        Port = 465,
-                        //        Credentials = new NetworkCredential("mjakubicki@localmarketer.pl", "J2Uq-TJa5.]1-^)o"),
-                        //        EnableSsl = true,
-                        //};
-
-                        //smtpClient.Send("mjakubicki@localmarketer.pl", "biuro@middlers.pl", "subject", "body");
-
 
                         return response;
                 }
-
 
                 private async Task CreateAutomaticToDos(Deal newDeal)
                 {

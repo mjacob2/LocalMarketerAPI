@@ -7,6 +7,7 @@ using LocalMarketer.DataAccess.CQRS;
 using MediatR;
 using System.Globalization;
 using static LocalMarketer.DataAccess.Entities.User;
+using LocalMarketer.ApplicationServices.Mappings;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
 {
@@ -45,9 +46,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                 };
                         }
 
+                        var dataFromDbMappedToModel = ProfilesMappings.GetProfileById(dataFromDb);
+
                         var response = new GetProfileByIdResponse()
                         {
-                                ResponseData = dataFromDb,
+                                ResponseData = dataFromDbMappedToModel,
                         };
 
                         return response;
