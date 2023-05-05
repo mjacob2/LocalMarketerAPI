@@ -72,5 +72,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string? CustomerService { get; set; }
 
                 public List<Deal>? Deals { get; set; }
+
+                public List<Attachment>? Attachments { get; set; }
         }
 }

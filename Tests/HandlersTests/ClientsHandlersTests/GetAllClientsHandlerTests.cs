@@ -1,6 +1,5 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
 using LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers;
-using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 
 namespace Tests.HandlersTests.ClientsHandlersTests

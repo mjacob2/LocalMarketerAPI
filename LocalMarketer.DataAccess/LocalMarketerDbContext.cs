@@ -21,6 +21,8 @@ namespace LocalMarketer.DataAccess
                 public DbSet<Note> Notes { get; set; }
                 public DbSet<Package> Packages { get; set; }
 
+                public DbSet<Attachment> Attachments { get; set; }
+
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<User>()

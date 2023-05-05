@@ -1,5 +1,4 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.ToDosResponses;
-using LocalMarketer.DataAccess.Entities;
 using MediatR;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests
