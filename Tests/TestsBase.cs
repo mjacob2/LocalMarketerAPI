@@ -1,4 +1,5 @@
 ﻿using LocalMarketer.DataAccess;
+using LocalMarketer.DataAccess.CQRS;
 
 namespace Tests
 {
@@ -6,7 +7,7 @@ namespace Tests
         /// Base Class for test classes.
         /// </summary>
         public class TestsBase : IDisposable
-        {
+        {                  
                 /// <summary>
                 /// String with 51 characters for tests.
                 /// </summary>
@@ -55,6 +56,9 @@ namespace Tests
                 /// Gets memory context.
                 /// </summary>
                 public LocalMarketerDbContext MemoryContext { get; private set; }
+                public QueryExecutor QueryExecutor { get; private set; }
+
+                public CommandExecutor CommandExecutor { get; private set; }
 
                 /// <summary>
                 /// Disposing method.
@@ -73,6 +77,8 @@ namespace Tests
                 {
                         this.connection = new InMemorySqliteConnection();
                         this.MemoryContext = this.connection.CreateContext();
+                        this.QueryExecutor = new QueryExecutor(this.MemoryContext);
+                        this.CommandExecutor = new CommandExecutor(this.MemoryContext);
                 }
 
                 /// <summary>

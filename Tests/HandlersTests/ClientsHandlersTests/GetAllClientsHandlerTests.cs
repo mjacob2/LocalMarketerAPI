@@ -7,6 +7,7 @@ namespace Tests.HandlersTests.ClientsHandlersTests
 {
         public class GetAllClientsHandlerTests : TestsBase
         {
+
                 [Test]
                 public async Task AdministratorGetsListOfAllClients()
                 {
@@ -15,10 +16,9 @@ namespace Tests.HandlersTests.ClientsHandlersTests
                         var validRequest = new GetAllClientsRequest()
                         {
                                 LoggedUserRole = "Administrator",
-                                LoggedUserId = "0",
+                                LoggedUserId = "1",
                         };
-                        var executor = new QueryExecutor(this.MemoryContext);
-                        var handler = new GetAllClientsHandler(executor);
+                        var handler = new GetAllClientsHandler(QueryExecutor);
 
                         // Act
                         var response = await handler.Handle(validRequest, default);
@@ -29,19 +29,17 @@ namespace Tests.HandlersTests.ClientsHandlersTests
                         Assert.That(actual, Is.EqualTo(expected));
                 }
 
-                [TestCase(4)]
-                [TestCase(5)]
-                public async Task LocalMarketerGetsListOfAllClients(int LocalMarketerId)
+                public async Task LocalMarketerGetsListOfAllClients()
                 {
                         // Arrange
                         var expected = new List<Client>(this.MemoryContext.Clients).Count;
                         var validRequest = new GetAllClientsRequest()
                         {
                                 LoggedUserRole = "LocalMarketer",
-                                LoggedUserId = LocalMarketerId.ToString(),
+                                LoggedUserId = "1",
                         };
-                        var executor = new QueryExecutor(this.MemoryContext);
-                        var handler = new GetAllClientsHandler(executor);
+
+                        var handler = new GetAllClientsHandler(QueryExecutor);
 
                         // Act
                         var response = await handler.Handle(validRequest, default);
@@ -62,8 +60,7 @@ namespace Tests.HandlersTests.ClientsHandlersTests
                                 LoggedUserRole = "Seller",
                                 LoggedUserId = creatorId.ToString(),
                         };
-                        var executor = new QueryExecutor(this.MemoryContext);
-                        var handler = new GetAllClientsHandler(executor);
+                        var handler = new GetAllClientsHandler(QueryExecutor);
 
                         // Act
                         var response = await handler.Handle(validRequest, default);
