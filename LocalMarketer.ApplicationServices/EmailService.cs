@@ -6,7 +6,7 @@ namespace LocalMarketer.ApplicationServices
 {
         public class EmailService
         {
-                public static async Task SendClientOnboardingEmail()
+                public static async Task SendClientOnboardingEmail(Deal newDeal)
                 {
 
                         var message = new MimeMessage();
@@ -15,7 +15,9 @@ namespace LocalMarketer.ApplicationServices
                         message.Subject = "Zadania do wykonania - Profil firmy w Google";
                         message.Body = new TextPart("plain")
                         {
-                                Text = "Witamy w gronie naszych klientów!"
+                                Text = "Witamy w gronie naszych klientów!\n" +
+                                $"http://localhost:4200/forms/faq?DealId={newDeal.Id}&ProfileId={newDeal.ProfileId}"
+
                         };
 
                         var smtpClient = new MailKit.Net.Smtp.SmtpClient();

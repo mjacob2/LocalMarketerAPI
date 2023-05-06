@@ -23,6 +23,8 @@ namespace LocalMarketer.DataAccess
 
                 public DbSet<Attachment> Attachments { get; set; }
 
+                public DbSet<FormFaq> FormFaqs { get; set; }
+
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<User>()

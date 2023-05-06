@@ -40,6 +40,12 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 IsFinished = data.IsFinished,
                                 UserFullName = $"{data.Deal.Profile.User.Firstname} {data.Deal.Profile.User.Lastname}",
                                 DealEndDate = data.Deal.EndDate,
+                                Link1 = data.Link1, 
+                                Link2 = data.Link2,
+                                Link3 = data.Link3,
+                                Link4 = data.Link4,
+                                Link5 = data.Link5,
+                                
                         };
                 }
         }

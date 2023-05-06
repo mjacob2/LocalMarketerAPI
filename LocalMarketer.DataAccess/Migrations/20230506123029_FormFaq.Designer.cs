@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230506123029_FormFaq")]
+    partial class FormFaq
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,7 +219,7 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("FormFaqs");
+                    b.ToTable("FormFaq");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Note", b =>
@@ -393,21 +396,6 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Link1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link5")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
