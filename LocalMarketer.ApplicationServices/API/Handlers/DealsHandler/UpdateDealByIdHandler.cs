@@ -27,7 +27,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                 {
                         var DealMappedToEntity = new Deal()
                         {
-                                Id = request.Id,
+                                DealId = request.Id,
                                 Name = request.Name,
                                 Stage = request.Stage,
                                 Description = request.Description,

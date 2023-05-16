@@ -33,7 +33,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 {
                         var clientMappedToEntity = new Client()
                         {
-                                Id = request.ClientId,
+                                ClientId = request.ClientId,
                                 Name = request.Name,
                                 GoogleGroupId = request.GoogleGroupId,
                                 FirstName = request.FirstName,

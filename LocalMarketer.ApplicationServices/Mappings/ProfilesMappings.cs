@@ -15,12 +15,12 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return data.Select(x => new ProfileListModel()
                         {
-                                Id = x.Id,
+                                Id = x.ProfileId,
                                 GoogleProfileId = x.GoogleProfileId,
                                 CreationDate = x.CreationDate,
                                 Name = x.Name,
                                 CreatorId = x.CreatorId,
-                                UserId = x.UserId,
+                                UserId = x.Client.UserId,
                                 ClientId = x.ClientId,
                                 Source = x.Source,
                                 City = x.City,
@@ -44,7 +44,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 ClientId = data.ClientId,
                                 Description = data.Description,
                                 Email = data.Email,
-                                Id = data.Id,
+                                Id = data.ProfileId,
                                 GoogleProfileId = data.GoogleProfileId,
                                 Nip = data.NIP,
                                 Phone = data.Phone,
@@ -53,17 +53,17 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Street = data.Street,
                                 Regon = data.REGON,
                                 Source = data.Source,
-                                UserId = data.UserId,
+                                UserId = data.Client.UserId,
                                 WebsiteUrl = data.WebsiteUrl,
                                 Voivodeship = data.Voivodeship,
                                 Deals = data.Deals.Select(x => new DealGeneral()
                                 {
-                                        Id = x.Id,
+                                        Id = x.DealId,
                                         Name = x.Name,
                                         Description = x.Description,
                                         ToDos = x.ToDos.Select(y => new ToDoGeneral()
                                         {
-                                                Id = y.Id,
+                                                Id = y.ToDoId,
                                                 isFinished = y.IsFinished,
                                                 Title = y.Title,
 

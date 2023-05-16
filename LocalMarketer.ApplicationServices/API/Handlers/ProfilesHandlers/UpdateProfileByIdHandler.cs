@@ -34,10 +34,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                 {
                         var profileMappedToEntity = new Profile()
                         {
-                                Id = request.ProfileId,
+                                ProfileId = request.ProfileId,
                                 GoogleProfileId = request.GoogleProfileId,
                                 Name = request.Name,
-                                UserId = request.UserId,
                                 ClientId = request.ClientId,
                                 WebsiteUrl = request.WebsiteUrl,
                                 ProfileUrl = request.ProfileUrl,

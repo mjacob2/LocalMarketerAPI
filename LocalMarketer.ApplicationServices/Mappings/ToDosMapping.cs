@@ -15,14 +15,14 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return data.Select(x => new ToDoListModel()
                         {
-                                Id = x.Id,
+                                Id = x.ToDoId,
                                 CreationDate = x.CreationDate,
                                 Title = x.Title,
                                 ProfileName = x.Deal.Profile.Name,
                                 ProfileId = x.Deal.ProfileId,
                                 DueDate = x.DueDate,
                                 IsFinished = x.IsFinished,
-                                UserFullName = $"{x.Deal.Profile.User.Firstname} {x.Deal.Profile.User.Lastname}",
+                                UserFullName = $"{x.Deal.Profile.Client.User.FirstName} {x.Deal.Profile.Client.User.LastName}",
                         }).ToList();
                 }
 
@@ -30,7 +30,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return  new ToDoModel()
                         {
-                                Id = data.Id,
+                                Id = data.DealId,
                                 CreationDate = data.CreationDate,
                                 Title = data.Title,
                                 ProfileName = data.Deal.Profile.Name,
@@ -38,7 +38,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Description = data.Description,
                                 DueDate = data.DueDate,
                                 IsFinished = data.IsFinished,
-                                UserFullName = $"{data.Deal.Profile.User.Firstname} {data.Deal.Profile.User.Lastname}",
+                                UserFullName = $"{data.Deal.Profile.Client.User.FirstName} {data.Deal.Profile.Client.User.LastName}",
                                 DealEndDate = data.Deal.EndDate,
                                 Link1 = data.Link1, 
                                 Link2 = data.Link2,

@@ -13,5 +13,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests
                 public string Email { get; set; }
                 public string Source { get; set; }
                 public string Description { get; set; } = string.Empty;
+                public int SellerId { get; set; }
         }
 }

@@ -17,7 +17,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
                         if (LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
                                 return context.Profiles
-                                        .Where(x => x.UserId == LoggedUserId)
+                                        .Where(x => x.Client.UserId == LoggedUserId)
                                         .ToListAsync();
                         }
 

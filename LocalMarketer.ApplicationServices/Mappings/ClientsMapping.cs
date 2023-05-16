@@ -14,7 +14,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return new ClientDetailsModel()
                         {
-                                Id = data.Id,
+                                Id = data.ClientId,
                                 CreationDate = data.CreationDate,
                                 Name = data.Name,
                                 GoogleGroupId = data.GoogleGroupId,
@@ -27,7 +27,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Source = data.Source,
                                 Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
                                 {
-                                        Id = x.Id,
+                                        Id = x.ProfileId,
                                         Name = x.Name,
                                 }).ToList(),
                         };
@@ -37,7 +37,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return data.Select(x => new ClientListModel()
                         {
-                                Id = x.Id,
+                                Id = x.ClientId,
                                 CreationDate = x.CreationDate,
                                 Name = x.Name,
                                 FirstName = x.FirstName,

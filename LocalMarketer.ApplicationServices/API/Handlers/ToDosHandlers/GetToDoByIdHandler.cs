@@ -42,14 +42,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                                 };
                         }
 
-                        if (request.LoggedUserRole == Roles.Seller.ToString()
-                                && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
-                        {
-                                return new GetToDoByIdResponse()
-                                {
-                                        Error = new ErrorModel(ErrorType.Unauthorized),
-                                };
-                        }
 
                         var dataFromDbMappedToModel = ToDosMapping.GetToDoById(dataFromDb);
 

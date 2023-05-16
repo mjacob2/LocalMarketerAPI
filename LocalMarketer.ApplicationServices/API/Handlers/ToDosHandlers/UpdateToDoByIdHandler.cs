@@ -22,7 +22,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                 {
                         var ToDoMappedToEntity = new ToDo()
                         {
-                                Id = request.ToDoId,
+                                ToDoId = request.ToDoId,
                                 Title = request.Title,
                                 DueDate = request.DueDate,
                                 Description = request.Description,

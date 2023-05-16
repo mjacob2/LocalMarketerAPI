@@ -60,9 +60,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                         {
                                 ResponseData = new UserModel()
                                 {
-                                        Id = userResponse.Id,
-                                        FirstName = userResponse.Firstname,
-                                        LastName = userResponse.Lastname,
+                                        Id = userResponse.UserId,
+                                        FirstName = userResponse.FirstName,
+                                        LastName = userResponse.LastName,
                                         Email = userResponse.Email,
                                         Phone = userResponse.Phone,
                                         Role = userResponse.Role,

@@ -87,7 +87,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         {
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Aktywuj czat",
@@ -99,7 +99,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Potwierdź pinezkę i widok z mapy",
@@ -111,7 +111,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -123,7 +123,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -135,7 +135,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -147,7 +147,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -159,7 +159,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -171,7 +171,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -183,7 +183,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -195,7 +195,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -207,7 +207,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -219,7 +219,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.Id,
+                                        DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",

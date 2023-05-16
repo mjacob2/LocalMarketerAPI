@@ -3,8 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class ToDo : EntityBase
+        public class ToDo
         {
+                public int ToDoId { get; set; }
+
+                public DateTime CreationDate { get; set; }
                 public int CreatorId { get; set; }
 
                 [Required]

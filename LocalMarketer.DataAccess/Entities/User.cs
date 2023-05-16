@@ -2,7 +2,7 @@
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class User : EntityBase
+        public class User
         {
                 public enum Roles
                 {
@@ -12,13 +12,17 @@ namespace LocalMarketer.DataAccess.Entities
                         Seller = 3,
                 }
 
-                [Required]
-                [MaxLength(20)]
-                public string Firstname { get; set; }
+                public int UserId { get; set; }
+
+                public DateTime CreationDate { get; set; }
 
                 [Required]
                 [MaxLength(20)]
-                public string Lastname { get; set; }
+                public string FirstName { get; set; }
+
+                [Required]
+                [MaxLength(20)]
+                public string LastName { get; set; }
 
                 [Required]
                 [MaxLength(50)]
@@ -40,6 +44,6 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool AccesDenied { get; set; }
 
-                public List<Profile> Profiles { get; set; } = new List<Profile> { };
+                public List<Client> Clients { get; set; } = new List<Client> { };
         }
 }

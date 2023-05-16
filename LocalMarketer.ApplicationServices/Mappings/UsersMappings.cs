@@ -9,20 +9,20 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return data.Select(x => new UserListModel()
                         {
-                                Id = x.Id,
+                                Id = x.UserId,
                                 CreationDate = x.CreationDate,
-                                Firstname = x.Firstname,
-                                Lastname = x.Lastname,
+                                FirstName = x.FirstName,
+                                LastName = x.LastName,
                                 Phone = x.Phone,
                                 Email = x.Email,
                                 Role = x.Role,
                                 AccesDenied = x.AccesDenied,
-                                ProfilesCount = x.Profiles.Count,
-                                ToDosCount = x.Profiles
-                                .SelectMany(u => u.Deals)
+                                ProfilesCount = x.Clients.Select(x => x.Profiles).Count(),
+                                ToDosCount = x.Clients.Select(x => x.Profiles.SelectMany(u => u.Deals)
                                 .SelectMany(d => d.ToDos)
                                 .Distinct()
-                                .Count(),
+                                ).Count()
+                                ,
 
                         }).ToList();
                 }

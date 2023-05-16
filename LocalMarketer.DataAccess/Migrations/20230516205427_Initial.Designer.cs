@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    [Migration("20230506132302_FormFaqJsonIgnore")]
-    partial class FormFaqJsonIgnore
+    [Migration("20230516205427_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Attachment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AttachmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttachmentId"));
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -48,7 +48,7 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("AttachmentId");
 
                     b.HasIndex("ProfileId");
 
@@ -57,11 +57,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Client", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ClientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -103,26 +103,34 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Source")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientId");
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("DealId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DealId"));
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -152,11 +160,18 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<int>("ProfileId")
                         .HasColumnType("int");
 
+                    b.Property<string>("SellerFullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Stage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("DealId");
 
                     b.HasIndex("PackageId");
 
@@ -167,11 +182,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormFaq", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FormFaqId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormFaqId"));
 
                     b.Property<string>("Answer1")
                         .HasColumnType("nvarchar(max)");
@@ -215,7 +230,7 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<string>("Question6")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FormFaqId");
 
                     b.HasIndex("ProfileId");
 
@@ -224,11 +239,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Note", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("NoteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteId"));
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -244,7 +259,7 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<int>("ToDoId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("NoteId");
 
                     b.HasIndex("ToDoId");
 
@@ -253,11 +268,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Package", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PakageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PakageId"));
 
                     b.Property<int>("DurationInMonths")
                         .HasColumnType("int");
@@ -270,18 +285,18 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PakageId");
 
                     b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProfileId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfileId"));
 
                     b.Property<string>("City")
                         .HasMaxLength(50)
@@ -346,9 +361,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Voivodeship")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -357,25 +369,23 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProfileId");
 
                     b.HasIndex("ClientId");
 
                     b.HasIndex("GoogleProfileId")
                         .IsUnique();
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Profiles");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoId"));
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -397,12 +407,27 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<bool>("IsFinished")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Link1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link5")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoId");
 
                     b.HasIndex("DealId");
 
@@ -411,11 +436,11 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<bool>("AccesDenied")
                         .HasColumnType("bit");
@@ -428,12 +453,12 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -457,7 +482,7 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -474,6 +499,17 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Client", b =>
+                {
+                    b.HasOne("LocalMarketer.DataAccess.Entities.User", "User")
+                        .WithMany("Clients")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
@@ -525,15 +561,7 @@ namespace LocalMarketer.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LocalMarketer.DataAccess.Entities.User", "User")
-                        .WithMany("Profiles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Client");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
@@ -571,7 +599,7 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.User", b =>
                 {
-                    b.Navigation("Profiles");
+                    b.Navigation("Clients");
                 });
 #pragma warning restore 612, 618
         }

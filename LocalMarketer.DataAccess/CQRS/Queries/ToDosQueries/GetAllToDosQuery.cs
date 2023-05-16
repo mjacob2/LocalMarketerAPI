@@ -17,7 +17,9 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                                 {
                                         return context.ToDos
                                                 .Where(x => !x.IsFinished)
-                                                .Where(x => x.Deal.Profile.UserId == LoggedUserId)
+                                                .Include(x => x.Deal)
+                                                .ThenInclude(x => x.Profile)
+                                                .Where(x => x.Deal.Profile.Client.UserId == LoggedUserId)
                                                 .ToListAsync();
                                 }
 
@@ -25,7 +27,9 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                                 {
                                         return context.ToDos
                                                 .Where(x => !x.IsFinished)
-                                                .Where(x => x.Deal.Profile.UserId == LoggedUserId)
+                                                .Include(x => x.Deal)
+                                                .ThenInclude(x => x.Profile)
+                                                .Where(x => x.Deal.Profile.Client.UserId == LoggedUserId)
                                                 .ToListAsync();
                                 }
                                 else
@@ -43,6 +47,8 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                         {
                                 return context.ToDos
                                         .Where(x => x.CreatorId == LoggedUserId)
+                                        .Include(x => x.Deal)
+                                        .ThenInclude(x => x.Profile)
                                         .ToListAsync();
                         }
                         else

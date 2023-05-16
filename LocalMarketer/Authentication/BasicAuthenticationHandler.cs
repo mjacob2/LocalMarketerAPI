@@ -81,7 +81,7 @@ namespace LocalMarketer.Authentication
 
                         var claims = new[]
                         {
-                                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(CultureInfo.InvariantCulture)),
+                                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(CultureInfo.InvariantCulture)),
                                 new Claim(ClaimTypes.Role, user.Role.ToString()),
                                 new Claim(ClaimTypes.AuthorizationDecision, user.AccesDenied.ToString(CultureInfo.InvariantCulture)),
                         };

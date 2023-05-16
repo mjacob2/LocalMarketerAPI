@@ -13,13 +13,13 @@ namespace LocalMarketer.ApplicationServices.API.Validators
         {
                 public AddUserRequestValidator()
                 {
-                        this.RuleFor(x => x.Firstname)
+                        this.RuleFor(x => x.FirstName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Imię nie może być puste")
                                 .Length(1, 20)
                                 .WithMessage("Imię nie może być dłuższe niż 20 znaków");
 
-                        this.RuleFor(x => x.Lastname)
+                        this.RuleFor(x => x.LastName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Nazwisko nie może być puste")
                                 .Length(1, 20)

@@ -34,7 +34,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         }
                         var itemToDelete = new Deal()
                         {
-                                Id = request.DealId,
+                                DealId = request.DealId,
                         };
                         var command = new DeleteDealByIdCommand() { Parameter = itemToDelete };
 

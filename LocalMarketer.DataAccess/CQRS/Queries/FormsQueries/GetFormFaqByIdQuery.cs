@@ -10,7 +10,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.FormsQueries
                 public override async Task<FormFaq> Execute(LocalMarketerDbContext context)
                 {
                         return await context.FormFaqs
-                        .Where(x => x.Id == this.FormFaqId)
+                        .Where(x => x.FormFaqId == this.FormFaqId)
                         .Include(x => x.Profile)
                         .FirstOrDefaultAsync();
                 }

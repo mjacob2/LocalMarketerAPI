@@ -31,14 +31,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                 Description = request.Description,
                         };
 
-                        if(request.LoggedUserRole == "Seller")
-                        {
-                                itemtoAdd.UserId = 1; //Administrator
-                        }
-                        else
-                        {
-                                itemtoAdd.UserId = int.Parse(request.LoggedUserId);
-                        }
 
                         var command = new AddProfileCommand() { Parameter = itemtoAdd };
 

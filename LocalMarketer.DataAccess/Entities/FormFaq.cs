@@ -1,10 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class FormFaq : EntityBase
+        public class FormFaq
         {
+                public int FormFaqId { get; set; }
 
+                public DateTime CreationDate { get; set; }
                 public int ProfileId { get; set; }
 
                 [JsonIgnore]

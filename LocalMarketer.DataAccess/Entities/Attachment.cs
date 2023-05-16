@@ -3,8 +3,11 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Attachment : EntityBase
+        public class Attachment
         {
+                public int AttachmentId { get; set; }
+                public DateTime CreationDate { get; set; }
+
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }

@@ -11,7 +11,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries
                         if (LoggedUserRole == Roles.Seller.ToString())
                         {
                                 return context.Clients
-                                        .Where(x => x.CreatorId == LoggedUserId)
+                                        .Where(x => x.SellerId == LoggedUserId)
                                         .ToListAsync();
                         }
                         else

@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Note : EntityBase
+        public class Note
         {
+                public int NoteId { get; set; }
+
+                public DateTime CreationDate { get; set; }
+
                 [Required]
                 public int CreatorId { get; set; }
 

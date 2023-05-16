@@ -10,7 +10,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
                 public override async Task<Deal> Execute(LocalMarketerDbContext context)
                 {
                         return await context.Deals
-                        .Where(x => x.Id == this.DealId)
+                        .Where(x => x.DealId == this.DealId)
                         .Include(x => x.Profile)
                         .Include(c => c.ToDos)
                         .FirstOrDefaultAsync();

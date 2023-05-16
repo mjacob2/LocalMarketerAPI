@@ -42,8 +42,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                         var itemtoAdd = new User()
                         {
                                 CreationDate = DateTime.Today,
-                                Firstname = request.Firstname,
-                                Lastname = request.Lastname,
+                                FirstName = request.FirstName,
+                                LastName = request.LastName,
                                 Email = request.Email,
                                 Phone = request.Phone,
                                 AccesDenied = false,
@@ -71,12 +71,12 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                         {
                                 ResponseData = new User()
                                 {
-                                        Id = this.dataFromDb.Id,
+                                        UserId = this.dataFromDb.UserId,
                                         AccesDenied = this.dataFromDb.AccesDenied,
                                         CreationDate = this.dataFromDb.CreationDate,
                                         Email = this.dataFromDb.Email,
-                                        Firstname = this.dataFromDb.Firstname,
-                                        Lastname = this.dataFromDb.Lastname,
+                                        FirstName = this.dataFromDb.FirstName,
+                                        LastName = this.dataFromDb.LastName,
                                         Phone = this.dataFromDb.Phone,
                                         Role = this.dataFromDb.Role,
                                         Salt = this.dataFromDb.Salt,

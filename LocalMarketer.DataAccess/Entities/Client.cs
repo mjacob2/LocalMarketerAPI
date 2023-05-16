@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Client : EntityBase
+        public class Client
         {
+                public int ClientId { get; set; }
+                public DateTime CreationDate { get; set; }
+
+                public int UserId { get; set; }
+
+                [JsonIgnore]
+                public User User { get; set; }
+
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }
@@ -40,6 +49,8 @@ namespace LocalMarketer.DataAccess.Entities
 
                 [Required]
                 public int CreatorId { get; set; }
+
+                public int SellerId { get; set; }
 
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
 }

@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Profile : EntityBase
+        public class Profile
         {
+                public int ProfileId { get; set; }
+
+                public DateTime CreationDate { get; set; }
+
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }
@@ -22,11 +26,6 @@ namespace LocalMarketer.DataAccess.Entities
 
                 [Required]
                 public int CreatorId { get; set; }
-
-                public int UserId { get; set; }
-
-                [JsonIgnore]
-                public User User { get; set; }
 
                 public int ClientId { get; set; }
 

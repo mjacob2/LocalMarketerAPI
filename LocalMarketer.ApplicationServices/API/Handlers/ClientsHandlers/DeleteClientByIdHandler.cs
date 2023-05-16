@@ -29,7 +29,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         }
                         var itemToDelete = new Client()
                         {
-                                Id = request.ClientId,
+                                ClientId = request.ClientId,
                         };
                         var command = new DeleteClientByIdCommand() { Parameter = itemToDelete };
 

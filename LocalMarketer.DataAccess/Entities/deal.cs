@@ -3,8 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Deal : EntityBase
+        public class Deal
         {
+                public int DealId { get; set; }
+                public DateTime CreationDate { get; set; }
                 /// <summary>
                 /// Gets or sets the Id of the seller (UserId): person who is responsible for selling this deal and customer relationship with the client.
                 /// </summary>

@@ -34,7 +34,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                         }
                         var itemToDelete = new ToDo()
                         {
-                                Id = request.ToDoId,
+                                ToDoId = request.ToDoId,
                         };
                         var command = new DeleteToDoByIdCommand() { Parameter = itemToDelete };
 

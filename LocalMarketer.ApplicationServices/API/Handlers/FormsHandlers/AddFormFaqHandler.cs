@@ -50,7 +50,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                         {
                                 this.dataFromDb = await this.executor.Execute(command);
 
-                                await CreateAutomaticToDos(request.DealId, this.dataFromDb.Id);
+                                await CreateAutomaticToDos(request.DealId, this.dataFromDb.FormFaqId);
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)
                         {
