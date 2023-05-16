@@ -33,7 +33,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
 
                         if(request.LoggedUserRole == "Seller")
                         {
-                                itemtoAdd.UserId = 0;
+                                itemtoAdd.UserId = 1; //Administrator
                         }
                         else
                         {

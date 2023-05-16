@@ -45,7 +45,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         {
                                 return new AddClientResponse()
                                 {
-                                        Error = new ErrorModel(ErrorType.ItemAlreadyExists),
+                                        Error = new ErrorModel(ErrorType.ClientAlreadyExists),
                                 };
                         }
 

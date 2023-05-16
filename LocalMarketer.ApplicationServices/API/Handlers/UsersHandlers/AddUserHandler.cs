@@ -63,7 +63,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                         {
                                 return new AddUserResponse()
                                 {
-                                        Error = new ErrorModel(ErrorType.UsernameNotAvailable),
+                                        Error = new ErrorModel(ErrorType.UserAlreadyExists),
                                 };
                         }
 

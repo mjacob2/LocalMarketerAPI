@@ -13,7 +13,9 @@
                 public const string TooManyRequests = "TOO_MANY_REQUESTS";
                 public const string UsernameNotAvailable = "Username already taken";
                 public const string ItemAlreadyExists = "Item with this data already exists in database";
-                public const string AdministratorRoleNoMore = "Can not create another Administrator Role";
+                public const string AdministratorRoleNoMore = "Nie mozna stworzyc nowego Administratora";
                 public const string GoogleIdAlreadyExists = "Profil o takim identyfikatorze Google juz istnieje w bazie";
+                public const string ClientAlreadyExists = "Klient z takim e-mail już istnieje w bazie";
+                public const string UserAlreadyExists = "Użytkownik z takim e-mail już istnieje w bazie";
         }
 }

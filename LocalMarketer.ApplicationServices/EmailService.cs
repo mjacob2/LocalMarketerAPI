@@ -6,18 +6,20 @@ namespace LocalMarketer.ApplicationServices
 {
         public class EmailService
         {
-                public static async Task SendClientOnboardingEmail(Deal newDeal)
+                public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName)
                 {
 
                         var message = new MimeMessage();
                         message.From.Add(new MailboxAddress("Local Marketer", "no-reply@localmarketer.pl"));
                         message.To.Add(new MailboxAddress("Nowy Klient", "jakubicki.m@gmail.com"));
-                        message.Subject = "Zadania do wykonania - Profil firmy w Google";
-                        message.Body = new TextPart("plain")
+                        message.Subject = $"Zadania do wykonania - Profil firmy w Google: {profileName}";
+                        message.Body = new TextPart("html")
                         {
-                                Text = "Witamy w gronie naszych klientów!\n" +
-                                $"http://localhost:4200/forms/faq?DealId={newDeal.Id}&ProfileId={newDeal.ProfileId}"
-
+                                Text = "<h3>Witamy w gronie naszych klientów!</h3>"
+                                + "<br>" + 
+                                $"Abyśmy mogli wykonać wszystkie zadania na profilu Twojej firmy: <b>{profileName}</b>, prosimy o wypełnienie poniższych formularzy."
+                                + "<br> <br>" +
+                                $"<a href=\"http://localhost:4200/forms/faq?DealId={newDeal.Id}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz FAQ do czatu</a>"
                         };
 
                         var smtpClient = new MailKit.Net.Smtp.SmtpClient();

@@ -45,7 +45,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 await CreateAutomaticToDos(this.dataFromDb);
 
-                                await EmailService.SendClientOnboardingEmail(this.dataFromDb);
+                                await EmailService.SendClientOnboardingEmail(this.dataFromDb, request.ProfileName);
 
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)

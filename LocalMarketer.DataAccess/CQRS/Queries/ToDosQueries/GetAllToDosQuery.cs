@@ -17,7 +17,15 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                                 {
                                         return context.ToDos
                                                 .Where(x => !x.IsFinished)
-                                                .Where(x => x.CreatorId == LoggedUserId)
+                                                .Where(x => x.Deal.Profile.UserId == LoggedUserId)
+                                                .ToListAsync();
+                                }
+
+                                if (LoggedUserRole == Roles.LocalMarketer.ToString())
+                                {
+                                        return context.ToDos
+                                                .Where(x => !x.IsFinished)
+                                                .Where(x => x.Deal.Profile.UserId == LoggedUserId)
                                                 .ToListAsync();
                                 }
                                 else
