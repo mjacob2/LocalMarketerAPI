@@ -5,6 +5,13 @@ namespace LocalMarketer.DataAccess.Entities
 {
         public class Deal : EntityBase
         {
+                /// <summary>
+                /// Gets or sets the Id of the seller (UserId): person who is responsible for selling this deal and customer relationship with the client.
+                /// </summary>
+                public int SellerId { get; set; }
+
+                public string SellerFullName { get; set; }
+
                 [Required]
                 public int CreatorId { get; set; }
 

@@ -21,14 +21,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                 }
                 public async Task<GetAllUsersResponse> Handle(GetAllUsersRequest request, CancellationToken cancellationToken)
                 {
-                        if (request.LoggedUserRole != User.Roles.Administrator.ToString())
-                        {
-                                return new GetAllUsersResponse()
-                                {
-                                        Error = new ErrorModel(ErrorType.Unauthorized),
-                                };
-                        }
-
                         var query = new GetAllUsersQuery()
                         {
                                 LoggedUserRole = request.LoggedUserRole,

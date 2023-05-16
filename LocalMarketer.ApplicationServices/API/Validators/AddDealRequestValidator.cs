@@ -4,6 +4,14 @@ using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
         {
         public AddDealRequestValidator()
         {
+                this.RuleFor(x => x.SellerId)
+                        .NotEmpty()
+                        .WithMessage("ID sprzedawcy nie może być puste");
+
+                this.RuleFor(x => x.SellerFullName)
+                        .Must(u => !string.IsNullOrWhiteSpace(u))
+                        .WithMessage("Imię i nazwisko sprzedawcy nie może być puste");
+
                 this.RuleFor(x => x.Name)
                         .Must(u => !string.IsNullOrWhiteSpace(u))
                         .WithMessage("Nazwa nie może być pusta")

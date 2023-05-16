@@ -25,6 +25,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                 {
                         var itemtoAdd = new Deal()
                         {
+                                SellerFullName = request.SellerFullName,
+                                SellerId = request.SellerId,
                                 CreationDate = DateTime.Today,
                                 Name = request.Name,
                                 Price = request.Price,
