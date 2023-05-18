@@ -23,12 +23,18 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 FirstName = data.FirstName,
                                 LastName = data.LastName,
                                 Phone = data.Phone,
-                                SellerId = data.CreatorId,
                                 Source = data.Source,
                                 Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
                                 {
                                         Id = x.ProfileId,
                                         Name = x.Name,
+                                }).ToList(),
+                                Users = data.ClientUsers.Select(x => new UserListModel()
+                                {
+                                        Id = x.UserId,
+                                        FirstName = x.User.FirstName,
+                                        LastName = x.User.LastName,
+                                        Role = x.User.Role,
                                 }).ToList(),
                         };
                 }

@@ -11,7 +11,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string Name { get; set; }
                 public string GoogleProfileId { get; set; }
                 public int CreatorId { get; set; }
-                public int UserId { get; set; }
+                public int? UserId { get; set; }
                 public int ClientId { get; set; }
                 public string Source { get; set; }
                 public string WebsiteUrl { get; set; }

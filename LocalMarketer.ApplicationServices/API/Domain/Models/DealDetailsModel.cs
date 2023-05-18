@@ -4,7 +4,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
 {
         public class DealDetailsModel
         {
-                public int ProfileUserId { get; set; }
+                public int? ProfileUserId { get; set; }
                 public DateTime CreationDate { get; set; }
                 public int Id { get; set; }
                 public int CreatorId { get; set; }

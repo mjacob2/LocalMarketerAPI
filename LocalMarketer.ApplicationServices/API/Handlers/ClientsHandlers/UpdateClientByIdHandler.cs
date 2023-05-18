@@ -42,6 +42,21 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 Phone = request.Phone,
                                 Source = request.Source,
                                 Description = request.Description,
+                                ClientUsers = new List<ClientUser>
+                                {
+                                        new ClientUser
+                                        {
+                                                UserId = request.UserId,
+                                                //ClientId = request.ClientId,
+                                        },
+
+                                        new ClientUser
+                                        {
+                                                UserId = request.SellerId,
+                                                //ClientId = request.ClientId,
+                                        }
+                                }
+
                         };
                         var command = new UpdateClientCommand() { Parameter = clientMappedToEntity };
 

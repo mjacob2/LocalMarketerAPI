@@ -28,6 +28,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         var DealMappedToEntity = new Deal()
                         {
                                 DealId = request.Id,
+                                SellerId = request.SellerId,
+                                SellerFullName = request.SellerFullName,
                                 Name = request.Name,
                                 Stage = request.Stage,
                                 Description = request.Description,

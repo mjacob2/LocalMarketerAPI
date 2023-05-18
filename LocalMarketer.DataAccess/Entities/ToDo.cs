@@ -34,6 +34,5 @@ namespace LocalMarketer.DataAccess.Entities
                 public string? Link3 { get; set; }
                 public string? Link4 { get; set; }
                 public string? Link5 { get; set; }
-
         }
 }

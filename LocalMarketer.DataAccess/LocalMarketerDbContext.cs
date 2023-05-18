@@ -28,6 +28,12 @@ namespace LocalMarketer.DataAccess
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<User>()
+        .HasMany(e => e.Clients)
+        .WithMany(e => e.Users)
+        .UsingEntity<ClientUser>();
+
+
+                        modelBuilder.Entity<User>()
                                 .HasIndex(u => u.Email)
                                 .IsUnique();
 

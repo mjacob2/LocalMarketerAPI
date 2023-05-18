@@ -13,6 +13,8 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                         .Where(x => x.ToDoId == this.ToDoId)
                         .Include(x => x.Deal)
                         .ThenInclude(x => x.Profile)
+                        .ThenInclude(x => x.Client)
+                        .ThenInclude(x => x.Users)
                         .Include(c => c.Notes)
                         .FirstOrDefaultAsync();
                 }

@@ -4,14 +4,6 @@ using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
         {
         public AddDealRequestValidator()
         {
-                this.RuleFor(x => x.SellerId)
-                        .NotEmpty()
-                        .WithMessage("ID sprzedawcy nie może być puste");
-
-                this.RuleFor(x => x.SellerFullName)
-                        .Must(u => !string.IsNullOrWhiteSpace(u))
-                        .WithMessage("Imię i nazwisko sprzedawcy nie może być puste");
-
                 this.RuleFor(x => x.Name)
                         .Must(u => !string.IsNullOrWhiteSpace(u))
                         .WithMessage("Nazwa nie może być pusta")
@@ -22,13 +14,10 @@ using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
                         .MaximumLength(500)
                         .WithMessage("Opis nie może być dłuższy niż 500 znaków");
 
-                this.RuleFor(x => x.PackageId)
-                        .GreaterThan(0)
-                        .WithMessage("Nieprawidłowy pakiet");
 
                 this.RuleFor(x => x.Price)
-                    .GreaterThanOrEqualTo(x => x.selectedPackageMinPrice)
-                    .WithMessage(x => $"Cena musi być wyższa niż minimalna cena pakietu: {x.selectedPackageMinPrice} PLN");
+                    .GreaterThanOrEqualTo(x => x.SelectedPackage.MinimumPrice)
+                    .WithMessage(x => $"Cena musi być wyższa niż minimalna cena pakietu: {x.SelectedPackage.MinimumPrice} PLN");
 
         }
 }

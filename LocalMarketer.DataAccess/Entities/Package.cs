@@ -10,7 +10,7 @@ namespace LocalMarketer.DataAccess.Entities
         public class Package
         {
                 [Key]
-                public int PakageId { get; set; }
+                public int PackageId { get; set; }
 
                 [MaxLength(50)]
                 public string Name { get; set; }

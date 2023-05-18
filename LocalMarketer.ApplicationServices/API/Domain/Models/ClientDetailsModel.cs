@@ -12,7 +12,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
         {
                 public int Id { get; set; }
                 public DateTime CreationDate { get; set; }
-
+                public int? UserId { get; set; }
                 public string Name { get; set; }
                 public string GoogleGroupId { get; set; }
                 public string FirstName { get; set; }
@@ -28,5 +28,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public int SellerId { get; set; }
                 public List<ProfileGeneralModel> Profiles { get; set; }
                 public List<DealGeneralModel> Deals { get; set; }
+
+                public List<UserListModel> Users { get; set; }
         }
 }

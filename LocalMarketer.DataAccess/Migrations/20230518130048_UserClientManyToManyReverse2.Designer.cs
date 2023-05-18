@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230518130048_UserClientManyToManyReverse2")]
+    partial class UserClientManyToManyReverse2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,6 +103,9 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Source")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -111,21 +117,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ClientUser", b =>
-                {
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ClientUser");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
@@ -449,6 +440,9 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<bool>("AccesDenied")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -488,6 +482,8 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("Email")
                         .IsUnique();
 
@@ -503,25 +499,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Profile");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ClientUser", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Client", "Client")
-                        .WithMany("ClientUsers")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LocalMarketer.DataAccess.Entities.User", "User")
-                        .WithMany("ClientUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
@@ -568,7 +545,7 @@ namespace LocalMarketer.DataAccess.Migrations
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
                 {
                     b.HasOne("LocalMarketer.DataAccess.Entities.Client", "Client")
-                        .WithMany("Profiles")
+                        .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -587,11 +564,16 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Navigation("Deal");
                 });
 
+            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.User", b =>
+                {
+                    b.HasOne("LocalMarketer.DataAccess.Entities.Client", null)
+                        .WithMany("Users")
+                        .HasForeignKey("ClientId");
+                });
+
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Client", b =>
                 {
-                    b.Navigation("ClientUsers");
-
-                    b.Navigation("Profiles");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
@@ -609,11 +591,6 @@ namespace LocalMarketer.DataAccess.Migrations
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
                 {
                     b.Navigation("Notes");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.User", b =>
-                {
-                    b.Navigation("ClientUsers");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230518131902_UserClientManyToManyNewWay")]
+    partial class UserClientManyToManyNewWay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +102,9 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Source")
                         .IsRequired()
@@ -507,21 +513,17 @@ namespace LocalMarketer.DataAccess.Migrations
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ClientUser", b =>
                 {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Client", "Client")
+                    b.HasOne("LocalMarketer.DataAccess.Entities.Client", null)
                         .WithMany("ClientUsers")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LocalMarketer.DataAccess.Entities.User", "User")
+                    b.HasOne("LocalMarketer.DataAccess.Entities.User", null)
                         .WithMany("ClientUsers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>

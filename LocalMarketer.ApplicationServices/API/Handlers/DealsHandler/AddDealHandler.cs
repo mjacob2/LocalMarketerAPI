@@ -32,10 +32,10 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                 Price = request.Price,
                                 CreatorId = int.Parse(request.LoggedUserId),
                                 ProfileId = request.ProfileId,
-                                PackageId = request.PackageId,
+                                PackageId = request.SelectedPackage.PackageId,
                                 Description = request.Description,
-                                EndDate = request.EndDate,
-                                Stage = request.Stage,
+                                EndDate = DateTime.Today.AddMonths(request.SelectedPackage.DurationInMonths),
+                                Stage = "In progress",
 
                         };
 
@@ -75,7 +75,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         var sevenDaysFromNow = DateTime.Today.AddDays(7);
                         var forteenDaysFromNow = DateTime.Today.AddDays(14);
 
-                        var oneMontFromNow = DateTime.Today.AddMonths(1);
+                        var oneMonthFromNow = DateTime.Today.AddMonths(1);
                         var twoMonthsFromNow = DateTime.Today.AddMonths(2);
                         var threeMonthsFromNow = DateTime.Today.AddMonths(3);
                         var fourMonthsFromNow = DateTime.Today.AddMonths(4);
@@ -94,7 +94,14 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         DueDate = threeDaysFromNow,
                                         Description = "",
                                         IsFinished = false,
-                                        Notes = new List<Note>(),
+                                        Notes = new List<Note>()
+                                        {
+                                                new Note()
+                                                {
+                                                        CreationDate = DateTime.Today,
+                                                        Name = "notatka 1",
+                                                }
+                                        },
                                 },
 
                                 new ToDo()
@@ -127,7 +134,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
-                                        DueDate = oneMontFromNow,
+                                        DueDate = oneMonthFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
@@ -175,7 +182,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
-                                        DueDate = oneMontFromNow,
+                                        DueDate = oneMonthFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
@@ -211,7 +218,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
-                                        DueDate = oneMontFromNow,
+                                        DueDate = oneMonthFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
@@ -229,6 +236,14 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Notes = new List<Note>(),
                                 },
                         };
+
+                        //var commonTasks = new List<ToDo>
+                        //{
+                        //        new ToDo()
+                        //        {
+                        //                Deal
+                        //        }
+                        //};
 
                         List<ToDo> todostoAdd;
 

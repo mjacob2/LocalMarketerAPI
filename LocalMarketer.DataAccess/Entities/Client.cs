@@ -13,10 +13,8 @@ namespace LocalMarketer.DataAccess.Entities
                 public int ClientId { get; set; }
                 public DateTime CreationDate { get; set; }
 
-                public int UserId { get; set; }
-
                 [JsonIgnore]
-                public User User { get; set; }
+                public List<User> Users { get; set; } = new List<User> { };
 
                 [Required]
                 [MaxLength(50)]
@@ -50,8 +48,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public int CreatorId { get; set; }
 
-                public int SellerId { get; set; }
-
+                [JsonIgnore]
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
-}
+
+                [JsonIgnore]
+                public List<ClientUser> ClientUsers { get; set; } = new List<ClientUser> { };
+        }
 }

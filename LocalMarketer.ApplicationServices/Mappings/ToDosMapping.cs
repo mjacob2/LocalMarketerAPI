@@ -22,7 +22,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 ProfileId = x.Deal.ProfileId,
                                 DueDate = x.DueDate,
                                 IsFinished = x.IsFinished,
-                                UserFullName = $"{x.Deal.Profile.Client.User.FirstName} {x.Deal.Profile.Client.User.LastName}",
+                                //UserFullName = $"{x.Deal.Profile.Client.User.FirstName} {x.Deal.Profile.Client.User.LastName}",
                         }).ToList();
                 }
 
@@ -38,7 +38,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Description = data.Description,
                                 DueDate = data.DueDate,
                                 IsFinished = data.IsFinished,
-                                UserFullName = $"{data.Deal.Profile.Client.User.FirstName} {data.Deal.Profile.Client.User.LastName}",
+                                //UserFullName = $"{data.Deal.Profile.Client.User.FirstName} {data.Deal.Profile.Client.User.LastName}",
                                 DealEndDate = data.Deal.EndDate,
                                 Link1 = data.Link1, 
                                 Link2 = data.Link2,

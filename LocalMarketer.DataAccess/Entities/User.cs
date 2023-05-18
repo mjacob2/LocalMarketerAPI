@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
@@ -44,6 +45,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public bool AccesDenied { get; set; }
 
+                [JsonIgnore]
                 public List<Client> Clients { get; set; } = new List<Client> { };
+
+                [JsonIgnore]
+                public List<ClientUser> ClientUsers { get; set; } = new List<ClientUser> { };
         }
 }

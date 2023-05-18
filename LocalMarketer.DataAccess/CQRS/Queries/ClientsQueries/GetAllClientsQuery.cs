@@ -8,10 +8,10 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ClientsQueries
         {
                 public override Task<List<Client>> Execute(LocalMarketerDbContext context)
                 {
-                        if (LoggedUserRole == Roles.Seller.ToString())
+                        if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
                                 return context.Clients
-                                        .Where(x => x.SellerId == LoggedUserId)
+                                        .Where(x => x.Users.Any(x => x.UserId == LoggedUserId))
                                         .ToListAsync();
                         }
                         else

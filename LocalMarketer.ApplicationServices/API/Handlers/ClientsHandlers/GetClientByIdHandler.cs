@@ -37,14 +37,14 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 };
                         }
 
-                        if (request.LoggedUserRole == Roles.Seller.ToString()
-                                && dataFromDb.SellerId.ToString() != request.LoggedUserId)
-                        {
-                                return new GetClientByIdResponse()
-                                {
-                                        Error = new ErrorModel(ErrorType.Unauthorized),
-                                };
-                        }
+                        //if (request.LoggedUserRole == Roles.Seller.ToString()
+                        //        && dataFromDb.ClientUsers.ToString() != request.LoggedUserId)
+                        //{
+                        //        return new GetClientByIdResponse()
+                        //        {
+                        //                Error = new ErrorModel(ErrorType.Unauthorized),
+                        //        };
+                        //}
 
                         var dataFromDbMappedToModel = ClientsMapping.ClientDetailsProfile(dataFromDb);
 

@@ -1,5 +1,6 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
+using LocalMarketer.DataAccess.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,7 @@ namespace LocalMarketer.Controllers
                 public Task<IActionResult> UpdateClientById([FromRoute] int id, [FromBody] UpdateClientByIdRequest request)
                 {
                         request.ClientId = id;
+
 
                         return this.HandleRequest<UpdateClientByIdRequest, UpdateClientByIdResponse>(request);
                 }

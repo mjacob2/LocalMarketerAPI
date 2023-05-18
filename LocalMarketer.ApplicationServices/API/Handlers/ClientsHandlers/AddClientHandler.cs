@@ -33,7 +33,19 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 Source = request.Source,
                                 Description = request.Description,
                                 CreatorId = int.Parse(request.LoggedUserId),
-                                SellerId = request.SellerId,
+                                ClientUsers = new List<ClientUser>
+                                {
+                                        new ClientUser
+                                        {
+                                                UserId = 1, // Administrator
+                                        },
+
+                                        new ClientUser
+                                        {
+                                                UserId = request.SellerId,
+                                        }
+                                }
+
                         };
 
                         var command = new AddClientCommand() { Parameter = itemtoAdd };

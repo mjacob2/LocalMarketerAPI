@@ -20,7 +20,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 CreationDate = x.CreationDate,
                                 Name = x.Name,
                                 CreatorId = x.CreatorId,
-                                UserId = x.Client.UserId,
+                                //UserId = x.Client.UserId,
                                 ClientId = x.ClientId,
                                 Source = x.Source,
                                 City = x.City,
@@ -53,7 +53,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Street = data.Street,
                                 Regon = data.REGON,
                                 Source = data.Source,
-                                UserId = data.Client.UserId,
+                                //UserId = data.Client.UserId,
                                 WebsiteUrl = data.WebsiteUrl,
                                 Voivodeship = data.Voivodeship,
                                 Deals = data.Deals.Select(x => new DealGeneral()

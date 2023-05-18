@@ -11,19 +11,23 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
                         if (LoggedUserRole == Roles.Seller.ToString())
                         {
                                 return context.Profiles
+                                        .Include(x => x.Client)
                                         .Where(x => x.CreatorId == LoggedUserId)
                                         .ToListAsync();
                         }
                         if (LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
                                 return context.Profiles
-                                        .Where(x => x.Client.UserId == LoggedUserId)
+                                        .Include(x => x.Client)
+                                        .Where(x => x.Client.Users.Any(x => x.UserId == LoggedUserId))
                                         .ToListAsync();
                         }
 
                         else
                         {
-                                return context.Profiles.ToListAsync();
+                                return context.Profiles
+                                        .Include(x => x.Client)
+                                        .ToListAsync();
                         }
                 }
         }
