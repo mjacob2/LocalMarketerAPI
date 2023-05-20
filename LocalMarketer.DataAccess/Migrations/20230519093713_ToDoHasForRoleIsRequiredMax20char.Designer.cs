@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230519093713_ToDoHasForRoleIsRequiredMax20char")]
+    partial class ToDoHasForRoleIsRequiredMax20char
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,27 +244,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.ToTable("FormFaqs");
                 });
 
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
-                {
-                    b.Property<int>("FormServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormServiceId"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FormServiceId");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("FormServices");
-                });
-
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Note", b =>
                 {
                     b.Property<int>("NoteId")
@@ -353,10 +335,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("MediaLink")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
                     b.Property<string>("NIP")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -406,45 +384,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Profiles");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Service", b =>
-                {
-                    b.Property<int>("ServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("FormServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ServiceId");
-
-                    b.HasIndex("FormServiceId");
-
-                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
@@ -497,8 +436,8 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ToDoId");
 
@@ -623,17 +562,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Profile");
-                });
-
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Note", b =>
                 {
                     b.HasOne("LocalMarketer.DataAccess.Entities.ToDo", "ToDo")
@@ -654,17 +582,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Service", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.FormService", "FormService")
-                        .WithMany("Services")
-                        .HasForeignKey("FormServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FormService");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.ToDo", b =>
@@ -688,11 +605,6 @@ namespace LocalMarketer.DataAccess.Migrations
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
                 {
                     b.Navigation("ToDos");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
-                {
-                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>

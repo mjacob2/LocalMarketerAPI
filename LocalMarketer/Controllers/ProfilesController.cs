@@ -41,10 +41,10 @@ namespace LocalMarketer.Controllers
                 }
 
                 [HttpPut]
-                [Route("{id}")]
-                public Task<IActionResult> UpdateProfileById([FromRoute] int id, [FromBody] UpdateProfileByIdRequest request)
+                [Route("{profileId}")]
+                public Task<IActionResult> UpdateProfileById([FromRoute] int profileId, [FromBody] UpdateProfileByIdRequest request)
                 {
-                        request.ProfileId = id;
+                        request.ProfileId = profileId;
 
                         return this.HandleRequest<UpdateProfileByIdRequest, UpdateProfileByIdResponse>(request);
                 }

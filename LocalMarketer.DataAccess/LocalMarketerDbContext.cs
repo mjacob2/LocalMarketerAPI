@@ -25,6 +25,9 @@ namespace LocalMarketer.DataAccess
 
                 public DbSet<FormFaq> FormFaqs { get; set; }
 
+                public DbSet<FormService> FormServices { get; set; }
+                public DbSet<Service> Services { get; set; }
+
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<User>()

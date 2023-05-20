@@ -27,9 +27,10 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string Email { get; set; }
                 public string CustomerService { get; set; }
                 public List<DealGeneral> Deals { get; set; }
-                public int Id { get; set; }
+                public int ProfileId { get; set; }
                 public DateTime CreationDate { get; set; }
                 public string ClientEmail { get; set; }
+                public string MediaLink { get; set; }
 
                 public class ToDoGeneral
                 {

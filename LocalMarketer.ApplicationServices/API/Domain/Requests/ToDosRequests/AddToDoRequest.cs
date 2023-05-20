@@ -14,5 +14,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests
                 public DateTime DealCreationDate { get; set; }
                 public string Description { get; set; }
                 public bool IsFinished { get; set; }
+                public string ForRole { get; set; }
         }
 }

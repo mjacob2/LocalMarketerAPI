@@ -67,6 +67,9 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string? Email { get; set; }
 
+                [MaxLength(500)]
+                public string? MediaLink { get; set; }
+
                 [MaxLength(50)]
                 public string? CustomerService { get; set; }
 

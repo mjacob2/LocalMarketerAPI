@@ -2,7 +2,8 @@
 {
         public class ToDoModel
         {
-                public int Id { get; set; }
+                public int ToDoId { get; set; }
+                public int DealId { get; set; }
                 public DateTime CreationDate { get; set; }
                 public string Title { get; set; }
                 public string ProfileName { get; set; }
@@ -17,5 +18,6 @@
                 public string? Link3 { get; set; }
                 public string? Link4 { get; set; }
                 public string? Link5 { get; set; }
+                public string ForRole { get; set; }
         }
 }

@@ -44,7 +44,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 ClientId = data.ClientId,
                                 Description = data.Description,
                                 Email = data.Email,
-                                Id = data.ProfileId,
+                                ProfileId = data.ProfileId,
                                 GoogleProfileId = data.GoogleProfileId,
                                 Nip = data.NIP,
                                 Phone = data.Phone,
@@ -53,7 +53,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Street = data.Street,
                                 Regon = data.REGON,
                                 Source = data.Source,
-                                //UserId = data.Client.UserId,
+                                MediaLink = data.MediaLink,
                                 WebsiteUrl = data.WebsiteUrl,
                                 Voivodeship = data.Voivodeship,
                                 Deals = data.Deals.Select(x => new DealGeneral()

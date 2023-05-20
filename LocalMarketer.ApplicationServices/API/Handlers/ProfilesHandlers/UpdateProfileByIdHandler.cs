@@ -51,6 +51,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                 Source = request.Source,
                                 Description = request.Description,
                                 CustomerService = request.CustomerService,
+                                MediaLink = request.MediaLink,
                         };
                         var command = new UpdateProfileCommand() { Parameter = profileMappedToEntity };
 

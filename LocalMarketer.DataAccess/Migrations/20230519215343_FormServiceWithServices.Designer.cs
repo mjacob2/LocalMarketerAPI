@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230519215343_FormServiceWithServices")]
+    partial class FormServiceWithServices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,12 +255,7 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
                     b.HasKey("FormServiceId");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("FormServices");
                 });
@@ -613,17 +611,6 @@ namespace LocalMarketer.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormFaq", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Profile");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
                 {
                     b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
                         .WithMany()

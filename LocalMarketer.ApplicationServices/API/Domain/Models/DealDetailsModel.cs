@@ -18,5 +18,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public DateTime EndDate { get; set; }
                 public List<ToDoModel> ToDos { get; set; }
 
+                public string SellerFullName { get; set; }
+
         }
 }

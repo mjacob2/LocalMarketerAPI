@@ -7,69 +7,36 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
 {
         public class GetAllToDosQuery : QueryBase<List<ToDo>>
         {
+                private Task<List<ToDo>>? toDos;
+
                 public bool? ShowOnlyUnfinished { get; set; }
 
                 public override Task<List<ToDo>> Execute(LocalMarketerDbContext context)
                 {
 
-                        if (this.ShowOnlyUnfinished == true)
+                        if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
-                                if (LoggedUserRole == Roles.Seller.ToString())
-                                {
-                                        return context.ToDos
-                                                .Where(x => !x.IsFinished)
-                                                .Include(x => x.Deal)
-                                                .ThenInclude(x => x.Profile)
-                                                .ThenInclude(x => x.Client)
-                                                .ThenInclude(x => x.Users)
-                                                .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
-                                                .ToListAsync();
-                                }
-
-                                if (LoggedUserRole == Roles.LocalMarketer.ToString())
-                                {
-                                        return context.ToDos
-                                                .Where(x => !x.IsFinished)
-                                                .Include(x => x.Deal)
-                                                .ThenInclude(x => x.Profile)
-                                                .ThenInclude(x => x.Client)
-                                                .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
-                                                .ToListAsync();
-                                }
-                                else
-                                {
-                                        var tt = context.ToDos
-                                                .Where(x => !x.IsFinished)
-                                                .Include(x => x.Deal)
-                                                .ThenInclude(x => x.Profile)
-                                                .ThenInclude(x => x.Client)
-                                                .ThenInclude (x => x.Users)
-                                                .ToListAsync();
-                                        return tt;
-                                }
-                        }
-
-                        if (LoggedUserRole == Roles.Seller.ToString())
-                        {
-                                return context.ToDos
-                                        .Where(x => x.CreatorId == LoggedUserId)
+                                this.toDos = context.ToDos
                                         .Include(x => x.Deal)
                                         .ThenInclude(x => x.Profile)
                                         .ThenInclude(x => x.Client)
-                                                .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
+                                        .ThenInclude(x => x.Users)
+                                        .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
+                                        .Where(x => x.ForRole == LoggedUserRole)
                                         .ToListAsync();
                         }
+
                         else
                         {
-                                var tt = context.ToDos
+                                this.toDos = context.ToDos
                                         .Include(x => x.Deal)
                                         .ThenInclude(x => x.Profile)
                                         .ThenInclude(x => x.Client)
-                                                .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
+                                        .ThenInclude(x => x.Users)
                                         .ToListAsync();
-                                return tt;
                         }
 
+                        return toDos;
                 }
         }
 }

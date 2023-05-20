@@ -84,6 +84,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                                 IsFinished = false,
                                 Notes = new List<Note>(),
                                 Link1 = $"http://localhost:4200/formfaq/{formFaqId}",
+                                ForRole = User.Roles.LocalMarketer.ToString(),
                         };
 
 

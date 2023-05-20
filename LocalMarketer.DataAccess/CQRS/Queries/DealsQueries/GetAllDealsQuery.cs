@@ -8,15 +8,12 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
         {
                 public override Task<List<Deal>> Execute(LocalMarketerDbContext context)
                 {
-                        if (LoggedUserRole == Roles.Seller.ToString())
+                        if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
                                 return context.Deals
-                                        .Where(x => x.CreatorId == LoggedUserId)
-                                        .ToListAsync();
-                        }
-                        if (LoggedUserRole == Roles.LocalMarketer.ToString())
-                        {
-                                return context.Deals
+                                        .Include(x => x.Profile)
+                                        .ThenInclude(x => x.Client)
+                                        .ThenInclude(x => x.Users)
                                         .Where(x => x.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
                                         .ToListAsync();
                         }

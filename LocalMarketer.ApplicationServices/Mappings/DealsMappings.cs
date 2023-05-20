@@ -24,7 +24,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return new DealDetailsModel()
                         {
-                                //ProfileUserId = data.Profile.Client.UserId,
+                                SellerFullName = data.SellerFullName,
                                 CreationDate = data.CreationDate,
                                 Id = data.DealId,
                                 CreatorId = data.CreatorId,
@@ -37,7 +37,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 EndDate = data.EndDate,
                                 ToDos = data.ToDos.Select(x => new ToDoModel()
                                 {
-                                        Id = x.DealId,
+                                        ToDoId = x.DealId,
                                         Title = x.Title,
                                         DueDate = x.DueDate,IsFinished = x.IsFinished,
                                 }).ToList(),

@@ -9,7 +9,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
                 public int ProfileId { get; set; }
                 public string GoogleProfileId { get; set; }
                 public string Name { get; set; }
-                public int UserId { get; set; }
                 public int ClientId { get; set; }
                 public string? Source { get; set; }
                 public string? WebsiteUrl { get; set; }
@@ -24,5 +23,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
                 public string? Phone { get; set; }
                 public string? Email { get; set; }
                 public string? CustomerService { get; set; }
+                public string? MediaLink { get; set; }
         }
 }

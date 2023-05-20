@@ -23,7 +23,6 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .Length(1, 20)
                                 .WithMessage("Imię nie może być dłuższe niż 20 znaków");
 
-
                         this.RuleFor(x => x.LastName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Nazwisko nie może być puste")
@@ -33,8 +32,8 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                         this.RuleFor(x => x.Phone)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Telefon nie może być pusty")
-                                .Length(1, 9)
-                                .WithMessage("Telefon nie może być dłuższy niż 9 znaków");
+                                .Length(9, 9)
+                                .WithMessage("Telefon musi zawierać 9 cyfr");
 
                         this.RuleFor(x => x.Email)
                                 .EmailAddress()
@@ -42,7 +41,7 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("E-mail nie może być pusty")
                                 .Length(1, 50)
-                                .WithMessage("Telefon nie może być dłuższy niż 50 znaków");
+                                .WithMessage("E-mail nie może być dłuższy niż 50 znaków");
 
                         this.RuleFor(x => x.Source)
                                 .MaximumLength(50)

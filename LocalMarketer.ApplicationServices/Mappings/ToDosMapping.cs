@@ -2,6 +2,7 @@
 using LocalMarketer.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,24 +14,33 @@ namespace LocalMarketer.ApplicationServices.Mappings
         {
                 internal static List<ToDoListModel> GetAllToDos(List<ToDo> data)
                 {
-                        return data.Select(x => new ToDoListModel()
+                        // Wszystkie ToDos
+                        var allToDos = data.Select(x => new ToDoListModel()
                         {
-                                Id = x.ToDoId,
+                                ToDoId = x.ToDoId,
                                 CreationDate = x.CreationDate,
                                 Title = x.Title,
                                 ProfileName = x.Deal.Profile.Name,
                                 ProfileId = x.Deal.ProfileId,
                                 DueDate = x.DueDate,
                                 IsFinished = x.IsFinished,
-                                //UserFullName = $"{x.Deal.Profile.Client.User.FirstName} {x.Deal.Profile.Client.User.LastName}",
+                                ForRole = x.ForRole,
+                                UserFullName = x.Deal.Profile.Client.Users
+        .FirstOrDefault(user => user.Role == x.ForRole)?
+        .FirstName + " " + x.Deal.Profile.Client.Users
+        .FirstOrDefault(user => user.Role == x.ForRole)?
+        .LastName,
                         }).ToList();
+
+                        return allToDos;
                 }
 
                 internal static ToDoModel GetToDoById(ToDo data)
                 {
-                        return  new ToDoModel()
+                        return new ToDoModel()
                         {
-                                Id = data.DealId,
+                                ToDoId = data.ToDoId,
+                                DealId = data.DealId,
                                 CreationDate = data.CreationDate,
                                 Title = data.Title,
                                 ProfileName = data.Deal.Profile.Name,
@@ -38,14 +48,19 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Description = data.Description,
                                 DueDate = data.DueDate,
                                 IsFinished = data.IsFinished,
-                                //UserFullName = $"{data.Deal.Profile.Client.User.FirstName} {data.Deal.Profile.Client.User.LastName}",
+                                UserFullName = data.Deal.Profile.Client.Users
+        .FirstOrDefault(user => user.Role == data.ForRole)?
+        .FirstName + " " + data.Deal.Profile.Client.Users
+        .FirstOrDefault(user => user.Role == data.ForRole)?
+        .LastName,
                                 DealEndDate = data.Deal.EndDate,
-                                Link1 = data.Link1, 
+                                Link1 = data.Link1,
                                 Link2 = data.Link2,
                                 Link3 = data.Link3,
                                 Link4 = data.Link4,
                                 Link5 = data.Link5,
-                                
+                                ForRole = data.ForRole
+
                         };
                 }
         }

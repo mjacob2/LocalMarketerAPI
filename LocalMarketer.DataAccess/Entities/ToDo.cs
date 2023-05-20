@@ -11,7 +11,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public int CreatorId { get; set; }
 
                 [Required]
-                [MaxLength(50)]
+                [MaxLength(250)]
                 public string Title { get; set; }
 
                 public int DealId { get; set; }
@@ -34,5 +34,9 @@ namespace LocalMarketer.DataAccess.Entities
                 public string? Link3 { get; set; }
                 public string? Link4 { get; set; }
                 public string? Link5 { get; set; }
+
+                [Required]
+                [MaxLength(20)]
+                public string ForRole { get; set; }
         }
 }

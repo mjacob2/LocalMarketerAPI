@@ -90,6 +90,26 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
+                                        Title = "Wklej link do folderu z mediami", // !This title is used in UpdateToDoByIdHandler in if statement, better not change it
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>()
+                                        {
+                                                new Note()
+                                                {
+                                                        CreationDate = DateTime.Today,
+                                                        Name = "notatka 1",
+                                                }
+                                        },
+                                        ForRole = User.Roles.Seller.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
                                         Title = "Aktywuj czat",
                                         DueDate = threeDaysFromNow,
                                         Description = "",
@@ -102,6 +122,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                                         Name = "notatka 1",
                                                 }
                                         },
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -114,6 +135,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -126,6 +148,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -138,6 +161,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -150,6 +174,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -162,6 +187,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -174,6 +200,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -186,6 +213,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -198,6 +226,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -210,6 +239,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "http://bitly.pl/7FtAx \n http://bitly.pl/HOlGU \n http://bitly.pl/V2CNu",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -222,6 +252,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -234,16 +265,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
                         };
-
-                        //var commonTasks = new List<ToDo>
-                        //{
-                        //        new ToDo()
-                        //        {
-                        //                Deal
-                        //        }
-                        //};
 
                         List<ToDo> todostoAdd;
 
