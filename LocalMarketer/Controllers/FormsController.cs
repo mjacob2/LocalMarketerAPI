@@ -9,22 +9,22 @@ namespace LocalMarketer.Controllers
         [Authorize]
         [ApiController]
         [Route("[controller]")]
-        public class FormFaqController : ApiControllerBase
+        public class FormsController : ApiControllerBase
         {
-                public FormFaqController(IMediator mediator) : base(mediator)
+                public FormsController(IMediator mediator) : base(mediator)
                 {
                 }
 
                 [AllowAnonymous]
                 [HttpPost]
-                [Route("")]
+                [Route("faq")]
                 public Task<IActionResult> AddFormFaq([FromBody] AddFormFaqRequest request)
                 {
                         return this.HandleRequest<AddFormFaqRequest, AddFormFaqResponse>(request);
                 }
 
                 [HttpGet]
-                [Route("{id}")]
+                [Route("faq/{id}")]
                 public Task<IActionResult> GetFormFaqbyId([FromRoute] int id)
                 {
                         var request = new GetFormFaqByIdRequest()
@@ -32,6 +32,14 @@ namespace LocalMarketer.Controllers
                                 FormFaqId = id,
                         };
                         return this.HandleRequest<GetFormFaqByIdRequest, GetFormFaqByIdResponse>(request);
+                }
+
+                [AllowAnonymous]
+                [HttpPost]
+                [Route("service")]
+                public Task<IActionResult> AddFormServices([FromBody] AddFormServiceRequest request)
+                {
+                        return this.HandleRequest<AddFormServiceRequest, AddFormServiceResponse>(request);
                 }
         }
 }

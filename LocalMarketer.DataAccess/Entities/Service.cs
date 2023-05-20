@@ -28,7 +28,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public int FormServiceId { get; set; }
 
                 [JsonIgnore]
-                public FormService FormService { get; set; }
+                public FormService? FormService { get; set; }
 
         }
 }
