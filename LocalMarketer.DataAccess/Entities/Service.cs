@@ -20,7 +20,8 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(120)]
                 public string Name { get; set; }
 
-                public decimal Price { get; set; }
+                [MaxLength(50)]
+                public string Price { get; set; }
 
                 [MaxLength(300)]
                 public string Description { get; set; }

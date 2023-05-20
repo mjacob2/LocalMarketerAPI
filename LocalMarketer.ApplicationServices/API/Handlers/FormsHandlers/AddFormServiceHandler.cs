@@ -26,8 +26,25 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                         {
                                 CreationDate = DateTime.Today,
                                 ProfileId = request.ProfileId,
-                                Services = request.Services,
+                                Services = new List<DataAccess.Entities.Service>(),
                         };
+
+                        if (request.Services != null)
+                        {
+                                foreach (var service in request.Services)
+                                {
+                                        var serviceToAdd = new DataAccess.Entities.Service
+                                        {
+                                                Category = service.Category,
+                                                Description = service.Description,
+                                                Name = service.Name,
+                                                Price = service.Price
+                                        };
+
+                                        itemtoAdd.Services.Add(serviceToAdd);
+                                }
+                        }
+
 
                         var command = new AddFormServiceCommand() { Parameter = itemtoAdd };
 

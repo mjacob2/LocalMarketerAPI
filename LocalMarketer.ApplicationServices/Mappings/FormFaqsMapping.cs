@@ -5,25 +5,25 @@ namespace LocalMarketer.ApplicationServices.Mappings
 {
         public class FormFaqsMapping
         {
-                internal static FormFaqModel GetFormFaqById(FormFaq data)
+                internal static FormFaqModel GetFormFaqById(FormFaq form)
                 {
                         return new FormFaqModel()
                         {
-                                ProfileName = data.Profile.Name,
+                                ProfileName = form.Profile.Name,
 
-                                Question1 = data.Question1,
-                                Question2 = data.Question2,
-                                Question3 = data.Question3,
-                                Question4 = data.Question4,
-                                Question5 = data.Question5,
-                                Question6 = data.Question6,
+                                Question1 = form.Question1,
+                                Question2 = form.Question2,
+                                Question3 = form.Question3,
+                                Question4 = form.Question4,
+                                Question5 = form.Question5,
+                                Question6 = form.Question6,
 
-                                Answer1 = data.Answer1,
-                                Answer2 = data.Answer2,
-                                Answer3 = data.Answer3,
-                                Answer4 = data.Answer4,
-                                Answer5 = data.Answer5,
-                                Answer6 = data.Answer6,
+                                Answer1 = form.Answer1,
+                                Answer2 = form.Answer2,
+                                Answer3 = form.Answer3,
+                                Answer4 = form.Answer4,
+                                Answer5 = form.Answer5,
+                                Answer6 = form.Answer6,
                         };
                 }
         }

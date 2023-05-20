@@ -41,5 +41,16 @@ namespace LocalMarketer.Controllers
                 {
                         return this.HandleRequest<AddFormServiceRequest, AddFormServiceResponse>(request);
                 }
+
+                [HttpGet]
+                [Route("service/{id}")]
+                public Task<IActionResult> GetFormServiceById([FromRoute] int id)
+                {
+                        var request = new GetFormServiceByIdRequest()
+                        {
+                                FormServiceId = id,
+                        };
+                        return this.HandleRequest<GetFormServiceByIdRequest, GetFormServiceByIdResponse>(request);
+                }
         }
 }
