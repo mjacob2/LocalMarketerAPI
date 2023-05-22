@@ -7,6 +7,7 @@ using LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses;
 using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
 using LocalMarketer.DataAccess.CQRS.Commands.FormsCommands;
+using LocalMarketer.ApplicationServices;
 
 namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
 {
@@ -14,14 +15,21 @@ namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
         {
                 private readonly ICommandExecutor executor;
                 private FormProduct dataFromDb;
+                private readonly IImageDecoder imageDecoder;
 
-                public AddFormProductHandler(ICommandExecutor executor)
+                public AddFormProductHandler(ICommandExecutor executor, IImageDecoder imageDecoder)
                 {
                         this.executor = executor;
+                        this.imageDecoder = imageDecoder;
                 }
 
                 public async Task<AddFormProductResponse> Handle(AddFormProductRequest request, CancellationToken cancellationToken)
                 {
+
+                        
+
+
+
                         var itemtoAdd = new FormProduct()
                         {
                                 CreationDate = DateTime.Today,
@@ -31,23 +39,22 @@ namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
 
                         if (request.Products != null)
                         {
-                                foreach (var Product in request.Products)
+                                foreach (var product in request.Products)
                                 {
-                                        var ProductToAdd = new DataAccess.Entities.Product
+                                        var productToAdd = new DataAccess.Entities.Product
                                         {
-                                                Category = Product.Category,
-                                                Description = Product.Description,
-                                                Name = Product.Name,
-                                                Price = Product.Price,
-                                                Link = Product.Link,
-                                                //ImagePath = Product.ImagePath,
+                                                Category = product.Category,
+                                                Description = product.Description,
+                                                Name = product.Name,
+                                                Price = product.Price,
+                                                Link = product.Link,
+                                                ImageName = imageDecoder.Extract(product.Image),
 
                                         };
 
-                                        itemtoAdd.Products.Add(ProductToAdd);
+                                        itemtoAdd.Products.Add(productToAdd);
                                 }
                         }
-
 
                         var command = new AddFormProductCommand() { Parameter = itemtoAdd };
 
@@ -104,5 +111,9 @@ namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
                         }
 
                 }
+
+                
         }
+
+
 }

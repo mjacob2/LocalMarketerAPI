@@ -14,5 +14,6 @@
                 public string Name { get; set; }
                 public string Price { get; set; }
                 public string Link { get; set; }
+                public string ImageName { get; set; }
         }
 }

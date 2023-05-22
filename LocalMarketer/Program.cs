@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using LocalMarketer.ApplicationServices.API.Validators;
+using LocalMarketer.ApplicationServices;
 
 namespace LocalMarketer
 {
@@ -54,7 +55,7 @@ namespace LocalMarketer
                         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(ResponseBase<>)));
                         builder.Services.AddDbContext<LocalMarketerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("LocalMarketerConnection")));
 
-
+                        builder.Services.AddTransient<IImageDecoder, ImageDecoder>();
 
                         var app = builder.Build();
 

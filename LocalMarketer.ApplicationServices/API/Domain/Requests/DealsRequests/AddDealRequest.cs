@@ -9,7 +9,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests
                 public int ProfileId { get; set; }
                 public string SellerFullName { get; set; }
                 public int SellerId { get; set; }
-                public Package SelectedPackage { get; set; }
+                public Package? SelectedPackage { get; set; }
                 public string Name { get; set; }
                 public double Price { get; set; }
                 public string Description { get; set; }

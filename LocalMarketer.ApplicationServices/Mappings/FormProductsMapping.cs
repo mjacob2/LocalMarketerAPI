@@ -16,6 +16,9 @@ namespace LocalMarketer.ApplicationProducts.Mappings
                                         Description = x.Description,
                                         Name = x.Name,
                                         Price = x.Price,
+                                        Link = x.Link,
+                                        ImageName = x.ImageName,
+                                        
                                 }).ToList(),
                         };
                 }

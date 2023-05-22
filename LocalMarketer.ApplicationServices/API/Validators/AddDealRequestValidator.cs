@@ -1,9 +1,17 @@
 ﻿using FluentValidation;
 using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
-        public class AddDealRequestValidator : AbstractValidator<AddDealRequest>
-        {
+public class AddDealRequestValidator : AbstractValidator<AddDealRequest>
+{
         public AddDealRequestValidator()
         {
+                this.RuleFor(x => x.SelectedPackage)
+                        .NotNull()
+                        .WithMessage("Należy wybrać pakiet");
+
+                this.RuleFor(x => x.SellerId)
+                        .GreaterThan(0)
+                        .WithMessage("Należy wybrać sprzedawcę");
+
                 this.RuleFor(x => x.Name)
                         .Must(u => !string.IsNullOrWhiteSpace(u))
                         .WithMessage("Nazwa nie może być pusta")
@@ -14,10 +22,10 @@ using LocalMarketer.ApplicationServices.API.Domain.Requests.DealsRequests;
                         .MaximumLength(500)
                         .WithMessage("Opis nie może być dłuższy niż 500 znaków");
 
-
                 this.RuleFor(x => x.Price)
-                    .GreaterThanOrEqualTo(x => x.SelectedPackage.MinimumPrice)
-                    .WithMessage(x => $"Cena musi być wyższa niż minimalna cena pakietu: {x.SelectedPackage.MinimumPrice} PLN");
+    .Must((model, price) => model.SelectedPackage == null || price >= model.SelectedPackage.MinimumPrice)
+    .WithMessage(x => $"Cena musi być wyższa niż minimalna cena pakietu: {(x.SelectedPackage != null ? x.SelectedPackage.MinimumPrice.ToString() : "N/A")} PLN");
+
 
         }
 }

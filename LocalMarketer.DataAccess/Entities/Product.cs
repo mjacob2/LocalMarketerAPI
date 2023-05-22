@@ -11,19 +11,20 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(150)]
                 public string Category { get; set; }
 
-                [MaxLength(120)]
+                [MaxLength(58)]
                 public string Name { get; set; }
 
-                [MaxLength(300)]
-                public string Description { get; set; }
+                [MaxLength(1000)]
+                public string? Description { get; set; }
 
-                [MaxLength(50)]
-                public string Price { get; set; }
+                [MaxLength(100)]
+                public string? Price { get; set; }
 
-                [MaxLength(250)]
-                public string Link { get; set; }
+                [MaxLength(1500)]
+                public string? Link { get; set; }
 
-                public string? ImagePath { get; set; }
+                [MaxLength(150)]
+                public string ImageName { get; set; }
 
                 public int FormProductId { get; set; }
 

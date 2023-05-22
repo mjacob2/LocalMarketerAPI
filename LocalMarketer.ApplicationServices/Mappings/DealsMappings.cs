@@ -37,7 +37,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 EndDate = data.EndDate,
                                 ToDos = data.ToDos.Select(x => new ToDoModel()
                                 {
-                                        ToDoId = x.DealId,
+                                        ToDoId = x.ToDoId,
                                         Title = x.Title,
                                         DueDate = x.DueDate,IsFinished = x.IsFinished,
                                 }).ToList(),
