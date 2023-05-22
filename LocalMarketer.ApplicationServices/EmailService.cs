@@ -22,6 +22,8 @@ namespace LocalMarketer.ApplicationServices
                                 $"<a href=\"http://localhost:4200/forms/faq?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz FAQ do czatu</a>"
                                 + "<br> <br>" +
                                 $"<a href=\"http://localhost:4200/forms/service?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Usług</a>"
+                                + "<br> <br>" +
+                                $"<a href=\"http://localhost:4200/forms/product?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Produktów</a>"
                         };
 
                         var smtpClient = new MailKit.Net.Smtp.SmtpClient();

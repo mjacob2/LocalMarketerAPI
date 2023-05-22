@@ -52,5 +52,24 @@ namespace LocalMarketer.Controllers
                         };
                         return this.HandleRequest<GetFormServiceByIdRequest, GetFormServiceByIdResponse>(request);
                 }
+
+                [AllowAnonymous]
+                [HttpPost]
+                [Route("product")]
+                public Task<IActionResult> AddFormProduct([FromBody] AddFormProductRequest request)
+                {
+                        return this.HandleRequest<AddFormProductRequest, AddFormProductResponse>(request);
+                }
+
+                [HttpGet]
+                [Route("product/{id}")]
+                public Task<IActionResult> GetFormProductById([FromRoute] int id)
+                {
+                        var request = new GetFormProductByIdRequest()
+                        {
+                                FormProductId = id,
+                        };
+                        return this.HandleRequest<GetFormProductByIdRequest, GetFormProductByIdResponse>(request);
+                }
         }
 }

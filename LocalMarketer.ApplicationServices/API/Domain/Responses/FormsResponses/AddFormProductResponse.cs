@@ -2,7 +2,7 @@
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses
 {
-        public class AddFormServiceResponse : ResponseBase<FormService>
+        public class AddFormProductResponse : ResponseBase<FormProduct>
         {
         }
 }

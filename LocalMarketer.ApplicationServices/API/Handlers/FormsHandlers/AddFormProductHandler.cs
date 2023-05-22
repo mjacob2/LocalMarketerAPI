@@ -1,69 +1,72 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
-using LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests;
-using LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses;
-using LocalMarketer.ApplicationServices.API.ErrorHandling;
-using LocalMarketer.DataAccess.CQRS.Commands.FormsCommands;
-using LocalMarketer.DataAccess.CQRS.Commands.ToDosCommands;
+﻿using LocalMarketer.DataAccess.CQRS.Commands.ToDosCommands;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
+using LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests;
+using LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses;
+using LocalMarketer.ApplicationServices.API.Domain.Models;
+using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.DataAccess.CQRS.Commands.FormsCommands;
 
-namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
+namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
 {
-        internal class AddFormServiceHandler : IRequestHandler<AddFormServiceRequest, AddFormServiceResponse>
+        public class AddFormProductHandler : IRequestHandler<AddFormProductRequest, AddFormProductResponse>
         {
                 private readonly ICommandExecutor executor;
-                private FormService dataFromDb;
+                private FormProduct dataFromDb;
 
-                public AddFormServiceHandler(ICommandExecutor executor)
+                public AddFormProductHandler(ICommandExecutor executor)
                 {
                         this.executor = executor;
                 }
 
-                public async Task<AddFormServiceResponse> Handle(AddFormServiceRequest request, CancellationToken cancellationToken)
+                public async Task<AddFormProductResponse> Handle(AddFormProductRequest request, CancellationToken cancellationToken)
                 {
-                        var itemtoAdd = new FormService()
+                        var itemtoAdd = new FormProduct()
                         {
                                 CreationDate = DateTime.Today,
                                 ProfileId = request.ProfileId,
-                                Services = new List<DataAccess.Entities.Service>(),
+                                Products = new List<DataAccess.Entities.Product>(),
                         };
 
-                        if (request.Services != null)
+                        if (request.Products != null)
                         {
-                                foreach (var service in request.Services)
+                                foreach (var Product in request.Products)
                                 {
-                                        var serviceToAdd = new DataAccess.Entities.Service
+                                        var ProductToAdd = new DataAccess.Entities.Product
                                         {
-                                                Category = service.Category,
-                                                Description = service.Description,
-                                                Name = service.Name,
-                                                Price = service.Price
+                                                Category = Product.Category,
+                                                Description = Product.Description,
+                                                Name = Product.Name,
+                                                Price = Product.Price,
+                                                Link = Product.Link,
+                                                //ImagePath = Product.ImagePath,
+
                                         };
 
-                                        itemtoAdd.Services.Add(serviceToAdd);
+                                        itemtoAdd.Products.Add(ProductToAdd);
                                 }
                         }
 
 
-                        var command = new AddFormServiceCommand() { Parameter = itemtoAdd };
+                        var command = new AddFormProductCommand() { Parameter = itemtoAdd };
 
                         try
                         {
                                 this.dataFromDb = await this.executor.Execute(command);
 
-                                await CreateAutomaticToDos(request.DealId, this.dataFromDb.FormServiceId);
+                                await CreateAutomaticToDos(request.DealId, this.dataFromDb.FormProductId);
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)
                         {
-                                return new AddFormServiceResponse()
+                                return new AddFormProductResponse()
                                 {
                                         Error = new ErrorModel(ErrorType.NotFound),
                                 };
                         }
 
 
-                        var response = new AddFormServiceResponse()
+                        var response = new AddFormProductResponse()
                         {
                                 ResponseData = dataFromDb,
                         };
@@ -71,7 +74,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                         return response;
                 }
 
-                private async Task CreateAutomaticToDos(int dealId, int formServiceId)
+                private async Task CreateAutomaticToDos(int dealId, int formProductId)
                 {
                         var threeDaysFromNow = DateTime.Today.AddDays(3);
 
@@ -80,12 +83,12 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                                 DealId = dealId,
                                 CreationDate = DateTime.Today,
                                 CreatorId = 0,
-                                Title = "Uzupełnij USŁUGI z formularza klienta",
+                                Title = "Uzupełnij PRODUKTY z formularza klienta",
                                 DueDate = threeDaysFromNow,
                                 Description = "",
                                 IsFinished = false,
                                 Notes = new List<Note>(),
-                                Link1 = $"http://localhost:4200/formService/{formServiceId}",
+                                Link1 = $"http://localhost:4200/formProduct/{formProductId}",
                                 ForRole = User.Roles.LocalMarketer.ToString(),
                         };
 

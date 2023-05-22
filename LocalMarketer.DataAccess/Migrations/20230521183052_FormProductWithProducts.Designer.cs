@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230521183052_FormProductWithProducts")]
+    partial class FormProductWithProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,27 +244,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.ToTable("FormFaqs");
                 });
 
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormProduct", b =>
-                {
-                    b.Property<int>("FormProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormProductId"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FormProductId");
-
-                    b.HasIndex("ProfileId");
-
-                    b.ToTable("FormProducts");
-                });
-
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
                 {
                     b.Property<int>("FormServiceId")
@@ -334,55 +316,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.HasKey("PackageId");
 
                     b.ToTable("Packages");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<DateTime>("CrteationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("FormProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("FormProductId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
@@ -695,17 +628,6 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Navigation("Profile");
                 });
 
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormProduct", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Profile");
-                });
-
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
                 {
                     b.HasOne("LocalMarketer.DataAccess.Entities.Profile", "Profile")
@@ -726,17 +648,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ToDo");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Product", b =>
-                {
-                    b.HasOne("LocalMarketer.DataAccess.Entities.FormProduct", "FormProduct")
-                        .WithMany("Products")
-                        .HasForeignKey("FormProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FormProduct");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Profile", b =>
@@ -782,11 +693,6 @@ namespace LocalMarketer.DataAccess.Migrations
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.Deal", b =>
                 {
                     b.Navigation("ToDos");
-                });
-
-            modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormProduct", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormService", b =>
