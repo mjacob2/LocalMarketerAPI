@@ -8,16 +8,14 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
         {
                 public override Task<List<Profile>> Execute(LocalMarketerDbContext context)
                 {
+                        IQueryable<Profile> query = context.Profiles.Include(x => x.Client.Users);
+
                         if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
-                                return context.Profiles
-                                        .Where(x => x.Client.Users.Any(x => x.UserId == LoggedUserId))
-                                        .ToListAsync();
+                                query = query.Where(x => x.Client.Users.Any(x => x.UserId == LoggedUserId));
                         }
-                        else
-                        {
-                                return context.Profiles.ToListAsync();
-                        }
+
+                        return query.OrderByDescending(x => x.ProfileId).ToListAsync();
                 }
         }
 }

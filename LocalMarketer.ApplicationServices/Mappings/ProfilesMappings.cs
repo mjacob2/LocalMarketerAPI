@@ -1,10 +1,5 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static LocalMarketer.ApplicationServices.API.Domain.Models.GetProfileByIdResponceModel;
 
 namespace LocalMarketer.ApplicationServices.Mappings
@@ -22,10 +17,12 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 CreatorId = x.CreatorId,
                                 //UserId = x.Client.UserId,
                                 ClientId = x.ClientId,
-                                Source = x.Source,
+                                ClientName = x.Client.Name,
+                                Voivodeship = x.Voivodeship,
                                 City = x.City,
                                 Phone = x.Phone,
-                                Email = x.Email,
+                                SellerFullName = x.Client.Users.Where(c => c.Role == User.Roles.Seller.ToString()).Select(v => $"{v.FirstName} {v.LastName}").FirstOrDefault(),
+                                LocalMarketerFullName = x.Client.Users.Where(c => c.Role == User.Roles.LocalMarketer.ToString()).Select(v => $"{v.FirstName} {v.LastName}").FirstOrDefault(),
 
                         }).ToList();
                 }
@@ -43,27 +40,23 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Name = data.Name,
                                 ClientId = data.ClientId,
                                 Description = data.Description,
-                                Email = data.Email,
                                 ProfileId = data.ProfileId,
                                 GoogleProfileId = data.GoogleProfileId,
-                                Nip = data.NIP,
                                 Phone = data.Phone,
                                 PostCode = data.PostCode,
                                 ProfileUrl = data.ProfileUrl,
                                 Street = data.Street,
-                                Regon = data.REGON,
-                                Source = data.Source,
                                 MediaLink = data.MediaLink,
                                 WebsiteUrl = data.WebsiteUrl,
                                 Voivodeship = data.Voivodeship,
                                 Deals = data.Deals.Select(x => new DealGeneral()
                                 {
-                                        Id = x.DealId,
+                                        DealId = x.DealId,
                                         Name = x.Name,
                                         Description = x.Description,
                                         ToDos = x.ToDos.Select(y => new ToDoGeneral()
                                         {
-                                                Id = y.ToDoId,
+                                                ToDoId = y.ToDoId,
                                                 isFinished = y.IsFinished,
                                                 Title = y.Title,
 
@@ -74,5 +67,6 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         };
 
                 }
+
         }
 }

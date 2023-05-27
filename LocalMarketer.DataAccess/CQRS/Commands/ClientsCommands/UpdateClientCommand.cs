@@ -25,6 +25,8 @@ namespace LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands
                                 .Property(x => x.CreationDate).IsModified = false;
                         context.Entry(this.Parameter)
                                 .Property(x => x.CreatorId).IsModified = false;
+                        context.Entry(this.Parameter)
+                                .Property(x => x.CreatorFullName).IsModified = false;
                         await context.SaveChangesAsync();
                         return this.Parameter;
                 }

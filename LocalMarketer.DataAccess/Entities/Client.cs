@@ -13,7 +13,6 @@ namespace LocalMarketer.DataAccess.Entities
                 public int ClientId { get; set; }
                 public DateTime CreationDate { get; set; }
 
-                [JsonIgnore]
                 public List<User> Users { get; set; } = new List<User> { };
 
                 [Required]
@@ -21,14 +20,14 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Name { get; set; }
 
                 [MaxLength(50)]
-                public string? GoogleGroupId { get; set; } = string.Empty;
+                public string? GoogleGroupId { get; set; }
 
                 [Required]
-                [MaxLength(20)]
+                [MaxLength(100)]
                 public string FirstName { get; set; }
 
                 [Required]
-                [MaxLength(20)]
+                [MaxLength(100)]
                 public string LastName { get; set; }
 
                 [Required]
@@ -39,16 +38,14 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Email { get; set; }
 
-                [MaxLength(50)]
-                public string Source { get; set; } = string.Empty;
-
                 [MaxLength(500)]
-                public string Description { get; set; } = string.Empty;
+                public string? Description { get; set; }
 
                 [Required]
                 public int CreatorId { get; set; }
 
-                [JsonIgnore]
+                public string? CreatorFullName { get; set; }
+
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
 
                 [JsonIgnore]

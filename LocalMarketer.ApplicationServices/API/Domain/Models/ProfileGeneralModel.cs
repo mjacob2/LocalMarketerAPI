@@ -8,7 +8,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
 {
         public class ProfileGeneralModel
         {
-                public int Id { get; set; }
+                public int ProfileId { get; set; }
 
                 public string Name { get; set; }
 

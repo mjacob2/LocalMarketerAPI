@@ -6,11 +6,6 @@ using LocalMarketer.DataAccess.CQRS.Commands.DealsCommands;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 {
@@ -27,9 +22,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                 {
                         var DealMappedToEntity = new Deal()
                         {
-                                DealId = request.Id,
-                                SellerId = request.SellerId,
-                                SellerFullName = request.SellerFullName,
+                                DealId = request.DealId,
                                 Name = request.Name,
                                 Stage = request.Stage,
                                 Description = request.Description,

@@ -5,38 +5,43 @@ using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
 {
-        public class GetAllToDosQuery : QueryBase<List<ToDo>>
+        public class GetAllToDosQuery : QueryBase<PaginatedList<ToDo>>
         {
-                private Task<List<ToDo>>? toDos;
+                public bool ShowOnlyUnfinished { get; set; }
 
-                public bool? ShowOnlyUnfinished { get; set; }
+                public bool ShowOnlyFinished { get; set; }
 
-                public override Task<List<ToDo>> Execute(LocalMarketerDbContext context)
+                public int PageIndex { get; set; }
+
+                public int PageSize { get; set; }
+
+                public override Task<PaginatedList<ToDo>> Execute(LocalMarketerDbContext context)
                 {
+                        IQueryable<ToDo> query = context.ToDos
+                            .Include(x => x.Deal)
+                            .ThenInclude(x => x.Profile)
+                            .ThenInclude(x => x.Client)
+                            .ThenInclude(x => x.Users);
 
                         if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
-                                this.toDos = context.ToDos
-                                        .Include(x => x.Deal)
-                                        .ThenInclude(x => x.Profile)
-                                        .ThenInclude(x => x.Client)
-                                        .ThenInclude(x => x.Users)
-                                        .Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
-                                        .Where(x => x.ForRole == LoggedUserRole)
-                                        .ToListAsync();
+                                query = query.Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId));
                         }
 
-                        else
+                        if (ShowOnlyUnfinished)
                         {
-                                this.toDos = context.ToDos
-                                        .Include(x => x.Deal)
-                                        .ThenInclude(x => x.Profile)
-                                        .ThenInclude(x => x.Client)
-                                        .ThenInclude(x => x.Users)
-                                        .ToListAsync();
+                                query = query.Where(x => !x.IsFinished);
                         }
 
-                        return toDos;
+                        if (ShowOnlyFinished)
+                        {
+                                query = query.Where(x => x.IsFinished);
+                        }
+
+                        var paginated = PaginatedList<ToDo>.CreateAsync(query, PageIndex, PageSize);
+
+
+                        return paginated;
                 }
         }
 }

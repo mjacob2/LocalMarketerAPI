@@ -83,7 +83,8 @@ namespace LocalMarketer.Authentication
                         {
                                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(CultureInfo.InvariantCulture)),
                                 new Claim(ClaimTypes.Role, user.Role.ToString()),
-                                new Claim(ClaimTypes.AuthorizationDecision, user.AccesDenied.ToString(CultureInfo.InvariantCulture)),
+                                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                                new Claim(ClaimTypes.AuthorizationDecision, user.HasAccess.ToString(CultureInfo.InvariantCulture)),
                         };
 
                         var identity = new ClaimsIdentity(claims, this.Scheme.Name);

@@ -63,11 +63,13 @@ namespace LocalMarketer.DataAccess.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatorFullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -78,8 +80,8 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("GoogleGroupId")
                         .HasMaxLength(50)
@@ -87,8 +89,8 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -99,11 +101,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ClientId");
 
@@ -143,7 +140,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -152,8 +148,8 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("PackageId")
                         .HasColumnType("int");
@@ -162,13 +158,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("ProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SellerFullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SellerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Stage")
@@ -413,22 +402,13 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("GoogleProfileId")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("MediaLink")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("NIP")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -447,14 +427,6 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("REGON")
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)");
-
-                    b.Property<string>("Source")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Street")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -464,15 +436,16 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("WebsiteUrl")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("ProfileId");
 
                     b.HasIndex("ClientId");
 
                     b.HasIndex("GoogleProfileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[GoogleProfileId] IS NOT NULL");
 
                     b.ToTable("Profiles");
                 });
@@ -536,11 +509,13 @@ namespace LocalMarketer.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ExecutionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ForRole")
@@ -586,9 +561,6 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<bool>("AccesDenied")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -601,6 +573,9 @@ namespace LocalMarketer.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("HasAccess")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()

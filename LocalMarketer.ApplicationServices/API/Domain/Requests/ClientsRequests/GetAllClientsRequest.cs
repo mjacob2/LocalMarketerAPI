@@ -5,5 +5,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests
 {
     public class GetAllClientsRequest : RequestBase, IRequest<GetAllClientsResponse>
     {
+                public bool ShowOnlyUnallocaded { get; set; }
     }
 }

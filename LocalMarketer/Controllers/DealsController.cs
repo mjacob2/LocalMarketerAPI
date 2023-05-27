@@ -37,7 +37,7 @@ namespace LocalMarketer.Controllers
                 [Route("{id}")]
                 public Task<IActionResult> UpdateDealById([FromRoute] int id, [FromBody] UpdateDealByIdRequest request)
                 {
-                        request.Id = id;
+                        request.DealId = id;
 
                         return this.HandleRequest<UpdateDealByIdRequest, UpdateDealByIdResponse>(request);
                 }

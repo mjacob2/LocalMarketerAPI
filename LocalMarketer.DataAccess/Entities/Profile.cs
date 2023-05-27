@@ -20,21 +20,18 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string Name { get; set; }
 
-                [Required]
                 [MaxLength(100)]
-                public string GoogleProfileId { get; set; }
+                public string? GoogleProfileId { get; set; }
 
                 [Required]
                 public int CreatorId { get; set; }
 
                 public int ClientId { get; set; }
 
+                [JsonIgnore]
                 public Client Client { get; set; }
 
-                [MaxLength(50)]
-                public string? Source { get; set; }
-
-                [MaxLength(50)]
+                [MaxLength(500)]
                 public string? WebsiteUrl { get; set; }
 
                 [MaxLength(500)]
@@ -55,19 +52,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(10)]
                 public string? PostCode { get; set; }
 
-                [MaxLength(10)]
-                public string? NIP { get; set; }
-
-                [MaxLength(14)]
-                public string? REGON { get; set; }
-
                 [MaxLength(15)]
                 public string? Phone { get; set; }
 
-                [MaxLength(50)]
-                public string? Email { get; set; }
-
-                [MaxLength(500)]
+                [MaxLength(1500)]
                 public string? MediaLink { get; set; }
 
                 [MaxLength(50)]

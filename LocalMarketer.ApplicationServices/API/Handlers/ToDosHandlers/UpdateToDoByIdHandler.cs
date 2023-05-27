@@ -20,7 +20,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
 
                 public async Task<UpdateToDoByIdResponse> Handle(UpdateToDoByIdRequest request, CancellationToken cancellationToken)
                 {
-                        var ToDoMappedToEntity = new ToDo()
+                        var toDoMappedToEntity = new ToDo()
                         {
                                 ToDoId = request.ToDoId,
                                 DealId = request.ToDoId,
@@ -30,7 +30,17 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                                 IsFinished = request.IsFinished,
                                 ForRole = request.ForRole,
                         };
-                        var command = new UpdateToDoCommand() { Parameter = ToDoMappedToEntity };
+
+                        if(request.IsFinished)
+                        {
+                                toDoMappedToEntity.ExecutionDate = DateTime.Today;
+                        }
+                        else
+                        {
+                                toDoMappedToEntity.ExecutionDate = null;
+                        }
+
+                        var command = new UpdateToDoCommand() { Parameter = toDoMappedToEntity };
 
                         try
                         {

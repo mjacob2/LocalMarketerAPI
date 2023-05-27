@@ -2,8 +2,10 @@
 using LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.CQRS.Queries.UserQueries;
+using LocalMarketer.DataAccess.Entities;
 using MediatR;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
@@ -11,7 +13,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
         public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
         {
                 private readonly IQueryExecutor queryExecutor;
-
+                private User dataFromDb;
                 /// <summary>
                 /// Initializes a new instance of the <see cref="LoginHandler"/> class.
                 /// </summary>
@@ -34,9 +36,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 Email = request.Email,
                         };
 
-                        var userResponse = await this.queryExecutor.Execute(query);
+                        this.dataFromDb = await this.queryExecutor.Execute(query);
 
-                        if (userResponse == null)
+                        if (dataFromDb == null)
                         {
                                 return new LoginResponse()
                                 {
@@ -44,9 +46,9 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 };
                         }
 
-                        var passwordFromRequest = Hasher.HashPassword(request.Password, userResponse.Salt);
+                        var passwordFromRequest = Hasher.HashPassword(request.Password, dataFromDb.Salt);
 
-                        var passwordFromResponse = userResponse.Password;
+                        var passwordFromResponse = dataFromDb.Password;
 
                         if (passwordFromResponse != passwordFromRequest)
                         {
@@ -56,17 +58,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 };
                         }
 
+                        var dataFromDbMappedToModel = UsersMappings.GetUserModel(this.dataFromDb);
+
                         return new LoginResponse()
                         {
-                                ResponseData = new UserModel()
-                                {
-                                        Id = userResponse.UserId,
-                                        FirstName = userResponse.FirstName,
-                                        LastName = userResponse.LastName,
-                                        Email = userResponse.Email,
-                                        Phone = userResponse.Phone,
-                                        Role = userResponse.Role,
-                                },
+                                ResponseData = dataFromDbMappedToModel
                         };
                 }
         }

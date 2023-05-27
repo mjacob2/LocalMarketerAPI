@@ -23,14 +23,16 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                 {
                         var query = new GetAllUsersQuery()
                         {
+                                ShowOnlySellers = request.ShowOnlySellers,
+
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var DataFromDbMappedToModel = UsersMappings.GetAllUsers(dataFromDb);
+                        var dataFromDbMappedToModel = UsersMappings.GetUserListModel(dataFromDb);
                         var response = new GetAllUsersResponse()
                         {
-                                ResponseData = DataFromDbMappedToModel,
+                                ResponseData = dataFromDbMappedToModel,
                         };
                         return response;
                 }

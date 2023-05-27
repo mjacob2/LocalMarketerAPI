@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Validators
 {
@@ -12,18 +7,24 @@ namespace LocalMarketer.ApplicationServices.API.Validators
         {
                 public AddClientRequestValidator()
                 {
+                        this.RuleFor(x => x.Name)
+                                .Must(u => !string.IsNullOrWhiteSpace(u))
+                                .WithMessage("Nazwa Klienta nie może być pusta")
+                                .Length(1, 50)
+                                .WithMessage("Nazwa Klienta nie może być dłuższa niż 50 znaków");
+
                         this.RuleFor(x => x.FirstName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Imię nie może być puste")
-                                .Length(1, 20)
-                                .WithMessage("Imię nie może być dłuższe niż 20 znaków");
+                                .Length(1, 100)
+                                .WithMessage("Imię nie może być dłuższe niż 100 znaków");
 
 
                         this.RuleFor(x => x.LastName)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
                                 .WithMessage("Nazwisko nie może być puste")
-                                .Length(1, 20)
-                                .WithMessage("Nazwisko nie może być dłuższe niż 20 znaków");
+                                .Length(1, 100)
+                                .WithMessage("Nazwisko nie może być dłuższe niż 100 znaków");
 
                         this.RuleFor(x => x.Phone)
                                 .Must(u => !string.IsNullOrWhiteSpace(u))
@@ -39,9 +40,9 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .Length(1, 50)
                                 .WithMessage("E-mail nie może być dłuższy niż 50 znaków");
 
-                        this.RuleFor(x => x.Source)
-                                .MaximumLength( 50)
-                                .WithMessage("Żródło nie może być dłuższe niż 50 znaków");
+                        this.RuleFor(x => x.SellerId)
+                                .GreaterThan(0)
+                                .WithMessage("Należy wybrać sprzedawcę");
 
                         this.RuleFor(x => x.Description)
                                 .MaximumLength(500)

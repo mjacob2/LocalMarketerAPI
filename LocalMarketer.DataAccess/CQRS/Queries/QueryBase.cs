@@ -5,8 +5,8 @@ namespace LocalMarketer.DataAccess.CQRS.Queries
         /// <summary>
         /// Provides base for queries.
         /// </summary>
-        /// <typeparam name="TResoult">Type of query reoult.</typeparam>
-        public abstract class QueryBase<TResoult>
+        /// <typeparam name="TResult">Type of query result.</typeparam>
+        public abstract class QueryBase<TResult>
         {
                 /// <summary>
                 /// Gets or sets the logged user id.
@@ -15,11 +15,14 @@ namespace LocalMarketer.DataAccess.CQRS.Queries
 
                 public string LoggedUserRole { get; set; }
 
+                //public int PageIndex { get; set; }
+                //public int PageSize { get; set; } = 30;
+
                 /// <summary>
                 /// Executes query.
                 /// </summary>
                 /// <param name="context">Context of db.</param>
                 /// <returns>Query result.</returns>
-                public abstract Task<TResoult> Execute(LocalMarketerDbContext context);
+                public abstract Task<TResult> Execute(LocalMarketerDbContext context);
         }
 }

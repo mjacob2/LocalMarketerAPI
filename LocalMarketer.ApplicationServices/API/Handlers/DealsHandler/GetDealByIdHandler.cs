@@ -42,20 +42,20 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                 };
                         }
 
-                        if (request.LoggedUserRole == Roles.Seller.ToString()
-                                && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
-                        {
-                                return new GetDealByIdResponse()
-                                {
-                                        Error = new ErrorModel(ErrorType.Unauthorized),
-                                };
-                        }
+                        //if (request.LoggedUserRole == Roles.Seller.ToString()
+                        //        && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
+                        //{
+                        //        return new GetDealByIdResponse()
+                        //        {
+                        //                Error = new ErrorModel(ErrorType.Unauthorized),
+                        //        };
+                        //}
 
-                        var DataFromDbMappedToModel = DealsMappings.GetDealById(dataFromDb);
+                        //var DataFromDbMappedToModel = DealsMappings.GetDealById(dataFromDb);
 
                         var response = new GetDealByIdResponse()
                         {
-                                ResponseData = DataFromDbMappedToModel,
+                                ResponseData = dataFromDb,
                         };
 
                         return response;

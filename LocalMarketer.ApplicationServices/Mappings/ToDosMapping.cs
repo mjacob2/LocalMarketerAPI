@@ -47,6 +47,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 ProfileId = data.Deal.ProfileId,
                                 Description = data.Description,
                                 DueDate = data.DueDate,
+                                ExecutionDate = data.ExecutionDate,
                                 IsFinished = data.IsFinished,
                                 UserFullName = data.Deal.Profile.Client.Users
         .FirstOrDefault(user => user.Role == data.ForRole)?

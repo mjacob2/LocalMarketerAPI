@@ -37,15 +37,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                                 };
                         }
 
-                        //if (request.LoggedUserRole == Roles.Seller.ToString()
-                        //        && dataFromDb.CreatorId.ToString() != request.LoggedUserId)
-                        //{
-                        //        return new GetProfileByIdResponse()
-                        //        {
-                        //                Error = new ErrorModel(ErrorType.Unauthorized),
-                        //        };
-                        //}
-
                         var dataFromDbMappedToModel = ProfilesMappings.GetProfileById(dataFromDb);
 
                         var response = new GetProfileByIdResponse()

@@ -6,7 +6,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
         {
                 public int? ProfileUserId { get; set; }
                 public DateTime CreationDate { get; set; }
-                public int Id { get; set; }
+                public int DealId { get; set; }
                 public int CreatorId { get; set; }
                 public int ProfileId { get; set; }
                 public string Name { get; set; }
@@ -17,8 +17,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
 
                 public DateTime EndDate { get; set; }
                 public List<ToDoModel> ToDos { get; set; }
-
-                public string SellerFullName { get; set; }
 
         }
 }

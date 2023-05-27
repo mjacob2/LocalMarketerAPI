@@ -11,6 +11,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
                 {
                         return await context.Deals
                         .Where(x => x.DealId == this.DealId)
+                        .Include(x => x.Package)
                         .Include(x => x.Profile)
                         .ThenInclude(x => x.Client)
                         .Include(c => c.ToDos)

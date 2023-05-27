@@ -8,20 +8,23 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
         {
                 public override Task<List<Deal>> Execute(LocalMarketerDbContext context)
                 {
+                        IQueryable<Deal> query = context.Deals;
+
                         if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
-                                return context.Deals
-                                        .Include(x => x.Profile)
-                                        .ThenInclude(x => x.Client)
-                                        .ThenInclude(x => x.Users)
-                                        .Where(x => x.Profile.Client.Users.Any(x => x.UserId == LoggedUserId))
-                                        .ToListAsync();
+                                query = ShowOnlyMine(query);
                         }
 
-                        else
-                        {
-                                return context.Deals.ToListAsync();
-                        }
+                        return query.OrderByDescending(x => x.DealId).ToListAsync();
+                }
+
+                private IQueryable<Deal> ShowOnlyMine(IQueryable<Deal> query)
+                {
+                        return query
+                            .Include(x => x.Profile)
+                            .ThenInclude(x => x.Client)
+                            .ThenInclude(x => x.Users)
+                            .Where(x => x.Profile.Client.Users.Any(x => x.UserId == LoggedUserId));
                 }
         }
 }

@@ -1,20 +1,14 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace LocalMarketer.ApplicationServices.Mappings
 {
-        internal static class ClientsMapping
+        internal static class ClientsMappings
         {
-                internal static ClientDetailsModel ClientDetailsProfile(Client data)
+                internal static ClientDetailsModel GetClientDetailsModel(Client data)
                 {
                         return new ClientDetailsModel()
                         {
-                                Id = data.ClientId,
+                                ClientId = data.ClientId,
                                 CreationDate = data.CreationDate,
                                 Name = data.Name,
                                 GoogleGroupId = data.GoogleGroupId,
@@ -23,15 +17,16 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 FirstName = data.FirstName,
                                 LastName = data.LastName,
                                 Phone = data.Phone,
-                                Source = data.Source,
+                                CreatorId = data.CreatorId,
+                                CreatorFullName = data.CreatorFullName,
                                 Profiles = data.Profiles.Select(x => new ProfileGeneralModel()
                                 {
-                                        Id = x.ProfileId,
+                                        ProfileId = x.ProfileId,
                                         Name = x.Name,
                                 }).ToList(),
                                 Users = data.ClientUsers.Select(x => new UserListModel()
                                 {
-                                        Id = x.UserId,
+                                        UserId = x.UserId,
                                         FirstName = x.User.FirstName,
                                         LastName = x.User.LastName,
                                         Role = x.User.Role,
@@ -43,17 +38,34 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return data.Select(x => new ClientListModel()
                         {
-                                Id = x.ClientId,
+                                ClientId = x.ClientId,
                                 CreationDate = x.CreationDate,
                                 Name = x.Name,
                                 FirstName = x.FirstName,
                                 LastName = x.LastName,
                                 Phone = x.Phone,
                                 Email = x.Email,
-                                Source = x.Source,
                                 CreatorId = x.CreatorId,
-
+                                SellerFullName = x.Users.Where(c => c.Role == User.Roles.Seller.ToString()).Select(v => $"{v.FirstName} {v.LastName}").FirstOrDefault(),
+                                LocalMarketerFullName = x.Users.Where(c => c.Role == User.Roles.LocalMarketer.ToString()).Select(v => $"{v.FirstName} {v.LastName}").FirstOrDefault(),
                         }).ToList();
+                }
+
+                internal static ClientModel GetClientModel(Client data)
+                {
+                        return new ClientModel()
+                        {
+                                ClientId = data.ClientId,
+                                CreationDate = data.CreationDate,
+                                Name = data.Name,
+                                GoogleGroupId = data.GoogleGroupId,
+                                FirstName = data.FirstName,
+                                LastName = data.LastName,
+                                Phone = data.Phone,
+                                Email = data.Email,
+                                Description = data.Description,
+                                CreatorId = data.CreatorId,
+                        };
                 }
         }
 }

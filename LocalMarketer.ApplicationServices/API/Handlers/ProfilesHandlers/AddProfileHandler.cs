@@ -22,12 +22,20 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                 public async Task<AddProfileResponse> Handle(AddProfileRequest request, CancellationToken cancellationToken)
                 {
                         var itemtoAdd = new Profile()
-                        {
+                        {       
                                 CreationDate = DateTime.Today,
-                                Name = request.Name,
-                                GoogleProfileId = request.GoogleProfileId,
                                 CreatorId = int.Parse(request.LoggedUserId),
+
                                 ClientId = request.ClientId,
+                                Name = request.Name,
+                                Voivodeship = request.Voivodeship,
+                                City = request.City,
+                                Street = request.Street,
+                                PostCode = request.PostCode,
+                                Phone = request.Phone,
+                                CustomerService = request.CustomerService,
+                                WebsiteUrl = request.WebsiteUrl,
+                                GoogleProfileId = request.GoogleProfileId,
                                 Description = request.Description,
                         };
 

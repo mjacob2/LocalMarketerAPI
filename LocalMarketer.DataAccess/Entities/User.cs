@@ -43,7 +43,7 @@ namespace LocalMarketer.DataAccess.Entities
                 public string Role { get; set; }
 
                 [Required]
-                public bool AccesDenied { get; set; }
+                public bool HasAccess { get; set; }
 
                 [JsonIgnore]
                 public List<Client> Clients { get; set; } = new List<Client> { };

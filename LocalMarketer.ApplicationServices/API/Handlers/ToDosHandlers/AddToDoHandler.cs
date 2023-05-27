@@ -33,7 +33,13 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                                 Description = request.Description,
                                 IsFinished = request.IsFinished,
                                 Notes  = new List<Note>(),
+                                ForRole = request.ForRole,
                         };
+
+                        if(request.IsFinished )
+                        {
+                                itemtoAdd.ExecutionDate = DateTime.Today;
+                        }
 
                         var command = new AddToDoCommand() { Parameter = itemtoAdd };
 

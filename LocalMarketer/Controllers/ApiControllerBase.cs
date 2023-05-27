@@ -4,6 +4,7 @@ using LocalMarketer.ApplicationServices.API.Domain.Responses;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Net;
 using System.Security.Claims;
 
@@ -23,6 +24,18 @@ namespace LocalMarketer.Controllers
                 {
                         if (!this.ModelState.IsValid)
                         {
+                                var modelStateErrors = this.ModelState.Where(x => x.Value.Errors.Any())
+                                        .Select(x => new
+                                        {
+                                                error = x.Value.Errors
+                                        .Select(v => v.ErrorMessage).FirstOrDefault(), });
+                                foreach(var error in modelStateErrors)
+                                {
+                                        Debug.WriteLine(error);
+                                }
+                                
+
+
                                 return this.BadRequest(
                                     this.ModelState
                                         .Where(x => x.Value.Errors.Any())
@@ -33,9 +46,9 @@ namespace LocalMarketer.Controllers
                                         }).FirstOrDefault());
                         }
 
-                        var IsAccesDenied = (this.User.FindFirstValue(ClaimTypes.AuthorizationDecision));
+                        var hasAccess = (this.User.FindFirstValue(ClaimTypes.AuthorizationDecision));
 
-                        if(IsAccesDenied == "True")
+                        if(hasAccess == "False")
                         {
                                 return this.ErrorResponse(new ErrorModel(ErrorType.Unauthorized));
                         }
@@ -44,6 +57,8 @@ namespace LocalMarketer.Controllers
                         request.LoggedUserRole = loggedUserRole;
                         var loggedUSerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                         request.LoggedUserId = loggedUSerId;
+                        var loggedUserFullName = this.User.FindFirstValue(ClaimTypes.Name);
+                        request.LoggedUserFullName = loggedUserFullName;
 
 
                         var response = await this.mediator.Send(request);

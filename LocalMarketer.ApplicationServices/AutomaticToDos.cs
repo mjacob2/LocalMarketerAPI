@@ -1,4 +1,5 @@
 ﻿using LocalMarketer.DataAccess.Entities;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace LocalMarketer.ApplicationServices
 {
@@ -25,15 +26,25 @@ namespace LocalMarketer.ApplicationServices
 
                 public List<ToDo> GetTasks()
                 {
-                        if(newDeal.Name.Contains("Exclusive", StringComparison.InvariantCultureIgnoreCase))
+                        if (newDeal.Name.Contains("Premium", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                                return PackagePremiumTasks();
+                        }
+
+                        if (newDeal.Name.Contains("Exclusive", StringComparison.InvariantCultureIgnoreCase))
                         {
                                 return PackageExclusiveTasks();
+                        }
+
+                        if (newDeal.Name.Contains("Platinium", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                                return PackagePlatiniumTasks();
                         }
 
                         return new List<ToDo>();
                 }
 
-                private List<ToDo> PackageExclusiveTasks()
+                private List<ToDo> PackagePremiumTasks()
                 {
                         return new List<ToDo>
                         {
@@ -42,19 +53,58 @@ namespace LocalMarketer.ApplicationServices
                                         DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
-                                        Title = "Wklej link do folderu z mediami", // !This title is used in UpdateToDoByIdHandler in if statement, better not change it
+                                        Title = "Potwierdź pinezkę i widok z mapy",
                                         DueDate = threeDaysFromNow,
                                         Description = "",
                                         IsFinished = false,
-                                        Notes = new List<Note>()
-                                        {
-                                                new Note()
-                                                {
-                                                        CreationDate = DateTime.Today,
-                                                        Name = "notatka 1",
-                                                }
-                                        },
-                                        ForRole = User.Roles.Seller.ToString(),
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Aktywuj czat",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 2 wpisy",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+
+                        };
+                }
+
+                private List<ToDo> PackageExclusiveTasks()
+                {
+                        return new List<ToDo>
+                        {
+                                 new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Potwierdź pinezkę i widok z mapy",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
                                 new ToDo()
@@ -77,18 +127,6 @@ namespace LocalMarketer.ApplicationServices
                                         ForRole = User.Roles.LocalMarketer.ToString(),
                                 },
 
-                                new ToDo()
-                                {
-                                        DealId = newDeal.DealId,
-                                        CreationDate = DateTime.Today,
-                                        CreatorId = 0,
-                                        Title = "Potwierdź pinezkę i widok z mapy",
-                                        DueDate = threeDaysFromNow,
-                                        Description = "",
-                                        IsFinished = false,
-                                        Notes = new List<Note>(),
-                                        ForRole = User.Roles.LocalMarketer.ToString(),
-                                },
 
                                 new ToDo()
                                 {
@@ -214,6 +252,296 @@ namespace LocalMarketer.ApplicationServices
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
                                         DueDate = twoMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+                        };
+                }
+
+                private List<ToDo> PackagePlatiniumTasks()
+                {
+                        return new List<ToDo>
+                        {
+                                 new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Potwierdź pinezkę i widok z mapy",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Aktywuj czat",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>()
+                                        {
+                                                new Note()
+                                                {
+                                                        CreationDate = DateTime.Today,
+                                                        Name = "notatka 1",
+                                                }
+                                        },
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = oneMonthFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = twoMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = threeMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = fourMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = fiveMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Odpowiedz do 10 ostatnich opini",
+                                        DueDate = this.threeDaysBeforeDealEndDate,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = oneMonthFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = twoMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = threeMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = fourMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Opublikuj 4 wpisy",
+                                        DueDate = fiveMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = forteenDaysFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        Link1 = "http://bitly.pl/7FtAx",
+                                        Link2 = "http://bitly.pl/HOlGU",
+                                        Link3 = "http://bitly.pl/V2CNu",
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = oneMonthFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = twoMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = threeMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = fourMonthsFromNow,
+                                        Description = "",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.LocalMarketer.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Dodaj 3 wpisy NAP",
+                                        DueDate = fiveMonthsFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),

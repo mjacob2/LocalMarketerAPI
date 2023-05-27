@@ -13,7 +13,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public int CreatorId { get; set; }
                 public int? UserId { get; set; }
                 public int ClientId { get; set; }
-                public string Source { get; set; }
                 public string WebsiteUrl { get; set; }
                 public string ProfileUrl { get; set; }
                 public string Description { get; set; }
@@ -21,8 +20,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string City { get; set; }
                 public string Street { get; set; }
                 public string PostCode { get; set; }
-                public string Nip { get; set; }
-                public string Regon { get; set; }
                 public string Phone { get; set; }
                 public string Email { get; set; }
                 public string CustomerService { get; set; }
@@ -34,14 +31,14 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
 
                 public class ToDoGeneral
                 {
-                        public int Id { get; set; }
+                        public int ToDoId { get; set; }
                         public bool isFinished { get; set; }
                         public string Title { get; set; }
                 }
 
                 public class DealGeneral
                 {
-                        public int Id { get; set; }
+                        public int DealId { get; set; }
                         public string Name { get; set; }
 
                         public string Description { get; set; }

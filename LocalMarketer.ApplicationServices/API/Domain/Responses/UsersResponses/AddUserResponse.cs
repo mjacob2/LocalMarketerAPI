@@ -1,8 +1,9 @@
-﻿using LocalMarketer.DataAccess.Entities;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
+using LocalMarketer.DataAccess.Entities;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses
 {
-        public class AddUserResponse : ResponseBase<User>
+        public class AddUserResponse : ResponseBase<UserModel>
         {
         }
 }

@@ -43,10 +43,6 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .Length(1, 50)
                                 .WithMessage("E-mail nie może być dłuższy niż 50 znaków");
 
-                        this.RuleFor(x => x.Source)
-                                .MaximumLength(50)
-                                .WithMessage("Żródło nie może być dłuższe niż 50 znaków");
-
                         this.RuleFor(x => x.Description)
                                 .MaximumLength(500)
                                 .WithMessage("Opis nie może być dłuższy niż 500 znaków");

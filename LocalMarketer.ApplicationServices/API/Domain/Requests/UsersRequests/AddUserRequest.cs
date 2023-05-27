@@ -1,6 +1,5 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses;
 using MediatR;
-using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests
 {

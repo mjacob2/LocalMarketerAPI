@@ -20,13 +20,14 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                 {
                         var query = new GetAllClientsQuery()
                         {
+                               ShowOnlyUnallocated = request.ShowOnlyUnallocaded,
                                LoggedUserRole = request.LoggedUserRole,
                                LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
 
                         var dataFromDb = await this.executor.Execute(query);
 
-                        var DataFromDbMappedToModel = ClientsMapping.GetAllClients(dataFromDb);
+                        var DataFromDbMappedToModel = ClientsMappings.GetAllClients(dataFromDb);
 
                         var response = new GetAllClientsResponse()
                         {

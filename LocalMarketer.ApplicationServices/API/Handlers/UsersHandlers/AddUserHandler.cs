@@ -6,6 +6,7 @@ using LocalMarketer.DataAccess.CQRS.Commands.UsersCommands;
 using LocalMarketer.ApplicationServices.API.Domain.Models;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses;
+using LocalMarketer.ApplicationServices.Mappings;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
 {
@@ -46,7 +47,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 LastName = request.LastName,
                                 Email = request.Email,
                                 Phone = request.Phone,
-                                AccesDenied = false,
+                                HasAccess = true,
                                 Role = request.Role,
                                 Password = passwordHashed,
                                 Salt = salt,
@@ -67,20 +68,13 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 };
                         }
 
+                        var dataFromDbMappedToModel = UsersMappings.GetUserModel(this.dataFromDb);
+
                         return new AddUserResponse()
                         {
-                                ResponseData = new User()
-                                {
-                                        UserId = this.dataFromDb.UserId,
-                                        AccesDenied = this.dataFromDb.AccesDenied,
-                                        CreationDate = this.dataFromDb.CreationDate,
-                                        Email = this.dataFromDb.Email,
-                                        FirstName = this.dataFromDb.FirstName,
-                                        LastName = this.dataFromDb.LastName,
-                                        Phone = this.dataFromDb.Phone,
-                                        Role = this.dataFromDb.Role,
-                                        Salt = this.dataFromDb.Salt,
-                                },
+                                ResponseData =  dataFromDbMappedToModel
+
+
                         };
 
                 }

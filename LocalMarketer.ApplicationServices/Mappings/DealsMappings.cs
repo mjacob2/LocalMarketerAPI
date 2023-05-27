@@ -24,9 +24,8 @@ namespace LocalMarketer.ApplicationServices.Mappings
                 {
                         return new DealDetailsModel()
                         {
-                                SellerFullName = data.SellerFullName,
                                 CreationDate = data.CreationDate,
-                                Id = data.DealId,
+                                DealId = data.DealId,
                                 CreatorId = data.CreatorId,
                                 ProfileId = data.ProfileId,
                                 Name = data.Name,

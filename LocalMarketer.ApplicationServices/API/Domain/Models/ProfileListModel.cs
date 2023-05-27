@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LocalMarketer.ApplicationServices.API.Domain.Models
+﻿namespace LocalMarketer.ApplicationServices.API.Domain.Models
 {
         public class ProfileListModel
         {
@@ -20,7 +14,9 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string Phone { get; set; }
                 public string Email { get; set; }
 
-
-
+                public string SellerFullName { get; set; }
+                public string LocalMarketerFullName { get; set; }
+                public string ClientName { get; set; }
+                public string? Voivodeship { get; set; }
         }
 }

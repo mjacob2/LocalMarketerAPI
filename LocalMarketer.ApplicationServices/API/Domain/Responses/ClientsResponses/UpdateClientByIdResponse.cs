@@ -1,8 +1,8 @@
-﻿using LocalMarketer.DataAccess.Entities;
+﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses
 {
-        public class UpdateClientByIdResponse : ResponseBase<Client>
+        public class UpdateClientByIdResponse : ResponseBase<ClientModel>
         {
         }
 }

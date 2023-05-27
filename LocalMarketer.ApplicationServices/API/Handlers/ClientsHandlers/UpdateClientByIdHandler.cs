@@ -2,6 +2,7 @@
 using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands;
 using LocalMarketer.DataAccess.Entities;
@@ -40,7 +41,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                 LastName = request.LastName,
                                 Email = request.Email,
                                 Phone = request.Phone,
-                                Source = request.Source,
                                 Description = request.Description,
                                 ClientUsers = request.ClientUsers,
                         };
@@ -48,11 +48,13 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
 
                         try
                         {
-                                var updatedClientResponse = await this.commandExecutor.Execute(command);
+                                var dataFromDb = await this.commandExecutor.Execute(command);
+
+                                var dataFromDbMappedToModel = ClientsMappings.GetClientModel(dataFromDb);
 
                                 return new UpdateClientByIdResponse()
                                 {
-                                        ResponseData = updatedClientResponse,
+                                        ResponseData = dataFromDbMappedToModel,
                                 };
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)

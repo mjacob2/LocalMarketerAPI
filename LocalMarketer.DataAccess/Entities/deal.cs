@@ -6,17 +6,13 @@ namespace LocalMarketer.DataAccess.Entities
         public class Deal
         {
                 public int DealId { get; set; }
-                public DateTime CreationDate { get; set; }
-                /// <summary>
-                /// Gets or sets the Id of the seller (UserId): person who is responsible for selling this deal and customer relationship with the client.
-                /// </summary>
-                public int SellerId { get; set; }
 
-                public string SellerFullName { get; set; }
+                public DateTime CreationDate { get; set; }
 
                 [Required]
                 public int CreatorId { get; set; }
 
+                [Required]
                 public int ProfileId { get; set; }
 
                 [JsonIgnore]
@@ -26,21 +22,23 @@ namespace LocalMarketer.DataAccess.Entities
                 public DateTime EndDate { get; set; }
 
                 [Required]
-                [MaxLength(50)]
+                [MaxLength(150)]
                 public string Name { get; set; }
 
-                [JsonIgnore]
                 public Package Package { get; set; }
+
+                [Required]
                 public int PackageId { get; set; }
 
+                [Required]
                 public double Price { get; set; }
 
                 [MaxLength(500)]
-                public string Description { get; set; } = string.Empty;
+                public string? Description { get; set; }
 
                 [Required]
                 public string Stage { get; set; }
 
-                public List<ToDo> ToDos { get; set; } = new List<ToDo> { };
+                public List<ToDo>? ToDos { get; set; }
         }
 }

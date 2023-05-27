@@ -22,8 +22,10 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public DateTime DueDate { get; set; }
 
+                public DateTime? ExecutionDate { get; set; }
+
                 [MaxLength(500)]
-                public string Description { get; set; }
+                public string? Description { get; set; }
 
                 [Required]
                 public bool IsFinished { get; set; }

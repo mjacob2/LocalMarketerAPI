@@ -29,7 +29,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         }
                         var itemToDelete = new Profile()
                         {
-                                ClientId = request.ProfileId,
+                                ProfileId = request.ProfileId,
                         };
                         var command = new DeleteProfileByIdCommand() { Parameter = itemToDelete };
 

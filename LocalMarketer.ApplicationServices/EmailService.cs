@@ -6,7 +6,7 @@ namespace LocalMarketer.ApplicationServices
 {
         public class EmailService
         {
-                public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName)
+                public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName, string cientEmail)
                 {
 
                         var message = new MimeMessage();

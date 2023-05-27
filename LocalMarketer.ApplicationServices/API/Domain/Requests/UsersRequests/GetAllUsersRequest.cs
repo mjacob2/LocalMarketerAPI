@@ -5,5 +5,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.UsersRequests
 {
         public class GetAllUsersRequest : RequestBase, IRequest<GetAllUsersResponse>
         {
+                public bool? ShowOnlySellers { get; set; }
         }
 }

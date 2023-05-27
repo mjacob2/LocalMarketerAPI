@@ -35,22 +35,19 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         var profileMappedToEntity = new Profile()
                         {
                                 ProfileId = request.ProfileId,
-                                GoogleProfileId = request.GoogleProfileId,
-                                Name = request.Name,
                                 ClientId = request.ClientId,
-                                WebsiteUrl = request.WebsiteUrl,
-                                ProfileUrl = request.ProfileUrl,
+                                Name = request.Name,
                                 Voivodeship = request.Voivodeship,
                                 City = request.City,
+
                                 Street = request.Street,
                                 PostCode = request.PostCode,
-                                NIP = request.NIP,
-                                REGON = request.REGON,
-                                Email = request.Email,
                                 Phone = request.Phone,
-                                Source = request.Source,
-                                Description = request.Description,
                                 CustomerService = request.CustomerService,
+                                WebsiteUrl = request.WebsiteUrl,
+                                GoogleProfileId = request.GoogleProfileId,
+                                Description = request.Description,
+                                ProfileUrl = request.ProfileUrl,
                                 MediaLink = request.MediaLink,
                         };
                         var command = new UpdateProfileCommand() { Parameter = profileMappedToEntity };

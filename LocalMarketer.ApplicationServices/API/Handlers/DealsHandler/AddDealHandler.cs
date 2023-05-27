@@ -25,17 +25,16 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                 {
                         var itemtoAdd = new Deal()
                         {
-                                SellerFullName = request.SellerFullName,
-                                SellerId = request.SellerId,
-                                CreationDate = DateTime.Today,
-                                Name = request.Name,
-                                Price = request.Price,
                                 CreatorId = int.Parse(request.LoggedUserId),
-                                ProfileId = request.ProfileId,
-                                PackageId = request.SelectedPackage.PackageId,
-                                Description = request.Description,
+                                CreationDate = DateTime.Today,
                                 EndDate = DateTime.Today.AddMonths(request.SelectedPackage.DurationInMonths),
                                 Stage = "In progress",
+
+                                ProfileId = request.ProfileId,
+                                Name = request.Name,
+                                PackageId = request.SelectedPackage.PackageId,
+                                Price = request.Price,
+                                Description = request.Description,
 
                         };
 
@@ -47,7 +46,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
 
                                 await CreateAutomaticToDos(this.dataFromDb);
 
-                                await EmailService.SendClientOnboardingEmail(this.dataFromDb, request.ProfileName);
+                                await EmailService.SendClientOnboardingEmail(this.dataFromDb, request.ProfileName ,request.ClientEmail);
 
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)

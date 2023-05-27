@@ -2,6 +2,7 @@
 using LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses;
 using LocalMarketer.ApplicationServices.API.ErrorHandling;
+using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS;
 using LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands;
 using LocalMarketer.DataAccess.Entities;
@@ -24,15 +25,15 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         var itemtoAdd = new Client()
                         {
                                 CreationDate = DateTime.Today,
+                                CreatorId = int.Parse(request.LoggedUserId),
+                                CreatorFullName = request.LoggedUserFullName,
+
                                 Name = request.Name,
-                                GoogleGroupId = string.Empty,
                                 FirstName = request.FirstName,
                                 LastName = request.LastName,
                                 Phone = request.Phone,
                                 Email = request.Email,
-                                Source = request.Source,
                                 Description = request.Description,
-                                CreatorId = int.Parse(request.LoggedUserId),
                                 ClientUsers = new List<ClientUser>
                                 {
                                         new ClientUser
@@ -45,7 +46,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                                 UserId = request.SellerId,
                                         }
                                 }
-
                         };
 
                         var command = new AddClientCommand() { Parameter = itemtoAdd };
@@ -61,6 +61,8 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                                         Error = new ErrorModel(ErrorType.ClientAlreadyExists),
                                 };
                         }
+
+                        var dataFromDbMappedToModel = ClientsMappings.GetClientModel(this.dataFromDb);
 
                         var response = new AddClientResponse()
                         {
