@@ -25,14 +25,18 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                         {
                                 ShowOnlySellers = request.ShowOnlySellers,
 
+                                PageIndex = request.PageIndex + 1,
+                                PageSize = request.PageSize,
+
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var dataFromDbMappedToModel = UsersMappings.GetUserListModel(dataFromDb);
+                        var dataFromDbMappedToModel = UsersMappings.GetUserListModel(dataFromDb.Items);
                         var response = new GetAllUsersResponse()
                         {
                                 ResponseData = dataFromDbMappedToModel,
+                                Count = dataFromDb.Count,
                         };
                         return response;
                 }

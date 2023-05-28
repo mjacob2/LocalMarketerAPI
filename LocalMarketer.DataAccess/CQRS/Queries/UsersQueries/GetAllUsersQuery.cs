@@ -4,31 +4,29 @@ using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.UsersQueries
 {
-        public class GetAllUsersQuery : QueryBase<List<User>>
+        public class GetAllUsersQuery : QueryBase<PaginatedList<User>>
         {
                 public bool? ShowOnlySellers { get; set; }
+                public int PageIndex { get; set; }
+                public int PageSize { get; set; }
 
-                public override Task<List<User>> Execute(LocalMarketerDbContext context)
+                public override Task<PaginatedList<User>> Execute(LocalMarketerDbContext context)
                 {
+                        IQueryable<User> query = context.Users
+                            .Include(x => x.Clients)
+                            .ThenInclude(x => x.Profiles)
+                            .ThenInclude(x => x.Deals)
+                            .ThenInclude(x => x.ToDos);
+
                         if (ShowOnlySellers == true)
                         {
-                                return context.Users
-                                    .Where(x => x.Role == "Seller")
-                                    .Include(x => x.Clients)
-                                    .ThenInclude(x => x.Profiles)
-                                    .ThenInclude(x => x.Deals)
-                                    .ThenInclude(x => x.ToDos)
-                                    .ToListAsync();
+                                query = query.Where(x => x.Role == "Seller");
                         }
-                        else
-                        {
-                                return context.Users
-                                    .Include(x => x.Clients)
-                                    .ThenInclude(x => x.Profiles)
-                                    .ThenInclude(x => x.Deals)
-                                    .ThenInclude(x => x.ToDos)
-                                    .ToListAsync();
-                        }
+
+                        var paginated = PaginatedList<User>.CreateAsync(query, PageIndex, PageSize);
+
+                        return paginated;
                 }
+
         }
 }

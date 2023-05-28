@@ -14,14 +14,11 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                 public override Task<PaginatedList<ToDo>> Execute(LocalMarketerDbContext context)
                 {
                         IQueryable<ToDo> query = context.ToDos
-                            .Include(x => x.Deal)
-                            .ThenInclude(x => x.Profile)
-                            .ThenInclude(x => x.Client)
-                            .ThenInclude(x => x.Users);
+                            .Include(x => x.Deal.Profile.Client.Users);
 
                         if (LoggedUserRole == Roles.Seller.ToString() || LoggedUserRole == Roles.LocalMarketer.ToString())
                         {
-                                query = query.Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId));
+                                query = query.Where(x => x.Deal.Profile.Client.Users.Any(x => x.UserId == LoggedUserId) && x.ForRole == LoggedUserRole);
                         }
 
                         if (ShowOnlyUnfinished)
@@ -34,10 +31,9 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                                 query = query.Where(x => x.IsFinished);
                         }
 
-                        query = query.OrderBy(x => x.DueDate);
+                        query = query.OrderBy(x => x.DueDate).ThenBy(x => x.Deal.ProfileId);
 
                         var paginated = PaginatedList<ToDo>.CreateAsync(query, PageIndex, PageSize);
-
 
                         return paginated;
                 }
