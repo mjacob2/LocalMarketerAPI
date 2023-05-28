@@ -8,13 +8,9 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
         public class GetAllToDosQuery : QueryBase<PaginatedList<ToDo>>
         {
                 public bool ShowOnlyUnfinished { get; set; }
-
                 public bool ShowOnlyFinished { get; set; }
-
                 public int PageIndex { get; set; }
-
                 public int PageSize { get; set; }
-
                 public override Task<PaginatedList<ToDo>> Execute(LocalMarketerDbContext context)
                 {
                         IQueryable<ToDo> query = context.ToDos

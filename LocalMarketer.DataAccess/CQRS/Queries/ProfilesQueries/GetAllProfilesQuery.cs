@@ -4,9 +4,11 @@ using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
 {
-        public class GetAllProfilesQuery : QueryBase<List<Profile>>
+        public class GetAllProfilesQuery : QueryBase<PaginatedList<Profile>>
         {
-                public override Task<List<Profile>> Execute(LocalMarketerDbContext context)
+                public int PageIndex { get; set; }
+                public int PageSize { get; set; }
+                public override Task<PaginatedList<Profile>> Execute(LocalMarketerDbContext context)
                 {
                         IQueryable<Profile> query = context.Profiles.Include(x => x.Client.Users);
 
@@ -15,7 +17,11 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ProfilesQueries
                                 query = query.Where(x => x.Client.Users.Any(x => x.UserId == LoggedUserId));
                         }
 
-                        return query.OrderByDescending(x => x.ProfileId).ToListAsync();
+                        query = query.OrderByDescending(x => x.ProfileId);
+
+                        var paginated = PaginatedList<Profile>.CreateAsync(query, PageIndex, PageSize);
+
+                        return paginated;
                 }
         }
 }

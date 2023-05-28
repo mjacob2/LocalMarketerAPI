@@ -22,12 +22,16 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ProfilesHandlers
                         {
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
+
+                                PageIndex = request.PageIndex + 1,
+                                PageSize = request.PageSize,
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var DataFromDbMappedToModel = ProfilesMappings.GetAllProfiles(dataFromDb);
+                        var DataFromDbMappedToModel = ProfilesMappings.GetAllProfiles(dataFromDb.Items);
                         var response = new GetAllProfilesResponse()
                         {
                                 ResponseData = DataFromDbMappedToModel,
+                                Count = dataFromDb.Count,
                         };
                         return response;
                 }
