@@ -4,9 +4,12 @@ using static LocalMarketer.DataAccess.Entities.User;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
 {
-        public class GetAllDealsQuery : QueryBase<List<Deal>>
+        public class GetAllDealsQuery : QueryBase<PaginatedList<Deal>>
         {
-                public override Task<List<Deal>> Execute(LocalMarketerDbContext context)
+                public int PageIndex { get; set; }
+                public int PageSize { get; set; }
+
+                public override Task<PaginatedList<Deal>> Execute(LocalMarketerDbContext context)
                 {
                         IQueryable<Deal> query = context.Deals;
 
@@ -15,7 +18,11 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.DealsQueries
                                 query = ShowOnlyMine(query);
                         }
 
-                        return query.OrderByDescending(x => x.DealId).ToListAsync();
+                        query = query.OrderByDescending(x => x.DealId);
+
+                        var paginated = PaginatedList<Deal>.CreateAsync(query, PageIndex, PageSize);
+
+                        return paginated;
                 }
 
                 private IQueryable<Deal> ShowOnlyMine(IQueryable<Deal> query)

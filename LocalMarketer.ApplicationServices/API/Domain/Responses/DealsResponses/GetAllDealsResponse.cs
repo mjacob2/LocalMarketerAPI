@@ -4,5 +4,9 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Responses.DealsResponses
 {
         public class GetAllDealsResponse : ResponseBase<List<DealListModel>>
         {
+                /// <summary>
+                /// Gets or sets the count of all items in database.
+                /// </summary>
+                public int Count { get; set; }
         }
 }

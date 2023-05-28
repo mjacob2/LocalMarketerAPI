@@ -27,12 +27,16 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         {
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
+
+                                PageIndex = request.PageIndex + 1,
+                                PageSize = request.PageSize,
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var DataFromDbMappedToModel = DealsMappings.GetAllDeals(dataFromDb);
+                        var DataFromDbMappedToModel = DealsMappings.GetAllDeals(dataFromDb.Items);
                         var response = new GetAllDealsResponse()
                         {
                                 ResponseData = DataFromDbMappedToModel,
+                                Count = dataFromDb.Count,
                         };
                         return response;
                 }
