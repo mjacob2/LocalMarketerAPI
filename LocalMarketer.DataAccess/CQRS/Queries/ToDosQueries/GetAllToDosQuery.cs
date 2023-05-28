@@ -38,6 +38,8 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.ToDosQueries
                                 query = query.Where(x => x.IsFinished);
                         }
 
+                        query = query.OrderBy(x => x.DueDate);
+
                         var paginated = PaginatedList<ToDo>.CreateAsync(query, PageIndex, PageSize);
 
 

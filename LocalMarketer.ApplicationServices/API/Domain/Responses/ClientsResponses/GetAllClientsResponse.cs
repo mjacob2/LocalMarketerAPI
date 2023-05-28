@@ -1,13 +1,12 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.ClientsResponses
 {
-    public class GetAllClientsResponse : ResponseBase<List<ClientListModel>>
-    {
-    }
+        public class GetAllClientsResponse : ResponseBase<List<ClientListModel>>
+        {
+                /// <summary>
+                /// Gets or sets the count of all items in database.
+                /// </summary>
+                public int Count { get; set;}
+        }
 }

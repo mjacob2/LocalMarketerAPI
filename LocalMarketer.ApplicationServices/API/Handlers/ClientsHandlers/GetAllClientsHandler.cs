@@ -21,17 +21,23 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ClientsHandlers
                         var query = new GetAllClientsQuery()
                         {
                                ShowOnlyUnallocated = request.ShowOnlyUnallocaded,
-                               LoggedUserRole = request.LoggedUserRole,
+
+                                PageIndex = request.PageIndex + 1,
+                                PageSize = request.PageSize,
+
+                                LoggedUserRole = request.LoggedUserRole,
                                LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
+
                         };
 
                         var dataFromDb = await this.executor.Execute(query);
 
-                        var DataFromDbMappedToModel = ClientsMappings.GetAllClients(dataFromDb);
+                        var DataFromDbMappedToModel = ClientsMappings.GetAllClients(dataFromDb.Items);
 
                         var response = new GetAllClientsResponse()
                         {
                                 ResponseData = DataFromDbMappedToModel,
+                                Count = dataFromDb.Count,
                         };
                         return response;
                 }
