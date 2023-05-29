@@ -4,6 +4,7 @@ using LocalMarketer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalMarketer.DataAccess.Migrations
 {
     [DbContext(typeof(LocalMarketerDbContext))]
-    partial class LocalMarketerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230529192232_FormBasicCreationDate")]
+    partial class FormBasicCreationDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -339,7 +342,7 @@ namespace LocalMarketer.DataAccess.Migrations
 
                     b.HasKey("FormBasicId");
 
-                    b.ToTable("FormBasics");
+                    b.ToTable("FormBasic");
                 });
 
             modelBuilder.Entity("LocalMarketer.DataAccess.Entities.FormFaq", b =>

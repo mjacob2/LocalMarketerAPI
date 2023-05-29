@@ -1,10 +1,8 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.ProfilesResponses;
-using MediatR;
-
-namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
+﻿namespace LocalMarketer.ApplicationServices.API.Domain.Models
 {
-        public class AddProfileRequest : RequestBase, IRequest<AddProfileResponse>
+        public class GetProfileByIdAnonymousResponceModel
         {
+                public int ProfileId { get; set; }
                 public int ClientId { get; set; }
                 public string Name { get; set; }
                 public string Voivodeship { get; set; }
@@ -15,7 +13,8 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
                 public string? CustomerService { get; set; }
                 public string? WebsiteUrl { get; set; }
                 public string? GoogleProfileId { get; set; }
-                public string Description { get; set; }
-
+                public string? Description { get; set; }
+                public string? ProfileUrl { get; set; }
+                public string? MediaLink { get; set; }
         }
 }

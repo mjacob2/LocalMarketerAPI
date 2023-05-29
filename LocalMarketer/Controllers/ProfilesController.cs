@@ -40,6 +40,15 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<GetProfileByIdRequest, GetProfileByIdResponse>(request);
                 }
 
+                [AllowAnonymous]
+                [HttpGet]
+                [Route("anonymous")]
+                public Task<IActionResult> GetProfileByIdAnonymous([FromQuery] GetProfileByIdAnonymousRequest request)
+                {
+                        return this.HandleRequest<GetProfileByIdAnonymousRequest, GetProfileByIdAnonymousResponse>(request);
+                }
+
+                [AllowAnonymous]
                 [HttpPut]
                 [Route("{profileId}")]
                 public Task<IActionResult> UpdateProfileById([FromRoute] int profileId, [FromBody] UpdateProfileByIdRequest request)

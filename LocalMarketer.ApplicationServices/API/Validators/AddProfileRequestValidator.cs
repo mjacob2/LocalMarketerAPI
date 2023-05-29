@@ -29,6 +29,12 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .Length(1, 50)
                                 .WithMessage("Miasto nie może być dłuższe niż 50 znaków");
 
+                        this.RuleFor(x => x.Description)
+                                .Must(u => !string.IsNullOrWhiteSpace(u))
+                                .WithMessage("Opis firmy nie może być pusty")
+                                .Length(1, 500)
+                                .WithMessage("Opis firmy nie może być dłuższy niż 500 znaków");
+
                         this.RuleFor(x => x.Street)
                                 .MaximumLength(50)
                                 .WithMessage("Ulica nie może być dłuższa niż 50 znaków");
@@ -53,9 +59,7 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .MaximumLength(100)
                                 .WithMessage("Google ID nie może być dłuższy niż 100 znaków");
 
-                        this.RuleFor(x => x.Description)
-                                .MaximumLength(500)
-                                .WithMessage("Opis nie może być dłuższy niż 500 znaków");
+                        
                 }
         }
 }

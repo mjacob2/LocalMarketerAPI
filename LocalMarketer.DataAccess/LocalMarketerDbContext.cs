@@ -31,12 +31,14 @@ namespace LocalMarketer.DataAccess
                 public DbSet<FormProduct> FormProducts { get; set; }
                 public DbSet<Product> Products { get; set; }
 
+                public DbSet<FormBasic> FormBasics { get; set; }
+
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<User>()
-        .HasMany(e => e.Clients)
-        .WithMany(e => e.Users)
-        .UsingEntity<ClientUser>();
+                                .HasMany(e => e.Clients)
+                                .WithMany(e => e.Users)
+                                .UsingEntity<ClientUser>();
 
 
                         modelBuilder.Entity<User>()

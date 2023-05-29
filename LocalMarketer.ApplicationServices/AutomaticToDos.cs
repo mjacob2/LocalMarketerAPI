@@ -53,6 +53,19 @@ namespace LocalMarketer.ApplicationServices
                                         DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
+                                        Title = "Podlinkuj folder do mediów",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "Do 5 zdjęć w pakiecie premium",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.Seller.ToString(),
+                                },
+
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
                                         Title = "Potwierdź pinezkę i widok z mapy",
                                         DueDate = threeDaysFromNow,
                                         Description = "",
@@ -94,6 +107,19 @@ namespace LocalMarketer.ApplicationServices
                 {
                         return new List<ToDo>
                         {
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Podlinkuj folder do mediów",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "Do 15 zdjęć w pakiecie exclusive + filmik",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.Seller.ToString(),
+                                },
+
                                  new ToDo()
                                 {
                                         DealId = newDeal.DealId,
@@ -264,6 +290,19 @@ namespace LocalMarketer.ApplicationServices
                 {
                         return new List<ToDo>
                         {
+                                new ToDo()
+                                {
+                                        DealId = newDeal.DealId,
+                                        CreationDate = DateTime.Today,
+                                        CreatorId = 0,
+                                        Title = "Podlinkuj folder do mediów",
+                                        DueDate = threeDaysFromNow,
+                                        Description = "Do 30 zdjęć w pakiecie premium + do 3 filmików",
+                                        IsFinished = false,
+                                        Notes = new List<Note>(),
+                                        ForRole = User.Roles.Seller.ToString(),
+                                },
+
                                  new ToDo()
                                 {
                                         DealId = newDeal.DealId,

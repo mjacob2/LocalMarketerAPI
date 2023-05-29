@@ -67,6 +67,26 @@ namespace LocalMarketer.ApplicationServices.Mappings
                         };
 
                 }
+                internal static GetProfileByIdAnonymousResponceModel GetProfileByIdAnonymous(Profile data)
+                {
+                        return new GetProfileByIdAnonymousResponceModel()
+                        {
+                                ProfileId = data.ProfileId,
+                                City = data.City,
+                                CustomerService = data.CustomerService,
+                                Name = data.Name,
+                                Description = data.Description,
+                                GoogleProfileId = data.GoogleProfileId,
+                                Phone = data.Phone,
+                                PostCode = data.PostCode,
+                                ProfileUrl = data.ProfileUrl,
+                                Street = data.Street,
+                                WebsiteUrl = data.WebsiteUrl,
+                                Voivodeship = data.Voivodeship,
+                                ClientId = data.ClientId,
+                                MediaLink = data.MediaLink,
+                        };
+                }
 
         }
 }

@@ -1,7 +1,5 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.FileProviders;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests
 {

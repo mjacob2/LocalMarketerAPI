@@ -71,5 +71,13 @@ namespace LocalMarketer.Controllers
                         };
                         return this.HandleRequest<GetFormProductByIdRequest, GetFormProductByIdResponse>(request);
                 }
+
+                [AllowAnonymous]
+                [HttpPost]
+                [Route("basic")]
+                public Task<IActionResult> AddFormBasic([FromBody] AddFormBasicRequest request)
+                {
+                        return this.HandleRequest<AddFormBasicRequest, AddFormBasicResponse>(request);
+                }
         }
 }
