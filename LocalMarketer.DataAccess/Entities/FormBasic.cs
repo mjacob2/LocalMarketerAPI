@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
@@ -7,6 +8,9 @@ namespace LocalMarketer.DataAccess.Entities
                 public int FormBasicId { get; set; }
                 public DateTime CreationDate { get; set; }
                 public int ProfileId { get; set; }
+
+                [JsonIgnore]
+                public Profile Profile { get; set; }
                 public int DealId { get; set; }
 
                 [MaxLength(50)]
@@ -50,6 +54,9 @@ namespace LocalMarketer.DataAccess.Entities
 
                 [MaxLength(5)]
                 public string? TuesdayFrom { get; set; }
+
+                [MaxLength(5)]
+                public string? TuesdayTo { get; set; }
 
                 [MaxLength(5)]
                 public string? WednesdayFrom { get; set; }

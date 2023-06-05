@@ -62,5 +62,13 @@ namespace LocalMarketer.Controllers
                         return this.HandleRequest<AddDealRequest, AddDealResponse>(request);
                 }
 
+                [HttpPost]
+                [Route("resendOnboarding")]
+                public Task<IActionResult> ResendOnboarding([FromBody] ResendOnboardingRequest request)
+                {
+
+                        return this.HandleRequest<ResendOnboardingRequest, ResendOnboardingResponse>(request);
+                }
+
         }
 }

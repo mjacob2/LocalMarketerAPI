@@ -48,7 +48,7 @@ namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
                                                 Name = product.Name,
                                                 Price = product.Price,
                                                 Link = product.Link,
-                                                ImageName = imageDecoder.Extract(product.Image),
+                                                ImageName = imageDecoder.ExtractAndSave(product.Image),
 
                                         };
 
@@ -95,7 +95,7 @@ namespace LocalMarketer.ApplicationProducts.API.Handlers.FormsHandlers
                                 Description = "",
                                 IsFinished = false,
                                 Notes = new List<Note>(),
-                                Link1 = $"http://localhost:4200/formProduct/{formProductId}",
+                                Link1 = $"https://crm.localmarketer.pl/#/formProduct/{formProductId}",
                                 ForRole = User.Roles.LocalMarketer.ToString(),
                         };
 

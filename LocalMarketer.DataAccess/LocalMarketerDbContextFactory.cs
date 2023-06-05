@@ -9,7 +9,7 @@ namespace LocalMarketer.DataAccess
                 public LocalMarketerDbContext CreateDbContext(string[] args)
                 {
                         var optionsBuilder = new DbContextOptionsBuilder<LocalMarketerDbContext>();
-                        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=LocalMarketer;Trusted_Connection=True;");
+                        optionsBuilder.UseSqlServer("Server=tcp:localmarketering.database.windows.net,1433;Initial Catalog=LocalMarketeringDB;Persist Security Info=False;User ID=marek;Password=^iPoV@NA3Qs3ZY;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                         return new LocalMarketerDbContext(optionsBuilder.Options);
 
                 }
@@ -17,3 +17,7 @@ namespace LocalMarketer.DataAccess
 }
 
 // Connection string to local DB: "Server=(localdb)\\mssqllocaldb;Database=LocalMarketer;Trusted_Connection=True;"
+
+
+// Azure: 
+// Server=tcp:localmarketering.database.windows.net,1433;Initial Catalog=LocalMarketeringDB;Persist Security Info=False;User ID=marek;Password=^iPoV@NA3Qs3ZY;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;

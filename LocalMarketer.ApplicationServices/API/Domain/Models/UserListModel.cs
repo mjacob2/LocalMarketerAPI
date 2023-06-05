@@ -13,6 +13,8 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public string? Role { get; set; }
                 public bool? HasAccess { get; set; }
                 public int? ProfilesCount { get; set; }
+
+                public int? ClientsCount { get; set; }
                 public int? ToDosCount { get; set; }
         }
 }

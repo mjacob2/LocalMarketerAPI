@@ -83,7 +83,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                                 Description = "",
                                 IsFinished = false,
                                 Notes = new List<Note>(),
-                                Link1 = $"http://localhost:4200/formfaq/{formFaqId}",
+                                Link1 = $"https://crm.localmarketer.pl/#/formfaq/{formFaqId}",
                                 ForRole = User.Roles.LocalMarketer.ToString(),
                         };
 

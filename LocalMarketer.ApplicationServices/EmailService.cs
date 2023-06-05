@@ -6,27 +6,28 @@ namespace LocalMarketer.ApplicationServices
 {
         public class EmailService
         {
-                public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName, string cientEmail)
+                public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName, string clientEmail)
                 {
-
+                        var baseUrl = "https://crm.localmarketer.pl";
                         var message = new MimeMessage();
-                        message.From.Add(new MailboxAddress("Local Marketer", "no-reply@localmarketer.pl"));
-                        message.To.Add(new MailboxAddress("Nowy Klient", "jakubicki.m@gmail.com"));
+                        message.From.Add(new MailboxAddress("Local Marketing", "no-reply@localmarketing.pl"));
+                        message.To.Add(new MailboxAddress("Nowy Klient", clientEmail));
                         message.Subject = $"Zadania do wykonania - Profil firmy w Google: {profileName}";
                         message.Body = new TextPart("html")
                         {
                                 Text = "<h3>Witamy w gronie naszych klientów!</h3>"
                                 + "<br>" + 
-                                $"Abyśmy mogli wykonać wszystkie zadania na profilu Twojej firmy: <b>{profileName}</b>, prosimy o wypełnienie poniższych formularzy."
+                                $"Abyśmy mogli wykonać wszystkie zadania na profilu Twojej firmy: <b>{profileName}</b>, prosimy o wykonanie poniższych zadań:"
                                 + "<br> <br>" +
-                                $"<a href=\"http://localhost:4200/forms/basic?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Danych Podstawowych</a>"
+                                $"<a href=\"https://crm.localmarketer.pl/#/forms/basic?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Danych Podstawowych</a>"
                                 + "<br> <br>" +
-                                $"<a href=\"http://localhost:4200/forms/faq?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz FAQ do czatu</a>"
+                                $"<a href=\"https://crm.localmarketer.pl/#/forms/faq?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz FAQ do czatu</a>"
                                 + "<br> <br>" +
-                                $"<a href=\"http://localhost:4200/forms/service?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Usług</a>"
+                                $"<a href=\"https://crm.localmarketer.pl/#/forms/service?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Usług</a>"
                                 + "<br> <br>" +
-                                $"<a href=\"http://localhost:4200/forms/product?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Produktów</a>"
-                                
+                                $"<a href=\"https://crm.localmarketer.pl/#/forms/product?DealId={newDeal.DealId}&ProfileId={newDeal.ProfileId}\">Wypełnij formularz Produktów</a>"
+                                + "<br> <br>" +
+                                "To jest wiadomość systemowa. Prosimy na nią nie odpowiadać."
                         };
 
                         var smtpClient = new MailKit.Net.Smtp.SmtpClient();

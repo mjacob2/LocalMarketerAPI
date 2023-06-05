@@ -56,8 +56,20 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .WithMessage("Obsługa klienta nie może być dłuższy niż 50 znaków");
 
                         this.RuleFor(x => x.WebsiteUrl)
+                                .Cascade(CascadeMode.StopOnFirstFailure)
                                 .MaximumLength(500)
-                                .WithMessage("Adres www nie może być dłuższy niż 500 znaków");
+                                .WithMessage("Adres strony www nie może być dłuższy niż 500 znaków")
+                                    .Must(link =>
+                                    {
+                                            if (string.IsNullOrEmpty(link))
+                                            {
+                                                    return true; // Skip validation if the link is empty or null
+                                            }
+
+                                            return Uri.TryCreate(link, UriKind.Absolute, out _);
+                                    })
+                                    .WithMessage("Adres strony www musi być pełnym adresem. Najlepiej skopiuj adres z paska przeglądarki. Sprawdź, czy na początku jest https://");
+
 
                         this.RuleFor(x => x.GoogleProfileId)
                                 .MaximumLength(100)
@@ -68,8 +80,20 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .WithMessage("Link do profilu w Google nie może być dłuższy niż 500 znaków");
 
                         this.RuleFor(x => x.MediaLink)
-                                .MaximumLength(1500)
-                                .WithMessage("Link do folderu z mediami nie może być dłuższy niż 1500 znaków");
+                                    .Cascade(CascadeMode.StopOnFirstFailure)
+                                    .MaximumLength(1500)
+                                    .WithMessage("Link do folderu z mediami nie może być dłuższy niż 1500 znaków")
+                                    .Must(link =>
+                                    {
+                                            if (string.IsNullOrEmpty(link))
+                                            {
+                                                    return true; // Skip validation if the link is empty or null
+                                            }
+
+                                            return Uri.TryCreate(link, UriKind.Absolute, out _);
+                                    })
+                                    .WithMessage("Link do folderu z mediami musi być pełnym adresem. Najlepiej skopiuj adres z paska przeglądarki. Sprawdź, czy na początku jest https://");
+
                 }
         }
 }

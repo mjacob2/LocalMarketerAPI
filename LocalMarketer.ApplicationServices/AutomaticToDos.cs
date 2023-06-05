@@ -252,10 +252,13 @@ namespace LocalMarketer.ApplicationServices
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
                                         DueDate = forteenDaysFromNow,
-                                        Description = "http://bitly.pl/7FtAx \n http://bitly.pl/HOlGU \n http://bitly.pl/V2CNu",
+                                        Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://panoramafirm.pl/dodaj-firme.html",
+                                        Link2 = "https://www.pkt.pl/dodaj-aktualizuj-dane-firmy",
+                                        Link3 = "https://www.baza-firm.com.pl/wpis-do-bazy-pl",
                                 },
 
                                 new ToDo()
@@ -269,6 +272,11 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://www.biznesfinder.pl/dodaj-firme",
+                                        Link2 = "http://firmowykatalog.pl/dodaj-strone.html",
+                                        Link3 = "http://www.bazafirm.org/firmy/dodaj.html",
+
+
                                 },
 
                                 new ToDo()
@@ -282,6 +290,9 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://e-polskiefirmy.pl/dodaj/",
+                                        Link2 = "https://godzinyotwarcia24.pl/dodaj-firme",
+                                        Link3 = "https://firmy77.pl/dodaj?ref=main",
                                 },
                         };
                 }
@@ -508,18 +519,19 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
+
                                         DealId = newDeal.DealId,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
-                                        DueDate = forteenDaysFromNow,
+                                        DueDate = twoMonthsFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
-                                        Link1 = "http://bitly.pl/7FtAx",
-                                        Link2 = "http://bitly.pl/HOlGU",
-                                        Link3 = "http://bitly.pl/V2CNu",
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://e-polskiefirmy.pl/dodaj/",
+                                        Link2 = "https://godzinyotwarcia24.pl/dodaj-firme",
+                                        Link3 = "https://firmy77.pl/dodaj?ref=main",
                                 },
 
                                 new ToDo()
@@ -533,6 +545,9 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://www.biznesfinder.pl/dodaj-firme",
+                                        Link2 = "http://firmowykatalog.pl/dodaj-strone.html",
+                                        Link3 = "http://www.bazafirm.org/firmy/dodaj.html",
                                 },
 
                                 new ToDo()
@@ -541,11 +556,14 @@ namespace LocalMarketer.ApplicationServices
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
-                                        DueDate = twoMonthsFromNow,
+                                        DueDate = forteenDaysFromNow,
                                         Description = "",
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://panoramafirm.pl/dodaj-firme.html",
+                                        Link2 = "https://www.pkt.pl/dodaj-aktualizuj-dane-firmy",
+                                        Link3 = "https://www.baza-firm.com.pl/wpis-do-bazy-pl",
                                 },
 
                                 new ToDo()
@@ -559,6 +577,9 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://www.firmyogloszenia.pl/coregister.php?industry=no",
+                                        Link2 = "http://www.wpolsce24.pl/info-nowa-firma.html",
+                                        Link3 = "https://katalogbai.pl/?s=dodaj",
                                 },
 
                                 new ToDo()
@@ -572,6 +593,11 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "https://katalogbai.pl/?s=dodaj",
+                                        Link2 = "https://e-polskiefirmy.pl/dodaj/",
+                                        Link3 = "http://www.wspanialefirmy.pl/dodaj-firme",
+
+
                                 },
 
                                 new ToDo()
@@ -585,6 +611,9 @@ namespace LocalMarketer.ApplicationServices
                                         IsFinished = false,
                                         Notes = new List<Note>(),
                                         ForRole = User.Roles.LocalMarketer.ToString(),
+                                        Link1 = "http://www.wpolsce24.pl/info-nowa-firma.html",
+                                        Link2 = "https://firmuj.net/",
+                                        Link3 = "https://az-net.pl/dodaj-strone/",
                                 },
                         };
                 }

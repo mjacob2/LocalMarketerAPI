@@ -52,8 +52,19 @@ namespace LocalMarketer.ApplicationServices.API.Validators
                                 .WithMessage("Obsługa klienta nie może być dłuższy niż 50 znaków");
 
                         this.RuleFor(x => x.WebsiteUrl)
+                                .Cascade(CascadeMode.StopOnFirstFailure)
                                 .MaximumLength(500)
-                                .WithMessage("Adres www nie może być dłuższy niż 500 znaków");
+                                .WithMessage("Adres strony www nie może być dłuższy niż 500 znaków")
+                                    .Must(link =>
+                                    {
+                                            if (string.IsNullOrEmpty(link))
+                                            {
+                                                    return true; // Skip validation if the link is empty or null
+                                            }
+
+                                            return Uri.TryCreate(link, UriKind.Absolute, out _);
+                                    })
+                                    .WithMessage("Adres strony www musi być pełnym adresem. Najlepiej skopiuj adres z paska przeglądarki. Sprawdź, czy na początku jest https://");
 
                         this.RuleFor(x => x.GoogleProfileId)
                                 .MaximumLength(100)

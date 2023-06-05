@@ -17,5 +17,7 @@
                 public const string GoogleIdAlreadyExists = "Profil o takim identyfikatorze Google juz istnieje w bazie";
                 public const string ClientAlreadyExists = "Klient z takim e-mail już istnieje w bazie";
                 public const string UserAlreadyExists = "Użytkownik z takim e-mail już istnieje w bazie";
+                public const string AutomaticToDosError = "Wystapił problem z utworzeniem automatycznych zadań do umowy";
+                public const string AutomaticEmailError = "AutomaticEmailErrorNewDeal";
         }
 }

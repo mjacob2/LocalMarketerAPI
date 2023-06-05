@@ -79,5 +79,16 @@ namespace LocalMarketer.Controllers
                 {
                         return this.HandleRequest<AddFormBasicRequest, AddFormBasicResponse>(request);
                 }
+
+                [HttpGet]
+                [Route("basic/{id}")]
+                public Task<IActionResult> GetFormBasicById([FromRoute] int id)
+                {
+                        var request = new GetFormBasicByIdRequest()
+                        {
+                                FormBasicId = id,
+                        };
+                        return this.HandleRequest<GetFormBasicByIdRequest, GetFormBasicByIdResponse>(request);
+                }
         }
 }

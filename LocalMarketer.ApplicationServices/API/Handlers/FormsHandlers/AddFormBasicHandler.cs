@@ -108,12 +108,12 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.FormsHandlers
                                 DealId = dealId,
                                 CreationDate = DateTime.Today,
                                 CreatorId = 0,
-                                Title = "Uzupełnij informacje podstawowe z formularza klienta",
+                                Title = "Uzupełnij INFORMACJE PODSTAWOWE z formularza klienta",
                                 DueDate = threeDaysFromNow,
                                 Description = "",
                                 IsFinished = false,
                                 Notes = new List<Note>(),
-                                Link1 = $"http://localhost:4200/formBasic/{formBasicId}",
+                                Link1 = $"https://crm.localmarketer.pl/#/formBasic/{formBasicId}",
                                 ForRole = User.Roles.LocalMarketer.ToString(),
                         };
 

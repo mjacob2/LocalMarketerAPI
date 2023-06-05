@@ -9,6 +9,7 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Models
                 public int DealId { get; set; }
                 public int CreatorId { get; set; }
                 public int ProfileId { get; set; }
+                public string ClientEmail { get; set; }
                 public string Name { get; set; }
                 public int PackageId { get; set; }
                 public double Price { get; set; }

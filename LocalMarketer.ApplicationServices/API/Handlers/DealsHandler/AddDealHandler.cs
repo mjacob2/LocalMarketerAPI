@@ -43,11 +43,6 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         try
                         {
                                 this.dataFromDb = await this.executor.Execute(command);
-
-                                await CreateAutomaticToDos(this.dataFromDb);
-
-                                await EmailService.SendClientOnboardingEmail(this.dataFromDb, request.ProfileName ,request.ClientEmail);
-
                         }
                         catch (Microsoft.EntityFrameworkCore.DbUpdateException)
                         {
@@ -57,6 +52,30 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                 };
                         }
 
+                        try
+                        {
+                                await CreateAutomaticToDos(this.dataFromDb);
+                        }
+                        catch (Exception)
+                        {
+                                return new AddDealResponse()
+                                {
+                                        Error = new ErrorModel(ErrorType.AutomaticToDosError),
+                                };
+                        }
+
+                        try
+                        {
+                                await EmailService.SendClientOnboardingEmail(this.dataFromDb, request.ProfileName, request.ClientEmail);
+                        }
+
+                        catch (Exception)
+                        {
+                                return new AddDealResponse()
+                                {
+                                        Error = new ErrorModel(ErrorType.AutomaticEmailError),
+                                };
+                        }
 
 
                         var response = new AddDealResponse()

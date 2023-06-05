@@ -17,8 +17,9 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 Email = x.Email,
                                 Role = x.Role,
                                 HasAccess = x.HasAccess,
-                                ProfilesCount = x.Clients.Select(x => x.Profiles).Count(),
-                                ToDosCount = x.Clients.SelectMany(c => c.Profiles.SelectMany(v => v.Deals)
+                                ProfilesCount = x.Clients.SelectMany(x => x.Profiles).Count(),
+                                ClientsCount = x.Clients.Count(),
+                        ToDosCount = x.Clients.SelectMany(c => c.Profiles.SelectMany(v => v.Deals)
                                 .SelectMany(b => b.ToDos.Where(n => n.ForRole == x.Role).Where(n => !n.IsFinished)))
                                 .Count()
                                 ,

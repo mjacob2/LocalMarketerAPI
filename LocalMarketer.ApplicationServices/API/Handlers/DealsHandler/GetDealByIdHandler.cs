@@ -51,11 +51,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                         //        };
                         //}
 
-                        //var DataFromDbMappedToModel = DealsMappings.GetDealById(dataFromDb);
+                        var DataFromDbMappedToModel = DealsMappings.GetDealById(dataFromDb);
 
                         var response = new GetDealByIdResponse()
                         {
-                                ResponseData = dataFromDb,
+                                ResponseData = DataFromDbMappedToModel,
                         };
 
                         return response;

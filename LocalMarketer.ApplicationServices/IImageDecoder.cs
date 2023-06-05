@@ -2,6 +2,6 @@
 {
         public interface IImageDecoder
         {
-                public string Extract(string image);
+                public string ExtractAndSave(string image);
         }
 }

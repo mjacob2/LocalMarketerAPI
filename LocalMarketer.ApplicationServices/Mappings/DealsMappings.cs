@@ -28,6 +28,7 @@ namespace LocalMarketer.ApplicationServices.Mappings
                                 DealId = data.DealId,
                                 CreatorId = data.CreatorId,
                                 ProfileId = data.ProfileId,
+                                ClientEmail = data.Profile.Client.Email,
                                 Name = data.Name,
                                 PackageId = data.PackageId,
                                 Price = data.Price,

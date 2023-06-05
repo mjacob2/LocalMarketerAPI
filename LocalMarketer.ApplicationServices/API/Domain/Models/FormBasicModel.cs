@@ -1,11 +1,10 @@
-﻿using LocalMarketer.ApplicationServices.API.Domain.Responses.FormsResponses;
-using MediatR;
-
-namespace LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests
+﻿namespace LocalMarketer.ApplicationServices.API.Domain.Models
 {
-        public class AddFormBasicRequest : RequestBase, IRequest<AddFormBasicResponse>
+        public class FormBasicModel
         {
                 public int ProfileId { get; set; }
+                public string? ProfileName { get; set; }
+                public DateTime CreationDate { get; set; }
                 public int DealId { get; set; }
                 public string? OpenedDate { get; set; }
                 public string? Description { get; set; }
@@ -21,7 +20,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests
                 public string? MondayFrom { get; set; }
                 public string? MondayTo { get; set; }
                 public string? TuesdayFrom { get; set; }
-                public string? TuesdayTo { get; set; }
                 public string? WednesdayFrom { get; set; }
                 public string? WednesdayTo { get; set; }
                 public string? ThursdayFrom { get; set; }
@@ -32,22 +30,22 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.FormsRequests
                 public string? SaturdayTo { get; set; }
                 public string? SundayFrom { get; set; }
                 public string? SundayTo { get; set; }
-                public bool Atr1 { get; set; }
-                public bool Atr2 { get; set; }
-                public bool Atr3 { get; set; }
-                public bool Atr4 { get; set; }
-                public bool Atr5 { get; set; }
-                public bool Atr6 { get; set; }
-                public bool Atr7 { get; set; }
-                public bool Atr8 { get; set; }
-                public bool Atr9 { get; set; }
-                public bool Atr10 { get; set; }
-                public bool Atr11 { get; set; }
-                public bool Atr12 { get; set; }
-                public bool Atr13 { get; set; }
-                public bool Atr14 { get; set; }
-                public bool Atr15 { get; set; }
-                public bool Atr16 { get; set; }
-                public bool Atr17 { get; set; }
+                public bool? Atr1 { get; set; }
+                public bool? Atr2 { get; set; }
+                public bool? Atr3 { get; set; }
+                public bool? Atr4 { get; set; }
+                public bool? Atr5 { get; set; }
+                public bool? Atr6 { get; set; }
+                public bool? Atr7 { get; set; }
+                public bool? Atr8 { get; set; }
+                public bool? Atr9 { get; set; }
+                public bool? Atr10 { get; set; }
+                public bool? Atr11 { get; set; }
+                public bool? Atr12 { get; set; }
+                public bool? Atr13 { get; set; }
+                public bool? Atr14 { get; set; }
+                public bool? Atr15 { get; set; }
+                public bool? Atr16 { get; set; }
+                public bool? Atr17 { get; set; }
         }
 }
