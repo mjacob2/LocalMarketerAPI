@@ -8,7 +8,6 @@ namespace LocalMarketer.ApplicationServices
         {
                 public static async Task SendClientOnboardingEmail(Deal newDeal, string profileName, string clientEmail)
                 {
-                        var baseUrl = "https://crm.localmarketer.pl";
                         var message = new MimeMessage();
                         message.From.Add(new MailboxAddress("Local Marketing", "no-reply@localmarketing.pl"));
                         message.To.Add(new MailboxAddress("Nowy Klient", clientEmail));
@@ -32,7 +31,7 @@ namespace LocalMarketer.ApplicationServices
 
                         var smtpClient = new MailKit.Net.Smtp.SmtpClient();
                         smtpClient.Connect("smtp.mailgun.org", 465, SecureSocketOptions.SslOnConnect);
-                        smtpClient.Authenticate("postmaster@sandbox4352f0546e5940a2907705cb3e729e5f.mailgun.org", "d7cb774375a804aadd088dcf65ca4e49-49a2671e-e1170936");
+                        smtpClient.Authenticate("postmaster@sandbox4352f0546e5940a2907705cb3e729e5f.mailgun.org", "a4dc6b5582351f25ad0de5cc1bfc6ef9-6d1c649a-66e41c4c");
 
 
                         await smtpClient.SendAsync(message);
