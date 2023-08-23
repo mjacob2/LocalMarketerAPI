@@ -31,8 +31,8 @@ namespace LocalMarketer.ApplicationServices
 
             using (var smtpClient = new SmtpClient())
             {
-                smtpClient.Connect("s181.cyber-folks.pl", 456, true);
-                smtpClient.Authenticate("kontakt@localmarketer.pl", "81-9bg0][nzMV-M[");
+                smtpClient.Connect(@"s181.cyber-folks.pl", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                smtpClient.Authenticate("kontakt@localmarketer.pl", @"81-9bg0][nzMV-M[");
                 await smtpClient.SendAsync(message);
                 smtpClient.Disconnect(true);
             }
