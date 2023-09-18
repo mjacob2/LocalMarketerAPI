@@ -1,15 +1,9 @@
 ﻿using LocalMarketer.ApplicationServices.API.Domain.Requests.PackagesRequests;
 using LocalMarketer.ApplicationServices.API.Domain.Responses.PackagesResponses;
-using LocalMarketer.ApplicationServices.Mappings;
 using LocalMarketer.DataAccess.CQRS.Queries.PackagesQueries;
 using LocalMarketer.DataAccess.CQRS;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalMarketer.ApplicationServices.API.Handlers.PackagesHandlers
 {

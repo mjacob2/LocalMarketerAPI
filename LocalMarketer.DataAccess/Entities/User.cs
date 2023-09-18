@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class User
+        public class User : EntityBase
         {
                 public enum Roles
                 {
@@ -12,10 +12,6 @@ namespace LocalMarketer.DataAccess.Entities
                         LocalMarketer = 2,
                         Seller = 3,
                 }
-
-                public int UserId { get; set; }
-
-                public DateTime CreationDate { get; set; }
 
                 [Required]
                 [MaxLength(20)]

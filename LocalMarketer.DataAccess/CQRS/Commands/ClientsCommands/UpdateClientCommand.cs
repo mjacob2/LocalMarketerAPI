@@ -8,7 +8,7 @@ namespace LocalMarketer.DataAccess.CQRS.Commands.ClientsCommands
         {
                 public override async Task<Client> Execute(LocalMarketerDbContext context)
                 {
-                        var existingClient = await context.Clients.Where(x => x.ClientId == this.Parameter.ClientId)
+                        var existingClient = await context.Clients.Where(x => x.Id == this.Parameter.Id)
                                 .Include(x => x.Users)
                                 .FirstOrDefaultAsync();
 

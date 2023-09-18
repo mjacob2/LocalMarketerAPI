@@ -3,19 +3,14 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Deal
+        public class Deal : EntityBase
         {
-                public int DealId { get; set; }
-
-                public DateTime CreationDate { get; set; }
-
                 [Required]
                 public int CreatorId { get; set; }
 
                 [Required]
                 public int ProfileId { get; set; }
 
-                [JsonIgnore]
                 public Profile Profile { get; set; }
 
                 [Required]
@@ -39,6 +34,6 @@ namespace LocalMarketer.DataAccess.Entities
                 [Required]
                 public string Stage { get; set; }
 
-                public List<ToDo>? ToDos { get; set; }
+                public List<ToDo> ToDos { get; set; } = new List<ToDo>();
         }
 }

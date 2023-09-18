@@ -3,9 +3,7 @@ using MediatR;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ProfilesRequests
 {
-        public class GetAllProfilesRequest : RequestBase, IRequest<GetAllProfilesResponse>
+        public class GetAllProfilesRequest : PagedRequestBase, IRequest<GetAllProfilesResponse>
         {
-                public int PageIndex { get; set; }
-                public int PageSize { get; set; }
         }
 }

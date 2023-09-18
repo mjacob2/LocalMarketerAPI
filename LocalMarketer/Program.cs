@@ -18,6 +18,8 @@ namespace LocalMarketer
                 {
                         var builder = WebApplication.CreateBuilder(args);
 
+                        string environmentName = builder.Environment.EnvironmentName;
+
                         builder.Services.AddCors((options =>
                         {
                                 options.AddDefaultPolicy(
@@ -30,19 +32,18 @@ namespace LocalMarketer
                                     });
                         }));
                         builder.Services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+                                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
                         builder.Services.AddFluentValidationAutoValidation();
                         builder.Services.AddFluentValidationClientsideAdapters();
                         builder.Services.AddValidatorsFromAssemblyContaining<AddClientRequestValidator>();
                         ValidatorOptions.Global.LanguageManager.Enabled = false;
 
-                        // Lests enter the controller on request validation
+                        // Lets enter the controller on request validation
                         builder.Services.Configure<ApiBehaviorOptions>(options =>
                         {
                                 options.SuppressModelStateInvalidFilter = true;
                         });
                         builder.Services.AddControllers();
-                        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                         builder.Services.AddEndpointsApiExplorer();
                         builder.Services.AddSwaggerGen();
                         // Lets enter the controller on request validation
@@ -59,7 +60,6 @@ namespace LocalMarketer
 
                         var app = builder.Build();
 
-                        // Configure the HTTP request pipeline.
                         if (app.Environment.IsDevelopment())
                         {
                                 app.UseSwagger();

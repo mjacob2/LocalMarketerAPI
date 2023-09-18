@@ -9,6 +9,6 @@
                 /// <summary>
                 /// Gets or sets data that is transmitted as a response.
                 /// </summary>
-                public T ResponseData { get; set; }
+                public T? ResponseData { get; set; }
         }
 }

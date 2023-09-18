@@ -7,7 +7,7 @@ namespace LocalMarketer.DataAccess.CQRS.Queries.UserQueries
         /// <summary>
         /// The get user by username query.
         /// </summary>
-        public class GetUserByEmailQuery : QueryBase<User>
+        public class GetUserByEmailQuery : NotPagedQuery<User>
         {
                 /// <summary>
                 /// Gets or sets the username.

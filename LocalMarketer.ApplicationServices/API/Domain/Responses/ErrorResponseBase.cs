@@ -10,6 +10,6 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Responses
                 /// <summary>
                 /// Gets or sets the <see cref="ErrorModel"/> object.
                 /// </summary>
-                public ErrorModel Error { get; set; }
+                public ErrorModel? Error { get; set; }
         }
 }

@@ -2,11 +2,7 @@
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Responses.UsersResponses
 {
-        public class GetAllUsersResponse : ResponseBase<List<UserListModel>>
+        public class GetAllUsersResponse : PagedResponseBase<List<UserListModel>>
         {
-                /// <summary>
-                /// Gets or sets the count of all items in database.
-                /// </summary>
-                public int Count { get; set; }
         }
 }

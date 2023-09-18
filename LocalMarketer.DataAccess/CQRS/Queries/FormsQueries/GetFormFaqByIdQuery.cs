@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.FormsQueries
 {
-        public class GetFormFaqByIdQuery : QueryBase<FormFaq>
+        public class GetFormFaqByIdQuery : NotPagedQuery<FormFaq>
         {
                 public int FormFaqId { get; set; }
 

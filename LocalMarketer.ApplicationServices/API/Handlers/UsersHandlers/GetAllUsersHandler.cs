@@ -32,7 +32,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.UsersHandlers
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var dataFromDbMappedToModel = UsersMappings.GetUserListModel(dataFromDb.Items);
+                        var dataFromDbMappedToModel = UsersMappings.GetUserListModel(dataFromDb);
                         var response = new GetAllUsersResponse()
                         {
                                 ResponseData = dataFromDbMappedToModel,

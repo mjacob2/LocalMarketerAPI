@@ -3,54 +3,54 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace LocalMarketer.ApplicationServices
 {
-        public class AutomaticToDos
+    public class AutomaticToDos
+    {
+        private readonly Deal newDeal;
+        private readonly DateTime threeDaysBeforeDealEndDate;
+
+        private readonly DateTime threeDaysFromNow = DateTime.Today.AddDays(3);
+        private readonly DateTime sevenDaysFromNow = DateTime.Today.AddDays(7);
+        private readonly DateTime forteenDaysFromNow = DateTime.Today.AddDays(14);
+
+        private readonly DateTime oneMonthFromNow = DateTime.Today.AddMonths(1);
+        private readonly DateTime twoMonthsFromNow = DateTime.Today.AddMonths(2);
+        private readonly DateTime threeMonthsFromNow = DateTime.Today.AddMonths(3);
+        private readonly DateTime fourMonthsFromNow = DateTime.Today.AddMonths(4);
+        private readonly DateTime fiveMonthsFromNow = DateTime.Today.AddMonths(5);
+
+        public AutomaticToDos(Deal newDeal)
         {
-                private readonly Deal newDeal;
-                private readonly DateTime threeDaysBeforeDealEndDate;
+            this.newDeal = newDeal;
+            this.threeDaysBeforeDealEndDate = this.newDeal.EndDate.AddDays(-3);
+        }
 
-                private readonly DateTime threeDaysFromNow = DateTime.Today.AddDays(3);
-                private readonly DateTime sevenDaysFromNow = DateTime.Today.AddDays(7);
-                private readonly DateTime forteenDaysFromNow = DateTime.Today.AddDays(14);
+        public List<ToDo> GetTasks()
+        {
+            if (newDeal.Name.Contains("Premium", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return PackagePremiumTasks();
+            }
 
-                private readonly DateTime oneMonthFromNow = DateTime.Today.AddMonths(1);
-                private readonly DateTime twoMonthsFromNow = DateTime.Today.AddMonths(2);
-                private readonly DateTime threeMonthsFromNow = DateTime.Today.AddMonths(3);
-                private readonly DateTime fourMonthsFromNow = DateTime.Today.AddMonths(4);
-                private readonly DateTime fiveMonthsFromNow = DateTime.Today.AddMonths(5);
+            if (newDeal.Name.Contains("Exclusive", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return PackageExclusiveTasks();
+            }
 
-                public AutomaticToDos(Deal newDeal)
-                {
-                        this.newDeal = newDeal;
-                        this.threeDaysBeforeDealEndDate = this.newDeal.EndDate.AddDays(-3);
-                }
+            if (newDeal.Name.Contains("Platinium", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return PackagePlatiniumTasks();
+            }
 
-                public List<ToDo> GetTasks()
-                {
-                        if (newDeal.Name.Contains("Premium", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                                return PackagePremiumTasks();
-                        }
+            return new List<ToDo>();
+        }
 
-                        if (newDeal.Name.Contains("Exclusive", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                                return PackageExclusiveTasks();
-                        }
-
-                        if (newDeal.Name.Contains("Platinium", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                                return PackagePlatiniumTasks();
-                        }
-
-                        return new List<ToDo>();
-                }
-
-                private List<ToDo> PackagePremiumTasks()
-                {
-                        return new List<ToDo>
+        private List<ToDo> PackagePremiumTasks()
+        {
+            return new List<ToDo>
                         {
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Podlinkuj folder do mediów",
@@ -63,7 +63,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Potwierdź pinezkę i widok z mapy",
@@ -76,7 +76,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Aktywuj czat",
@@ -88,7 +88,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 2 wpisy",
@@ -101,15 +101,15 @@ namespace LocalMarketer.ApplicationServices
 
 
                         };
-                }
+        }
 
-                private List<ToDo> PackageExclusiveTasks()
-                {
-                        return new List<ToDo>
+        private List<ToDo> PackageExclusiveTasks()
+        {
+            return new List<ToDo>
                         {
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Podlinkuj folder do mediów",
@@ -122,7 +122,7 @@ namespace LocalMarketer.ApplicationServices
 
                                  new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Potwierdź pinezkę i widok z mapy",
@@ -135,7 +135,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Aktywuj czat",
@@ -156,7 +156,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -169,7 +169,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -182,7 +182,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -195,7 +195,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -208,7 +208,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -221,7 +221,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -234,7 +234,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -247,7 +247,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -263,7 +263,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -281,7 +281,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -295,15 +295,15 @@ namespace LocalMarketer.ApplicationServices
                                         Link3 = "https://firmy77.pl/dodaj?ref=main",
                                 },
                         };
-                }
+        }
 
-                private List<ToDo> PackagePlatiniumTasks()
-                {
-                        return new List<ToDo>
+        private List<ToDo> PackagePlatiniumTasks()
+        {
+            return new List<ToDo>
                         {
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Podlinkuj folder do mediów",
@@ -316,7 +316,7 @@ namespace LocalMarketer.ApplicationServices
 
                                  new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Potwierdź pinezkę i widok z mapy",
@@ -329,7 +329,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Aktywuj czat",
@@ -350,7 +350,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -363,7 +363,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -376,7 +376,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -389,7 +389,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -402,7 +402,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -415,7 +415,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -428,7 +428,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Odpowiedz do 10 ostatnich opini",
@@ -441,7 +441,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -454,7 +454,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -467,7 +467,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -480,7 +480,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -493,7 +493,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -506,7 +506,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Opublikuj 4 wpisy",
@@ -520,7 +520,7 @@ namespace LocalMarketer.ApplicationServices
                                 new ToDo()
                                 {
 
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -536,7 +536,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -552,7 +552,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -568,7 +568,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -584,7 +584,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -602,7 +602,7 @@ namespace LocalMarketer.ApplicationServices
 
                                 new ToDo()
                                 {
-                                        DealId = newDeal.DealId,
+                                        DealId = newDeal.Id,
                                         CreationDate = DateTime.Today,
                                         CreatorId = 0,
                                         Title = "Dodaj 3 wpisy NAP",
@@ -616,6 +616,6 @@ namespace LocalMarketer.ApplicationServices
                                         Link3 = "https://az-net.pl/dodaj-strone/",
                                 },
                         };
-                }
         }
+    }
 }

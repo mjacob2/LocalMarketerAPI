@@ -28,11 +28,11 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.DealsHandler
                                 LoggedUserRole = request.LoggedUserRole,
                                 LoggedUserId = int.Parse(request.LoggedUserId, CultureInfo.InvariantCulture),
 
-                                PageIndex = request.PageIndex + 1,
+                                PageIndex = request.PageIndex,
                                 PageSize = request.PageSize,
                         };
                         var dataFromDb = await this.executor.Execute(query);
-                        var DataFromDbMappedToModel = DealsMappings.GetAllDeals(dataFromDb.Items);
+                        var DataFromDbMappedToModel = DealsMappings.GetAllDeals(dataFromDb);
                         var response = new GetAllDealsResponse()
                         {
                                 ResponseData = DataFromDbMappedToModel,

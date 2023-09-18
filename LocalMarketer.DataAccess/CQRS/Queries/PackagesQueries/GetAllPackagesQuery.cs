@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LocalMarketer.DataAccess.CQRS.Queries.PackagesQueries
 {
-        public class GetAllPackagesQuery : QueryBase<List<Package>>
+    public class GetAllPackagesQuery : NotPagedQuery<List<Package>?>
+    {
+        public override async Task<List<Package>?> Execute(LocalMarketerDbContext context)
         {
-                public override Task<List<Package>> Execute(LocalMarketerDbContext context)
-                {
-                                return context.Packages.ToListAsync();
-                }
+            return await context.Packages.ToListAsync();
         }
+    }
 }

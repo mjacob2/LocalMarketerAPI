@@ -14,5 +14,10 @@ namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ToDosRequests
                 public string? Description { get; set; }
                 public bool IsFinished { get; set; }
                 public string ForRole { get; set; }
+                public string? Link1 { get; set; }
+                public string? Link2 { get; set; }
+                public string? Link3 { get; set; }
+                public string? Link4 { get; set; }
+                public string? Link5 { get; set; }
         }
 }

@@ -3,10 +3,11 @@ using MediatR;
 
 namespace LocalMarketer.ApplicationServices.API.Domain.Requests.ClientsRequests
 {
-    public class GetAllClientsRequest : RequestBase, IRequest<GetAllClientsResponse>
+    public class GetAllClientsRequest : PagedRequestBase, IRequest<GetAllClientsResponse>
     {
-                public bool ShowOnlyUnallocaded { get; set; }
-                public int PageIndex { get; set; }
-                public int PageSize { get; set; }
-        }
+        /// <summary>
+        /// Gets or sets value for filtering data for these only with no assigned LocalMarketer.
+        /// </summary>
+        public bool ShowOnlyUnallocaded { get; set; } = false;
+    }
 }

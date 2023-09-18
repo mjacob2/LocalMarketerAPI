@@ -6,13 +6,12 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
+
+
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Client
+        public class Client : EntityBase
         {
-                public int ClientId { get; set; }
-                public DateTime CreationDate { get; set; }
-
                 public List<User> Users { get; set; } = new List<User> { };
 
                 [Required]
@@ -48,7 +47,6 @@ namespace LocalMarketer.DataAccess.Entities
 
                 public List<Profile> Profiles { get; set; } = new List<Profile>{};
 
-                [JsonIgnore]
                 public List<ClientUser> ClientUsers { get; set; } = new List<ClientUser> { };
-        }
+    }
 }

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LocalMarketer.ApplicationServices\LocalMarketer.ApplicationServices.csproj" />
+    <ProjectReference Include="..\LocalMarketer.DataAccess\LocalMarketer.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

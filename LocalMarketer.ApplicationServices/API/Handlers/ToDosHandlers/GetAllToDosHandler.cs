@@ -25,7 +25,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                         {
                                 ShowOnlyUnfinished = request.ShowOnlyUnfinished,
                                 ShowOnlyFinished = request.ShowOnlyFinished,
-                                PageIndex = request.PageIndex + 1,
+                                PageIndex = request.PageIndex,
                                 PageSize = request.PageSize,
 
                                 LoggedUserRole = request.LoggedUserRole,
@@ -34,7 +34,7 @@ namespace LocalMarketer.ApplicationServices.API.Handlers.ToDosHandlers
                         var dataFromDb = await this.executor.Execute(query);
 
 
-                        var DataFromDbMappedToModel = ToDosMapping.GetAllToDos(dataFromDb.Items);
+                        var DataFromDbMappedToModel = ToDosMapping.GetAllToDos(dataFromDb);
 
                         var response = new GetAllToDosResponse()
                         {

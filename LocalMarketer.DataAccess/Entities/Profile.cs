@@ -3,12 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace LocalMarketer.DataAccess.Entities
 {
-        public class Profile
+        public class Profile : EntityBase
         {
-                public int ProfileId { get; set; }
-
-                public DateTime CreationDate { get; set; }
-
                 [Required]
                 [MaxLength(50)]
                 public string Name { get; set; }
@@ -21,7 +17,6 @@ namespace LocalMarketer.DataAccess.Entities
 
                 public int ClientId { get; set; }
 
-                [JsonIgnore]
                 public Client Client { get; set; }
 
                 [MaxLength(500)]
@@ -54,8 +49,8 @@ namespace LocalMarketer.DataAccess.Entities
                 [MaxLength(50)]
                 public string? CustomerService { get; set; }
 
-                public List<Deal>? Deals { get; set; }
+                public List<Deal> Deals { get; set; } = new List<Deal>();
 
-                public List<Attachment>? Attachments { get; set; }
+                public List<Attachment> Attachments { get; set; } = new List<Attachment>();
         }
 }
